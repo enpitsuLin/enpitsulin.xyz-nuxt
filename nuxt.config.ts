@@ -31,10 +31,5 @@ export default defineNuxtConfig({
         dark: 'github-dark',
       },
     },
-    markdown: {
-      tags: {
-        input: 'ProseInput',
-      },
-    },
   },
 })
