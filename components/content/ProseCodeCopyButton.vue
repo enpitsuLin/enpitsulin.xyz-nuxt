@@ -14,7 +14,6 @@ const { copy, copied } = useClipboard({ source, legacy: true, copiedDuring: 800 
     tabindex="0"
     @click="() => copy()"
   >
-    <i v-if="copied" class="i-mingcute:check-fill size-4" />
-    <i v-else class="i-mingcute:copy-2-fill size-4" />
+    <i class="size-4" :class="[copied ? 'i-mingcute:check-fill' : 'i-mingcute:copy-2-fill']" />
   </button>
 </template>

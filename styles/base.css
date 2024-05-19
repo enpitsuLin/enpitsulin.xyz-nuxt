@@ -8,12 +8,26 @@
 }
 
 :root {
-  --theme-accent: 185 100% 72%; /* #70F3FF */
   --at-apply: font-sans;
+  --theme-background: 0 0% 100%; /** #fff */
+  --theme-accent: 185 100% 72%; /* #70F3FF */
+  --theme-border: 0 0% 80%; /* #cccccc */
+
 }
 
 .dark {
+  --theme-background: 240 3% 11%; /* #1c1c1e */
   --theme-accent: 200 77% 39%; /* #177CB0 */
+  --theme-border: 240 1% 29%;/* #49494b*/
+
+}
+
+.prose{
+  --un-prose-bg-soft: #e8e8e8;
+}
+
+.dark .prose {
+  --un-prose-bg-soft: #18181a;
 }
 
 .dark ::-webkit-scrollbar-thumb,.dark ::-webkit-scrollbar-thumb:hover {

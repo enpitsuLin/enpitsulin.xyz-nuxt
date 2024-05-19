@@ -13,7 +13,7 @@ const components = {
 
 <template>
   <div>
-    <article class="prose w-full!">
+    <article class="text-14px prose w-full!">
       <ContentRenderer :value="data!">
         <template #empty>
           <p>No content found.</p>
