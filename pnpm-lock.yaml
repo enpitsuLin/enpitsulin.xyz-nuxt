@@ -11,6 +11,9 @@ importers:
       '@ark-ui/vue':
         specifier: ^0.11.0
         version: 0.11.0(@internationalized/date@3.5.3)(vue@3.4.27(typescript@5.4.5))
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.18.1

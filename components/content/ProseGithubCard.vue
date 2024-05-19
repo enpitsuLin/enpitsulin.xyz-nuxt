@@ -1,10 +1,11 @@
 <script setup lang="ts">
-const { url } = defineProps<{ url: URL }>()
+const { href } = defineProps<{ href: string }>()
+
+const { url } = useParseHref(href)
 
 const { data, pending } = useAsyncData(
-  `github-repo${url.pathname.replaceAll('/', ':')}`,
-  () => $fetch<{ name: string, stargazers_count: number, description: string, owner: { avatar_url: string } }>(`https://api.github.com/repos${url.pathname}`),
-  { server: false },
+  `github-repo${url.value.pathname.replaceAll('/', ':')}`,
+  () => $fetch<{ name: string, stargazers_count: number, description: string, owner: { avatar_url: string } }>(`https://api.github.com/repos${url.value.pathname}`),
 )
 </script>
 
