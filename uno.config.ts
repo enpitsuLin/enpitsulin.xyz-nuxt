@@ -35,9 +35,12 @@ export default defineConfig<Theme>({
     }),
     presetWebFonts({
       fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
+        sans: 'Manrope',
+        serif: 'Noto Serif SC',
+        mono: {
+          provider: 'none',
+          name: 'MonaspiceArNerdFont',
+        },
       },
     }),
   ],

@@ -27,16 +27,7 @@ defineProps<{
       {{ language }}
     </div>
     <div relative bg-accent:5 px-4 py-5>
-      <button
-        bg-accent:80
-        flex="~ items-center justify-center"
-        op="0 group-hover:100"
-        border="~ accent/5 rounded-md"
-        class="absolute right-2 top-2 z-[1] p-1.5 text-xs text-white backdrop-blur duration-200 transition-property-[opacity,transform] hover:scale-110"
-        tabindex="0"
-      >
-        <i class="i-mingcute:copy-2-fill size-4" />
-      </button>
+      <ProseCopyButton :source="code" />
       <div relative of-hidden>
         <pre><slot /></pre>
       </div>
