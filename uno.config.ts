@@ -11,41 +11,6 @@ import {
 import type { Theme } from '@unocss/preset-uno'
 
 export default defineConfig<Theme>({
-  preflights: [
-    {
-      getCSS: () => `
-      .dark ::-webkit-scrollbar-thumb,.dark ::-webkit-scrollbar-thumb:hover {
-        border: 3px solid #3f3f46
-      }
-      
-      .dark ::-webkit-scrollbar,.dark ::-webkit-scrollbar-thumb:hover {
-        background: #27272a;
-      }
-      ::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:hover {
-        background-color: initial;
-        border: 3px solid #d4d4d8;
-        border-radius: 5px
-      }
-      
-      ::-webkit-scrollbar {
-          width: 5px !important;
-          height: 5px !important;
-          background: #f4f4f5
-      }
-      
-      ::-webkit-scrollbar-thumb {
-          background: var(--theme-accent, 1))
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-          background: var(--theme-accent, 0.8))
-      }
-      
-      ::-webkit-scrollbar-corner {
-          background: #f4f4f5
-      }`,
-    },
-  ],
   theme: {
     colors: {
       accent: 'hsl(var(--theme-accent))',

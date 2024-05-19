@@ -1,0 +1,39 @@
+:root {
+  --theme-accent: 185 100% 72%; /* #70F3FF */
+}
+
+.dark {
+  --theme-accent: 200 77% 39%; /* #177CB0 */
+}
+
+.dark ::-webkit-scrollbar-thumb,.dark ::-webkit-scrollbar-thumb:hover {
+  border: 3px solid #3f3f46
+}
+
+.dark ::-webkit-scrollbar,.dark ::-webkit-scrollbar-thumb:hover {
+  background: #27272a;
+}
+
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:hover {
+  background-color: initial;
+  border: 3px solid #d4d4d8;
+  border-radius: 5px
+}
+
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+  background: #f4f4f5
+}
+
+::-webkit-scrollbar-thumb {
+  --at-apply: bg-accent; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  --at-apply: bg-accent:80; 
+}
+
+::-webkit-scrollbar-corner {
+  background: #f4f4f5
+}

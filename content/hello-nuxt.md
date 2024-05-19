@@ -1,8 +1,26 @@
 ---
-title: Hello Nuxt.js
+title: Opinionated Flavor Markdown
 date: 2024-05-18 12:00:00
 excerpt: Hello Nuxt.js
 ---
+
+## Components
+
+::code-group
+
+```js [a.js]
+function test() {
+  console.log('hello world 1')
+}
+```
+
+```js [b.js]
+function test() {
+  console.log('hello world 2')
+}
+```
+
+::
 
 # Introduction
 

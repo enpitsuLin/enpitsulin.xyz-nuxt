@@ -3,6 +3,8 @@ import { Tabs } from '@ark-ui/vue'
 import CodeGroupTabsHeader from './CodeGroupTabsHeader.vue'
 import ProsePre from './ProsePre.vue'
 
+const slots = useSlots()
+
 function filterPreTag(slot: VNode): slot is VNode<any, HTMLPreElement, { filename: string | null, label: string | null, active: boolean | null }> {
   return slot.type && typeof slot.type === 'object'
     && 'tag' in slot.type && slot.type.tag && slot.type.tag === 'pre'
@@ -19,20 +21,22 @@ function filterVNode(nodes: VNode[]) {
     })
 }
 
-function render(props: { node: VNode }) {
-  return h(ProsePre, props.node.props as any, props.node.children!)
+function CodeGroupTabsContent() {
+  const _slot = slots.default?.() ?? []
+
+  return _slot.map((slot, index) => h(
+    Tabs.Content,
+    { value: `${index}` },
+    {
+      default: () => [h(ProsePre, slot.props as any, slot.children!)],
+    },
+  ))
 }
 </script>
 
 <template>
   <Tabs.Root model-value="0">
     <CodeGroupTabsHeader :tabs="filterVNode($slots.default?.() ?? [])" />
-    <Tabs.Content
-      v-for="(slot, index) in $slots.default?.() ?? []"
-      :key="index"
-      :value="`${index}`"
-    >
-      <render :node="slot" />
-    </Tabs.Content>
+    <CodeGroupTabsContent />
   </Tabs.Root>
 </template>
