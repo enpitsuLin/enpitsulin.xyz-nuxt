@@ -26,7 +26,7 @@ defineProps<{
     >
       {{ language }}
     </div>
-    <div relative bg-accent:5 py-5>
+    <div relative bg-accent:5 px-4 py-5>
       <button
         bg-accent:80
         flex="~ items-center justify-center"

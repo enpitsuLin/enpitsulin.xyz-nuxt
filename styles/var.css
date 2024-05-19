@@ -1,0 +1,6 @@
+:root {
+  --theme-accent: 185 100% 72%; /* #70F3FF */
+}
+.dark {
+  --theme-accent: 200 77% 39%; /* #177CB0 */
+}

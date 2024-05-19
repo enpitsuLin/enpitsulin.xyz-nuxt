@@ -15,6 +15,7 @@ const tag = `h${props.level}`
       role="button"
       tabindex="0"
       aria-hidden="true"
+      text-accent
       :href="`#${id}`"
     >
       <i class="i-mingcute:hashtag-line" />

@@ -13,16 +13,6 @@ import type { Theme } from '@unocss/preset-uno'
 export default defineConfig<Theme>({
   preflights: [
     {
-      getCSS() {
-        return `:root{
-          --theme-accent: 210 40% 98%; /* #f8fafc */
-        }
-        .dark {
-          --theme-accent: 217 33% 17%; /* #1e293b */
-        }`
-      },
-    },
-    {
       getCSS: () => `
       .dark ::-webkit-scrollbar-thumb,.dark ::-webkit-scrollbar-thumb:hover {
         border: 3px solid #3f3f46
