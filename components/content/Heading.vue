@@ -10,15 +10,15 @@ const tag = `h${props.level}`
     </span>
     <a
       flex="inline"
-      select-noe ml-2 cursor-pointer op="0 group-hover:100"
-      class="transition-opacity duration-200 group-hover:opacity-100"
+      op="0 group-hover:100 focus:100"
+      class="transition-opacity duration-200"
       role="button"
       tabindex="0"
       aria-hidden="true"
-      text-accent
+      ml-2 select-none text-accent
       :href="`#${id}`"
     >
-      <i class="i-mingcute:hashtag-line" />
+      <i class="i-mingcute:hashtag-line" size-1em />
     </a>
   </component>
 </template>

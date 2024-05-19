@@ -43,6 +43,9 @@ export default defineConfig<Theme>({
           'text-align': 'left',
           'width': '100%',
         },
+        'td,th': {
+          border: 'unset',
+        },
         'thead tr': {
           'border-bottom-width': '1px',
           'border-bottom-color': 'hsl(var(--theme-border) / 0.5)',

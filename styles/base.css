@@ -22,8 +22,9 @@
 
 }
 
-.prose{
+.prose {
   --un-prose-bg-soft: #e8e8e8;
+  --un-prose-borders: hsl(var(--theme-accent) / 0.8)
 }
 
 .dark .prose {
