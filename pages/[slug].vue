@@ -12,15 +12,15 @@ const components = {
 </script>
 
 <template>
-  <div flex="~ col items-center" class="container">
-    <div>
+  <div flex="~ col items-center">
+    <div text-14px class="container">
       <ContentRenderer :value="data!">
         <template #empty>
           <p>No content found.</p>
         </template>
         <ContentRendererMarkdown
           tag="article"
-          text-14px class="prose"
+          text="1.1rem" class="prose"
           :value="data!"
           :components="components"
         />
