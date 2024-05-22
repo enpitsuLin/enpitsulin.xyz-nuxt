@@ -25,6 +25,11 @@ export default defineNuxtConfig({
   },
 
   content: {
+    markdown: {
+      remarkPlugins: [
+        'remark-unwrap-images',
+      ],
+    },
     highlight: {
       theme: {
         default: 'github-light',

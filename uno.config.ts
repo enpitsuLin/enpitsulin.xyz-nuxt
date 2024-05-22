@@ -28,9 +28,6 @@ export default defineConfig<Theme>({
         'pre': {
           padding: '0',
         },
-        'p,ul,ol,pre': {
-          margin: '0',
-        },
         ':not(pre) > code::before,:not(pre) > code::after': {
           content: 'normal',
         },

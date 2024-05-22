@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { joinURL, withLeadingSlash, withTrailingSlash } from 'ufo'
-import { computed, useRuntimeConfig } from '#imports'
+import { computed, useRuntimeConfig, useSlots } from '#imports'
 
 const props = defineProps<{
   src: string
@@ -20,10 +20,11 @@ const refinedSrc = computed(() => {
 </script>
 
 <template>
-  <img
-    :src="refinedSrc"
-    :alt="alt"
-    :width="width"
-    :height="height"
-  >
+  <figure>
+    <img :src="refinedSrc" :alt="alt" :width="width" :height="height">
+    <figcaption v-if="alt" mt-1 flex="~ col items-center justify-center">
+      <hr op-80 class="my-3 h-[0.5px] w-[80px] border-0 bg-black/30 dark:bg-white/30">
+      <span>{{ alt }}</span>
+    </figcaption>
+  </figure>
 </template>
