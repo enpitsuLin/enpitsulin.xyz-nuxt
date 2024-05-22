@@ -29,7 +29,7 @@ defineProps<{
     <div relative bg-accent:5>
       <ProseCodeCopyButton :source="code" />
       <div relative of-hidden>
-        <pre px-4 py-5><slot /></pre>
+        <pre px-4><slot /></pre>
       </div>
     </div>
   </div>

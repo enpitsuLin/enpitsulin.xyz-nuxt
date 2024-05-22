@@ -10,7 +10,7 @@ defineProps<Props>()
 <template>
   <Tabs.List
     v-if="tabs"
-    class="relative flex gap-2"
+    class="relative flex gap-2 pb-1"
   >
     <Tabs.Trigger
       v-for="({ label }, i) in tabs"
