@@ -14,7 +14,7 @@ const { data, pending } = useAsyncData(
 <template>
   <NuxtLink
     ref="target" :href="url.toString()" :rel="rel" target="_blank" flex="~ justify-between items-center gap-4"
-    m="x-auto" relative min-h-24 w-110 rounded-md bg-accent:10 p="x-4 y-2" decoration-none
+    m="x-auto" p="x-4 y-2" relative max-w-110 min-h-24 rounded-md bg-accent:10 decoration-none
   >
     <ProseGithubCardSkeleton v-if="pending" />
     <template v-else>
