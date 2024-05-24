@@ -9,6 +9,7 @@
   >
     <slot />
   </main>
+  <LayoutFAB />
 </template>
 
 <style>
