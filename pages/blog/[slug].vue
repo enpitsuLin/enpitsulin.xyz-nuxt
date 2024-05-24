@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import { ProseGithubCard, ProseInput } from '#components'
+import { toc } from '~/composables/content'
 
 const route = useRoute('blog-slug')
-const { data } = await useAsyncData('home', () => queryContent(route.params.slug).findOne())
+
+const { data } = await useAsyncData(
+  'home',
+  () => queryContent(route.params.slug).findOne(),
+)
+
+watch(data, (val) => {
+  if (val)
+    toc.value = val.body?.toc?.links ?? null
+}, { immediate: true })
+
 if (!data.value)
   throw createError('Not Found')
 const components = {
@@ -18,12 +29,7 @@ const components = {
         <template #empty>
           <p>No content found.</p>
         </template>
-        <ContentRendererMarkdown
-          tag="article"
-          text="1.1em" class="prose"
-          :value="data!"
-          :components="components"
-        />
+        <ContentRendererMarkdown tag="article" text="1.1em" class="prose" :value="data!" :components="components" />
       </ContentRenderer>
     </div>
   </div>

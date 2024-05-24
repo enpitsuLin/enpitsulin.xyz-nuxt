@@ -1,6 +1,6 @@
 <template>
-  <div class="gradient" style="--size: 250px;--speed: 10s" left="md:1/2" top="md:10rem" />
-  <div class="gradient" style="--size: 400px;--speed: 20s" left="md:1/3" />
+  <div class="gradient" style="--size: 250px;--speed: 10s" left="md:1/2" top="md:15rem" />
+  <div class="gradient" style="--size: 400px;--speed: 20s" left="md:1/3" top="md:8rem" />
   <LayoutNavBar />
   <main
     relative

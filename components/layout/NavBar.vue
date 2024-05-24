@@ -5,20 +5,20 @@ const tabs = [
     href: '/',
   },
   {
-    label: 'About',
-    href: '/about',
-  },
-  {
     label: 'Blog',
     href: '/blog',
+  },
+  {
+    label: 'Tags',
+    href: '/tags',
   },
   {
     label: 'Projects',
     href: '/projects',
   },
   {
-    label: 'Skill',
-    href: '/skill',
+    label: 'About',
+    href: '/about',
   },
 ]
 
@@ -37,7 +37,7 @@ const links = ref<HTMLLIElement[]>([])
       <nav
         bg="white/60 dark:black/60"
         rounded-full px-10 py="2px"
-        class="flex shadow-black/03 backdrop-blur-0.5rem transition-background-color"
+        class="flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
       >
         <ul
           flex="~ items-center justify-center gap-5"
