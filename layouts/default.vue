@@ -1,5 +1,10 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-  <main class="relative z-1 px-4 pt-2 md:px-0">
+  <LayoutNavBar />
+  <main class="mx-auto container">
     <slot />
   </main>
 </template>

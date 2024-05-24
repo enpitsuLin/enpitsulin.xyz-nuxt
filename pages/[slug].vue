@@ -13,7 +13,7 @@ const components = {
 
 <template>
   <div flex="~ col items-center">
-    <div text-12px class="container">
+    <div text-14px class="container">
       <ContentRenderer :value="data!">
         <template #empty>
           <p>No content found.</p>

@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     payloadExtraction: false,
     renderJsonPayloads: true,
     typedPages: true,
+    viewTransition: true,
   },
 
   css: [

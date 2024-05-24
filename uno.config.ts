@@ -55,7 +55,10 @@ export default defineConfig<Theme>({
     }),
     presetWebFonts({
       fonts: {
-        sans: 'Manrope',
+        sans: {
+          name: 'Inter',
+          weights: ['400', '500', '700'],
+        },
         serif: 'Noto Serif SC',
         mono: {
           provider: 'none',

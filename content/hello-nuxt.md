@@ -1,36 +1,17 @@
 ---
 title: Opinionated Flavor Markdown
 date: 2024-05-18 12:00:00
-excerpt: Hello Nuxt.js
 ---
-
-## Components
-
-::code-group
-
-```js [a.js]
-function test() {
-  console.log('hello world 1')
-}
-```
-
-```js [b.js]
-function test() {
-  console.log('hello world 2')
-}
-```
-
-::
-
-https://github.com/innei-template/rc-library-template
-
-# Introduction
 
 Markdown and Mdx parsing is supported via `unified`, and other remark and rehype packages. `next-mdx-remote` allows us to parse `.mdx` and `.md` files in a more flexible manner without touching webpack.
 
 GitHub flavored markdown is used. `mdx-prism` provides syntax highlighting capabilities for code blocks. Here's a demo of how everything looks.
 
 The following markdown cheatsheet is adapted from: https://guides.github.com/features/mastering-markdown/
+
+<!--more-->
+
+# Introduction
 
 # What is Markdown?
 
@@ -213,3 +194,23 @@ You can create tables by assembling a list of words and dividing them with hyphe
 ## Strikethrough
 
 Any word wrapped with two tildes (like `~~this~~`) will appear ~~crossed out~~.
+
+## Components
+
+::code-group
+
+```js [a.js]
+function test() {
+  console.log('hello world 1')
+}
+```
+
+```js [b.js]
+function test() {
+  console.log('hello world 2')
+}
+```
+
+::
+
+https://github.com/innei-template/rc-library-template
