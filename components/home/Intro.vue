@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { y } = useWindowScroll()
-const isServer = import.meta.server
+const isClient = import.meta.client
 </script>
 
 <template>
@@ -26,8 +26,8 @@ const isServer = import.meta.server
       </div>
     </div>
     <div
-      class="mt-auto hidden pb-6 pt-8 transition-opacity sm:flex sm:justify-center"
-      :class="isServer && y > 20 ? 'op-0' : 'op-100'"
+      class="mt-auto hidden pb-6 pt-8 transition-opacity duration-500 sm:flex sm:justify-center"
+      :class="isClient && y > 20 ? 'op-0' : 'op-100'"
     >
       <span class="animate-bounce text-gray-500">
         <i inline-block class="i-mingcute:right-line rotate-90" />

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ProseGithubCard, ProseInput } from '#components'
 
-const route = useRoute('slug')
+const route = useRoute('blog-slug')
 const { data } = await useAsyncData('home', () => queryContent(route.params.slug).findOne())
 if (!data.value)
   throw createError('Not Found')
