@@ -3,17 +3,7 @@ const { data } = await useAsyncData('index', () => queryContent().sort({ date: -
 </script>
 
 <template>
-  <div>
-    <ul>
-      <li v-for="item in data" :key="item._id">
-        <ContentRendererMarkdown
-          tag="article"
-          excerpt
-          :value="item"
-          border="~ rounded"
-          p-4
-        />
-      </li>
-    </ul>
+  <div h-200vh>
+    <HomeIntro />
   </div>
 </template>

@@ -11,8 +11,7 @@
   --at-apply: font-sans;
   --theme-background: 0 0% 100%; /** #fff */
   --theme-accent: 185 100% 72%; /* #70F3FF */
-  --theme-border: 0 0% 80%; /* #cccccc */
-
+  --theme-border: 0 0% 80%; /* #cccccc */ 
 }
 
 .dark {

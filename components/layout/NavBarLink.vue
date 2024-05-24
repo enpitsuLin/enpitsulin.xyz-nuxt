@@ -11,13 +11,18 @@ defineProps<{
     <template #default="{ isExactActive, navigate, href }">
       <a
         flex="~ items-center justify-center"
-        class="transition hover:text-gray-950" w-full cursor-pointer p-3
-        :class="isExactActive ? 'dark:hover:text-gray-600' : 'dark:hover:text-gray-300'"
+        w-full cursor-pointer p-3
         :href="href"
         @click="navigate"
       >
-        <slot />
         <span v-if="isExactActive" class="navbar-link" absolute inset-0 rounded-full bg-white z="-1" />
+
+        <span
+          class="relative transition-color hover:text-gray-9 dark:hover:text-gray-6"
+        >
+
+          <slot />
+        </span>
       </a>
     </template>
   </RouterLink>
@@ -28,10 +33,11 @@ defineProps<{
   view-transition-name: navbar-link;
 }
 
-::view-transition-new(navbar-link) {
-  height: 100%;
+::view-transition-group(navbar-link) {
+  animation-duration: 0.25s;
+  mix-blend-mode: exclusion;
 }
-
+::view-transition-new(navbar-link),
 ::view-transition-old(navbar-link) {
   height: 100%;
 }

@@ -4,6 +4,9 @@ import '~/styles/base.css'
 
 useHead({
   title: appName,
+  bodyAttrs: {
+    class: 'bg-gray-50 text-gray-950 relative dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90',
+  },
 })
 </script>
 
@@ -15,16 +18,16 @@ useHead({
 
 <style>
 html,
-body,
-#__nuxt {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
+body {
+  height: 100%;
 }
 
-html.dark {
-  background: #222;
-  color: white;
+body {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+#__nuxt {
+  position: relative;
 }
 </style>
