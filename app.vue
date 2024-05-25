@@ -17,14 +17,13 @@ useHead({
 </template>
 
 <style>
-html,
-body {
+html {
   height: 100%;
 }
 
 body {
+  min-height: 100vh;
   scroll-behavior: smooth;
-  overflow-y: scroll;
 }
 
 #__nuxt {
