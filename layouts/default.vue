@@ -3,12 +3,14 @@
   <div class="gradient" style="--size: 400px;--speed: 20s" left="md:1/3" top="md:8rem" />
   <LayoutNavBar />
   <main
-    relative
     flex="~ col items-center justify-center"
-    ma-auto max-w-50rem of-hidden px-4 pt-7rem
+    relative mx-auto mt-70px max-w-60rem
   >
     <slot />
   </main>
+  <footer mt-250px>
+    footer
+  </footer>
   <LayoutFAB />
 </template>
 

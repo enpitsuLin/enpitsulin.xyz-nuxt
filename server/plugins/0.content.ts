@@ -13,6 +13,19 @@ export default defineNitroPlugin((nitroApp) => {
     if (file._id.endsWith('.md')) {
       parseLinkNode(file.body!)
       unwrapElement(file.body!)
+      file.slug = file._file!.replace(/.md$/, '')!
     }
   })
 })
+
+declare module '@nuxt/content/dist/runtime/types'{
+
+  export interface ParsedContent {
+    tags: string[]
+    /** ISO Format Date String */
+    date: string
+    image?: string
+    /** inject by `~/server/plugins/content-slug` */
+    slug: string
+  }
+}

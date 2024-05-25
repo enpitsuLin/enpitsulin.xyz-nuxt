@@ -12,6 +12,7 @@ useHead({
 
 <template>
   <NuxtLayout>
+    <NuxtLoadingIndicator />
     <NuxtPage />
   </NuxtLayout>
 </template>
@@ -19,6 +20,7 @@ useHead({
 <style>
 html {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
