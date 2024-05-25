@@ -19,7 +19,7 @@ const { data } = await useAsyncData(
     >
       Recent Posts
     </h1>
-    <div grid="~ cols-2 gap-16">
+    <div grid="~ cols-1 md:cols-2 gap-16">
       <article
         v-for="item in data"
         :key="item._id"
