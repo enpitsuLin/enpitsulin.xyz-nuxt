@@ -18,12 +18,14 @@ const { data } = await useAsyncData(
     pb-12
   >
     Recent Posts
-    <NuxtLink
-      role="button" href="/blog"
-      class="inline-flex items-center justify-center gap-2 rounded-md bg-zinc-50 px-3 py-2 text-sm text-zinc-900 font-medium outline-offset-2 transition active:bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-100 active:text-zinc-900/60 dark:text-zinc-300 active:transition-none dark:active:bg-zinc-800/50 dark:hover:bg-zinc-800 dark:active:text-zinc-50/70 dark:hover:text-zinc-50"
-    >
-      <span text-sm>View all</span>
-    </NuxtLink>
+    <Button as-child>
+      <NuxtLink
+        role="button"
+        href="/blog"
+      >
+        <span text-sm>View all</span>
+      </NuxtLink>
+    </Button>
   </h1>
   <div grid="~ cols-1 md:cols-2 gap-16">
     <article
