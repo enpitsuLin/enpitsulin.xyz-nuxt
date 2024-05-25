@@ -6,5 +6,8 @@ export default defineFlatConfigs(antfu(
   {
     unocss: true,
     formatters: true,
+    ignores: [
+      'content/**/*.md',
+    ],
   },
 ))

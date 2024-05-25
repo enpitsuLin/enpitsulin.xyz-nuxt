@@ -169,13 +169,13 @@ interface Person {
 
 对于更精细的类型我们甚至可以放在typescript文件中并通过导入功能导入
 
-```javascript:import.js
+```javascript [import.js]
 /**
  * @typedef {import('./test').Toc} Toc
  */
 ```
 
-```typescript:export.js
+```typescript [export.ts]
 export type Toc = {
   value: string
   depth: number

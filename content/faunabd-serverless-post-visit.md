@@ -110,7 +110,7 @@ pnpm add faunadb
 
 这里仅实现 Nextjs ，其他的静态生成器不是很熟就不献丑了
 
-```ts:/pages/api/get-visit.ts
+```ts [/pages/api/get-visit.ts]
 import { NextApiHandler } from "next";
 import { Client, query as q } from "faunadb";
 
@@ -160,7 +160,7 @@ export default handler;
 
 对于我的博客我在文章头部展示了这个数据，对于其他情况也是访问这个接口然后再页面上渲染出来就行了。
 
-```tsx:/src/components/PostHeader.tsx {13-20,53-58}
+```tsx {13-20,53-58} [/src/components/PostHeader.tsx]
 import formatDate from '@/lib/utils/formatDate'
 import { PostFrontMatter } from '@/types/PostFrontMatter'
 import { useState, useEffect } from 'react'

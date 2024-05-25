@@ -24,7 +24,7 @@ excerpt: 一年前的为了毕业设计买的学生机，现在续了一下，�
 
 使用 zi 安装 OMZ 和 prezto，直接在.zshrc 中写入
 
-```plain:.zshrc
+```sh [.zshrc]
 zi snippet OMZ::plugins/git/git.plugin.zsh
 zi snippet PZT::modules/helper/init.zsh
 ```
@@ -33,7 +33,7 @@ zi snippet PZT::modules/helper/init.zsh
 
 一个自定义程度比较高的 zsh 主题，仓库里现在只有 zinit 的安装方法但是 zi 中的方法也很相似，直接使用也可以，或者通过[使用案例](https://z-shell.pages.dev/docs/gallery/collection/themes#thp-romkatvpowerlevel10k)也是直接在.zshrc 加入然后重新`source .zshrc`等待下载完
 
-```plain:.zshrc
+```sh [.zshrc]
 zi ice depth=1; zi light romkatv/powerlevel10k
 ```
 

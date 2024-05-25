@@ -13,7 +13,7 @@ excerpt: 上篇我们完成了基于sqlite数据库+rust的后端逻辑，但是
 
 这里还有一个需要用的到就是我们 Todo 的类型，其实就是将 rust 之前写好的 struct 用 ts interface 的方式声明一下以便前端项目使用。
 
-```ts:src/types/todo.ts
+```ts [src/types/todo.ts]
 export interface Todo {
   id: string
   label: string
@@ -28,7 +28,7 @@ export interface Todo {
 
 首先先在 src 下建立一个 store 目录，添加一个 todo.ts 文件来存放声明的一些原子。
 
-```ts:src/store/todo.ts
+```ts [src/store/todo.ts]
 import { atom } from 'jotai'
 import { Todo } from '../types/todo'
 
@@ -74,7 +74,7 @@ export const anyTodosDone = atom((get) => {
 
 那么我们需要通过 props 传递这个数据，首先需要先去定义一下这两个组件的 props。首先是 TodoItem
 
-```tsx:src/component/TodoItem.tsx
+```tsx [src/component/TodoItem.tsx]
 import { Todo } from './types/todo'
 const TodoItem: React.FC<{ todo:Todo }> = ({ todo }) => {
   return (
@@ -92,7 +92,7 @@ export default TodoItem
 
 以及 TodoList
 
-```tsx:src/component/TodoList.tsx
+```tsx [src/component/TodoList.tsx]
 import { Todo } from './types/todo'
 import TodoItem from './TodoItem'
 const TodoList:React.FC<{ todos: Todo[] }> = ({ todos }) => {
@@ -135,7 +135,7 @@ export default TodoList
 
 然后我们在 App.tsx 中使用一个副作用将 invoke('get_todos')返回的数据赋值给 AllTodosAtom 原子并且将 filterAtom 相应的数据传递下去。然后我们查看应用现在应该是变成一个空的列表的情况
 
-```tsx:src/App.tsx
+```tsx [src/App.tsx]
 import { invoke } from '@tauri-apps/api'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
@@ -169,7 +169,7 @@ export default App
 
 所以修改 TodoList 让其中的 input 标签起作用以及过滤用的 a 标签能够控制 filterTypeAtom
 
-```tsx:src/component/TodoList.tsx
+```tsx [src/component/TodoList.tsx]
 import { useAtom } from 'jotai'
 import { v4 as randomUUID } from 'uuid'
 import { useState, useCallback, KeyboardEventHandler } from 'react'
@@ -288,7 +288,7 @@ export default TodoList
 
 最终组件代码如下，我额外使用了 react-use 和 use-debounce 这两个包的一些 hook。~~本来是想自己写的，写了一个就摆了，useDoubleClick 可以看最后仓库代码~~
 
-```tsx:src/component/TodoItem.tsx
+```tsx [src/component/TodoItem.tsx]
 import { useAtom } from 'jotai'
 import { ChangeEventHandler, KeyboardEventHandler, useCallback, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'

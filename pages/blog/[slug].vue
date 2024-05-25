@@ -94,7 +94,7 @@ if (!data.value)
       </nav>
     </aside>
   </div>
-  <footer px="4 md:8" border="t border">
+  <footer mx="-8 sm:-12" px="8 sm:12" border="t border">
     <nav flex="~ justify-between" my-20px>
       <NuxtLink
         v-if="surroundData?.[0]"
@@ -102,7 +102,7 @@ if (!data.value)
         :to="{ name: 'blog-slug', params: { slug: surroundData[0].slug } }"
       >
         <p op-50>
-          Previous
+          Next
         </p>
         <p>{{ surroundData[0].title }}</p>
       </NuxtLink>
@@ -113,7 +113,7 @@ if (!data.value)
         :to="{ name: 'blog-slug', params: { slug: surroundData[1].slug } }"
       >
         <p op-50>
-          Next
+          Previous
         </p>
         <p>{{ surroundData[1].title }}</p>
       </NuxtLink>
