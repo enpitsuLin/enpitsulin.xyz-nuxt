@@ -34,13 +34,14 @@ const route = useRoute()
       <div
         v-if="route.path !== '/'"
         absolute top="1/2" class="left--12 translate-y--1/2 view-transition-avatar"
-        size-9 border-2 border-white rounded-full object-cover shadow-xl
       >
-        <img
-          alt="developer-image"
-          width="250" height="250" decoding="async"
-          class="rounded-full object-cover" src="https://avatars.githubusercontent.com/enpitsuLin"
-        >
+        <NuxtImg
+          alt="avatar"
+          width="250" height="250"
+          decoding="async"
+          class="size-9 border-2 border-white rounded-full object-cover shadow-xl"
+          src="https://avatars.githubusercontent.com/enpitsuLin"
+        />
       </div>
       <nav
         bg="white/60 dark:black/60"

@@ -2,7 +2,5 @@
 </script>
 
 <template>
-  <div h-200vh>
-    <HomeIntro />
-  </div>
+  <HomeIntro />
 </template>
