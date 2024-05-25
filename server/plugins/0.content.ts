@@ -22,10 +22,14 @@ declare module '@nuxt/content/dist/runtime/types'{
 
   export interface ParsedContent {
     tags: string[]
-    /** ISO Format Date String */
     date: string
     image?: string
-    /** inject by `~/server/plugins/content-slug` */
     slug: string
+    readingTime: {
+      text: string
+      time: number
+      words: number
+      minutes: number
+    }
   }
 }

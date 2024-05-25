@@ -5,7 +5,7 @@ import '~/styles/base.css'
 useHead({
   title: appName,
   bodyAttrs: {
-    class: 'bg-gray-50 text-gray-950 relative dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90',
+    class: ' text-gray-950 dark:text-gray-50 bg-slate-50 dark:bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px] dark:bg-[radial-gradient(#e5e7eb20_1px,transparent_1px)]',
   },
 })
 </script>
@@ -16,19 +16,3 @@ useHead({
     <NuxtPage />
   </NuxtLayout>
 </template>
-
-<style>
-html {
-  height: 100%;
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-}
-
-#__nuxt {
-  position: relative;
-}
-</style>

@@ -14,6 +14,7 @@ export default defineConfig<Theme>({
   theme: {
     colors: {
       accent: 'hsl(var(--theme-accent))',
+      border: 'hsl(var(--theme-border))',
     },
   },
   presets: [

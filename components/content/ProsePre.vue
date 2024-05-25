@@ -19,14 +19,14 @@ defineProps<{
     </div>
     <div
       v-if="filename && language"
-      bg-accent:20
+      bg="#d4d4d8/20"
       flex="~ items-center justify-between"
       class="z-10 w-full rounded-t-xl px-5 py-2 text-sm"
     >
       <span class="shrink-0 grow truncate">{{ filename }}</span>
       <span uppercase class="pointer-events-none shrink-0 grow-0" aria-hidden="true">{{ language }}</span>
     </div>
-    <div relative bg-accent:5>
+    <div relative bg="#d4d4d8/5">
       <ProseCodeCopyButton :source="code" />
       <div relative of-hidden>
         <pre px-4><slot /></pre>

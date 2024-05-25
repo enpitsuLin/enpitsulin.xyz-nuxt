@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "pnpm@9.1.2",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
@@ -19,17 +19,18 @@
     "@nuxt/eslint": "^0.3.13",
     "@nuxtjs/color-mode": "^3.4.1",
     "@pinia/nuxt": "^0.5.1",
-    "@unocss/eslint-plugin": "^0.60.2",
-    "@unocss/nuxt": "^0.60.2",
+    "@unocss/eslint-plugin": "^0.60.3",
+    "@unocss/nuxt": "^0.60.3",
     "@vueuse/nuxt": "^10.9.0",
-    "eslint": "^9.2.0",
+    "eslint": "^9.3.0",
     "eslint-plugin-format": "^0.1.1",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
-    "unocss": "^0.60.2"
+    "unocss": "^0.60.3"
   },
   "dependencies": {
-    "@ark-ui/vue": "^0.11.0",
+    "@ark-ui/vue": "^3.0.0",
+    "remark-reading-time": "^2.0.1",
     "remark-unwrap-images": "^4.0.0",
     "unist-util-visit": "^5.0.0"
   }

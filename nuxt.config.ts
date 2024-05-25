@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     markdown: {
       remarkPlugins: [
         'remark-unwrap-images',
+        'remark-reading-time',
       ],
     },
     highlight: {

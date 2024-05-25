@@ -1,17 +1,19 @@
 ---
-title: Opinionated Flavor Markdown
-date: 2024-05-18 12:00:00
+title: Markdown Guide
+date: 2019-10-11
+tags:
+  - github
+  - guide
+execrpt: Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on GitHub Flavored Markdown.
 ---
+
+# Introduction
 
 Markdown and Mdx parsing is supported via `unified`, and other remark and rehype packages. `next-mdx-remote` allows us to parse `.mdx` and `.md` files in a more flexible manner without touching webpack.
 
 GitHub flavored markdown is used. `mdx-prism` provides syntax highlighting capabilities for code blocks. Here's a demo of how everything looks.
 
 The following markdown cheatsheet is adapted from: https://guides.github.com/features/mastering-markdown/
-
-<!--more-->
-
-# Introduction
 
 # What is Markdown?
 
@@ -133,7 +135,7 @@ I think you should use an
 Here’s an example of how you can use syntax highlighting with [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/):
 
 ````
-```js [fancyAlert.js]
+```js:fancyAlert.js
 function fancyAlert(arg) {
   if (arg) {
     $.facebox({ div: '#foo' })
@@ -144,7 +146,7 @@ function fancyAlert(arg) {
 
 And here's how it looks - nicely colored with styled code titles!
 
-```js [fancyAlert.js]
+```js:fancyAlert.js
 function fancyAlert(arg) {
   if (arg)
     $.facebox({ div: '#foo' })
@@ -194,23 +196,3 @@ You can create tables by assembling a list of words and dividing them with hyphe
 ## Strikethrough
 
 Any word wrapped with two tildes (like `~~this~~`) will appear ~~crossed out~~.
-
-## Components
-
-::code-group
-
-```js [a.js]
-function test() {
-  console.log('hello world 1')
-}
-```
-
-```js [b.js]
-function test() {
-  console.log('hello world 2')
-}
-```
-
-::
-
-https://github.com/innei-template/rc-library-template

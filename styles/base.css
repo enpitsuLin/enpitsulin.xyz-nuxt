@@ -9,15 +9,15 @@
 
 :root {
   --at-apply: font-sans;
-  --theme-background: 0 0% 100%; /** #fff */
-  --theme-accent: 185 100% 72%; /* #70F3FF */
-  --theme-border: 0 0% 80%; /* #cccccc */ 
+  --theme-background: 210 17% 98%; /** #f8f9fa */
+  --theme-accent: 200 77% 39%; /* #177CB0 */
+  --theme-border: 240 4% 95%; /* #f2f2f3*/ 
 }
 
 .dark {
-  --theme-background: 240 3% 11%; /* #1c1c1e */
-  --theme-accent: 200 77% 39%; /* #177CB0 */
-  --theme-border: 240 1% 29%;/* #49494b*/
+  --theme-background: 222 32% 10%; /* #121723 */
+  --theme-accent: 195 50% 39%; /* #177CB0 */
+  --theme-border: 240 6% 15%; /* #242429*/
 
 }
 
@@ -28,6 +28,10 @@
 
 .dark .prose {
   --un-prose-bg-soft: #18181a;
+}
+
+.prose .footnotes{
+  --at-apply: border-t border-t-border pt-20;
 }
 
 .dark ::-webkit-scrollbar-thumb,.dark ::-webkit-scrollbar-thumb:hover {
@@ -60,4 +64,20 @@
 
 ::-webkit-scrollbar-corner {
   background: #f4f4f5
+}
+
+html，body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body,
+#__nuxt {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+#__nuxt {
+  --at-apply: flex flex-col;
 }

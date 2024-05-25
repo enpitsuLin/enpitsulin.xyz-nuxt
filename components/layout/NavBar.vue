@@ -26,13 +26,13 @@ const links = ref<HTMLLIElement[]>([])
 </script>
 
 <template>
-  <header sticky top-5 z-9999 flex="~ items-center justify-center">
+  <header sticky top-0 z-9999 pt-5 flex="~ items-center justify-center">
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
     <div relative z-2 h-full w-fit>
       <nav
         bg="white/60 dark:black/60"
         rounded-full px-10 py="2px"
-        class="navbar flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
+        class="navbar hidden shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color md:flex"
       >
         <ul
           flex="~ items-center justify-center gap-5"
@@ -79,7 +79,7 @@ const links = ref<HTMLLIElement[]>([])
   --at-apply: backdrop-blur-10px op-95;
   mask-image: linear-gradient(
     to bottom,
-    theme('colors.gray.900') 10%,
+    theme('colors.border') 10%,
     transparent
   );
 }
@@ -89,7 +89,7 @@ const links = ref<HTMLLIElement[]>([])
   inset: 0;
   background: linear-gradient(
     to bottom,
-    theme('colors.gray.900') 10%,
+    theme('colors.border') 10%,
     transparent
   );
 }
