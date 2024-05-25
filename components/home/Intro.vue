@@ -4,25 +4,22 @@ const isClient = import.meta.client
 </script>
 
 <template>
-  <section
-    flex="~ col"
-    min-h="[calc(100vh-7rem)]" class="mb-10 max-w-50rem text-center sm:mb-0"
-  >
+  <section flex="~ col" min-h="[calc(100vh-7rem)]" class="mb-10 max-w-50rem text-center sm:mb-0">
     <div flex="~ items-center justify-center">
       <div relative>
-        <div>
+        <div class="view-transition-avatar">
           <img
-            alt="developer-image"
-            width="250" height="250"
-            decoding="async"
+            alt="developer-image" width="250" height="250" decoding="async"
             class="h-28 w-28 border-[0.35rem] border-white rounded-full object-cover shadow-xl"
             src="https://avatars.githubusercontent.com/enpitsuLin"
           >
         </div>
         <span
           absolute bottom-0 right-0 cursor-default text-4xl
-          class="transition-transform hover:rotate-30 hover:scale-120"
-        >👋</span>
+          class="transition-transform view-transition-avatar-shake hover:rotate-30 hover:scale-120"
+        >
+          👋
+        </span>
       </div>
     </div>
     <div
@@ -35,3 +32,13 @@ const isClient = import.meta.client
     </div>
   </section>
 </template>
+
+<style>
+::view-transition-group(avatar) {
+  animation-duration: 300ms;
+}
+
+::view-transition-group(avatar-shake) {
+  animation-duration: 1ms;
+}
+</style>

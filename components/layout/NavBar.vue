@@ -23,12 +23,25 @@ const tabs = [
 ]
 
 const links = ref<HTMLLIElement[]>([])
+
+const route = useRoute()
 </script>
 
 <template>
   <header sticky top-0 z-9999 pt-5 flex="~ items-center justify-center">
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
     <div relative z-2 h-full w-fit>
+      <div
+        v-if="route.path !== '/'"
+        absolute top="1/2" class="left--12 translate-y--1/2 view-transition-avatar"
+        size-9 border-2 border-white rounded-full object-cover shadow-xl
+      >
+        <img
+          alt="developer-image"
+          width="250" height="250" decoding="async"
+          class="rounded-full object-cover" src="https://avatars.githubusercontent.com/enpitsuLin"
+        >
+      </div>
       <nav
         bg="white/60 dark:black/60"
         rounded-full px-10 py="2px"
