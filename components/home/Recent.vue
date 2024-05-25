@@ -12,10 +12,11 @@ const { data } = await useAsyncData(
 </script>
 
 <template>
-  <div px="8 md:12">
+  <div px-6>
     <h1
-      pb-12 flex="~ items-center justify-between"
+      flex="~ items-center justify-between"
       class="text-3xl text-zinc-700 font-bold tracking-tight sm:text-4xl dark:text-zinc-100"
+      pb-12
     >
       Recent Posts
       <NuxtLink
