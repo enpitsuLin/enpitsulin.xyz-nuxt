@@ -16,7 +16,7 @@ const isClient = import.meta.client
         </div>
         <span
           absolute bottom-0 right-0 cursor-default text-4xl
-          class="transition-transform view-transition-avatar-shake hover:rotate-30 hover:scale-120"
+          class="transition-transform view-transition-avatar-wave-hand hover:animate-name-wave-hand hover:animate-duration-1000 hover:animate-iteration-infinite"
         >
           👋
         </span>
@@ -34,11 +34,23 @@ const isClient = import.meta.client
 </template>
 
 <style>
+@keyframes wave-hand {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 ::view-transition-group(avatar) {
   animation-duration: 300ms;
 }
 
-::view-transition-group(avatar-shake) {
+::view-transition-group(avatar-wave-hand) {
   animation-duration: 1ms;
 }
 </style>
