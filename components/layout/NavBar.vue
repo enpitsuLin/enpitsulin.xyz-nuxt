@@ -30,7 +30,7 @@ const route = useRoute()
 <template>
   <header sticky top-0 z-9999 pt-5 flex="~ items-center justify-center">
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
-    <div relative z-2 h-full w-fit>
+    <div class="navbar hidden md:block" relative z-2 h-full w-fit>
       <div
         v-if="route.path !== '/'"
         absolute top="1/2" class="left--12 translate-y--1/2 view-transition-avatar"
@@ -46,7 +46,7 @@ const route = useRoute()
       <nav
         bg="white/60 dark:black/60"
         rounded-full px-10 py="2"
-        class="navbar hidden shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color md:flex"
+        class="flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
       >
         <ul
           flex="~ items-center justify-center gap-5"

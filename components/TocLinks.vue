@@ -9,10 +9,6 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['move'])
-
-const router = useRouter()
-
 const { activeHeadings, updateHeadings } = useScrollspy()
 
 if (import.meta.client) {
@@ -24,15 +20,6 @@ if (import.meta.client) {
       ...document.querySelectorAll('.prose h4'),
     ])
   }, 300)
-}
-
-function scrollToHeading(id: string) {
-  router.push(`#${id}`)
-  emit('move', id)
-}
-
-function childMove(id: string) {
-  emit('move', id)
 }
 </script>
 
@@ -46,14 +33,12 @@ function childMove(id: string) {
       <a
         :href="`#${link.id}`"
         :class="[activeHeadings.includes(link.id) && 'active']"
-        @click.prevent="scrollToHeading(link.id)"
       >
         {{ link.text }}
       </a>
       <TocLinks
         v-if="link.children"
         :links="link.children"
-        @move="childMove($event)"
       />
     </li>
   </ul>

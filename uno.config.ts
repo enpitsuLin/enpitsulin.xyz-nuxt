@@ -13,6 +13,7 @@ import type { Theme } from '@unocss/preset-uno'
 export default defineConfig<Theme>({
   theme: {
     colors: {
+      background: 'hsl(var(--theme-background))',
       accent: 'hsl(var(--theme-accent))',
       border: 'hsl(var(--theme-border))',
     },
