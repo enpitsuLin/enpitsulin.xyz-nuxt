@@ -1,2 +1,2 @@
-export const appName = 'Nuxt Static Blog'
-export const appDescription = 'Static Blog power by Nuxt'
+export const appName = 'Nuxt Starter Blog'
+export const appDescription = 'Nuxt Blog template power by Nuxt'

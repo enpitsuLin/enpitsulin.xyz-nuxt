@@ -12,6 +12,12 @@
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit"
   },
+  "dependencies": {
+    "@ark-ui/vue": "^3.0.0",
+    "remark-reading-time": "^2.0.1",
+    "remark-unwrap-images": "^4.0.0",
+    "unist-util-visit": "^5.0.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.18.1",
     "@iconify-json/mingcute": "^1.1.17",
@@ -27,11 +33,5 @@
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "unocss": "^0.60.3"
-  },
-  "dependencies": {
-    "@ark-ui/vue": "^3.0.0",
-    "remark-reading-time": "^2.0.1",
-    "remark-unwrap-images": "^4.0.0",
-    "unist-util-visit": "^5.0.0"
   }
 }

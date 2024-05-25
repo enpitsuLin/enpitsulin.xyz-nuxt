@@ -64,7 +64,7 @@ function childMove(id: string) {
   --at-apply: pl-3;
 }
 
-.docs-toc-links .depth-4: {
+.docs-toc-links .depth-4 {
   --at-apply: pl-6;
 }
 

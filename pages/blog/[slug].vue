@@ -11,7 +11,7 @@ const { data } = await useAsyncData(
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent().findSurround({ slug: route.params.slug }))
+} = useAsyncData('surround', () => queryContent().only(['slug', 'title']).findSurround({ slug: route.params.slug }))
 
 watch(data, (val) => {
   if (val)
@@ -30,6 +30,10 @@ const formatDate = useDateFormat(
     locales: 'en-US',
   },
 )
+
+useHead({
+  title: computed(() => data.value?.title ?? ''),
+})
 
 if (!data.value)
   throw createError('Not Found')
