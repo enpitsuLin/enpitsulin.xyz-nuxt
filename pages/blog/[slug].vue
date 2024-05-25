@@ -11,7 +11,10 @@ const { data } = await useAsyncData(
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent().only(['slug', 'title']).findSurround({ slug: route.params.slug }))
+} = useAsyncData('surround', () => queryContent()
+  .only(['slug', 'title'])
+  .sort({ date: -1 })
+  .findSurround({ slug: route.params.slug }))
 
 watch(data, (val) => {
   if (val)

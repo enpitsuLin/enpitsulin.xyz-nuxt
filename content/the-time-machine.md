@@ -5,7 +5,7 @@ tags:
   - writings
   - book
   - reflection
-execrpt: The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...
+description: The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...
 ---
 
 # The Time Machine by H. G. Wells

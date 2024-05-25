@@ -2,10 +2,10 @@
 title: Introduction Nuxt.js Starter Blog
 date: 2024-05-18 12:00:00
 tags:
-  - Nuxtjs
-  - Vue
-  - Introduction
-execrpt: Looking for a out of the box template of with your favorite frontend framework? Let's checkout the Nuxtjs Starter Blog template.
+  - nuxtjs
+  - vue
+  - introduction
+description: Looking for a out of the box template of with your favorite frontend framework? Let's checkout the Nuxtjs Starter Blog template.
 ---
 
 ## Nuxt.js Starter Blog

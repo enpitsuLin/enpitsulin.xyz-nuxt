@@ -40,7 +40,7 @@ function childMove(id: string) {
   <ul class="docs-toc-links">
     <li
       v-for="link in links"
-      :key="link.text"
+      :key="link.id"
       :class="[`depth-${link.depth}`]"
     >
       <a

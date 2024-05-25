@@ -4,7 +4,7 @@ date: 2019-10-11
 tags:
   - github
   - guide
-execrpt: Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on GitHub Flavored Markdown.
+description: Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on GitHub Flavored Markdown.
 ---
 
 # Introduction

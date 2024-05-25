@@ -4,12 +4,12 @@
       <div w-full class="bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
     </div>
   </div>
-  <div flex="~ 1 col items-center" px="lg:8" relative mx-auto max-w-7xl w-full>
+  <div
+    flex="~ 1 col items-center"
+    px="lg:8" relative mx-auto max-w-7xl w-full
+  >
     <LayoutNavBar />
-    <main
-      flex="~ col items-center justify-center"
-      relative mt-70px w-full
-    >
+    <main relative mt-70px w-full>
       <slot />
     </main>
     <div mt-auto aria-hidden="true" />
