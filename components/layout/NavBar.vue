@@ -1,28 +1,5 @@
 <script setup lang="ts">
-const tabs = [
-  {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'Blog',
-    href: '/blog',
-  },
-  {
-    label: 'Tags',
-    href: '/tags',
-  },
-  {
-    label: 'Projects',
-    href: '/projects',
-  },
-  {
-    label: 'About',
-    href: '/about',
-  },
-]
-
-const links = ref<HTMLLIElement[]>([])
+import { appNavigation } from '~/constants'
 
 const route = useRoute()
 </script>
@@ -53,7 +30,8 @@ const route = useRoute()
           class="w-88 text-0.9rem text-gray-500 font-medium font-sans"
         >
           <li
-            v-for="{ href, label } in tabs" :key="href" ref="links" relative flex="~ items-center justify-center"
+            v-for="{ href, label } in appNavigation" :key="href"
+            relative flex="~ items-center justify-center"
             class="h-7 break-keep"
           >
             <LayoutNavBarLink :href>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'About',
+  title: '关于',
 })
 </script>
 

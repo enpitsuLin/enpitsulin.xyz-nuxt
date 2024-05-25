@@ -1,2 +1,24 @@
-export const appName = 'Nuxt Starter Blog'
-export const appDescription = 'Nuxt Blog template power by Nuxt'
+export const appName = 'Promise { <pending> }'
+export const appDescription = 'What are you looking for?'
+export const appNavigation = [
+  {
+    label: '首页',
+    href: '/',
+  },
+  {
+    label: '文章',
+    href: '/blog',
+  },
+  {
+    label: '标签',
+    href: '/tags',
+  },
+  {
+    label: '项目',
+    href: '/projects',
+  },
+  {
+    label: '关于',
+    href: '/about',
+  },
+]

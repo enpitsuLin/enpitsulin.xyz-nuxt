@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Blog',
+  title: '文章',
 })
 </script>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Tags',
+  title: '标签',
 })
 
 const { data } = useAsyncData(async () => {

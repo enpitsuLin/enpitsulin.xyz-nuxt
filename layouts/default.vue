@@ -14,9 +14,7 @@
         <slot />
       </main>
       <div mt-auto aria-hidden="true" />
-      <footer border="t border" mt-50 w-full pb-20 pt-5>
-        footer
-      </footer>
+      <LayoutFooter />
     </div>
   </div>
 
