@@ -3,4 +3,5 @@
 
 <template>
   <HomeIntro />
+  <HomeRecent />
 </template>

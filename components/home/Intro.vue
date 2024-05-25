@@ -4,7 +4,7 @@ const isClient = import.meta.client
 </script>
 
 <template>
-  <section w-full flex="~ col items-center" min-h="[calc(100vh-150px)]" class="mb-10 sm:mb-0">
+  <section w-full flex="~ col items-center" class="mb-10 sm:mb-0">
     <div flex="~ items-center justify-center">
       <div relative>
         <div class="view-transition-avatar">

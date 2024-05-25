@@ -45,7 +45,7 @@ const route = useRoute()
       </div>
       <nav
         bg="white/60 dark:black/60"
-        rounded-full px-10 py="2px"
+        rounded-full px-10 py="2"
         class="navbar hidden shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color md:flex"
       >
         <ul
@@ -54,7 +54,7 @@ const route = useRoute()
         >
           <li
             v-for="{ href, label } in tabs" :key="href" ref="links" relative flex="~ items-center justify-center"
-            class="h-3/4 break-keep"
+            class="h-7 break-keep"
           >
             <LayoutNavBarLink :href>
               {{ label }}

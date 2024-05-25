@@ -9,7 +9,7 @@
     px="lg:8" relative mx-auto max-w-7xl w-full
   >
     <LayoutNavBar />
-    <main relative mt-70px w-full>
+    <main relative mt-16 w-full>
       <slot />
     </main>
     <div mt-auto aria-hidden="true" />
