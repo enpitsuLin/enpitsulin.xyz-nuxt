@@ -68,7 +68,7 @@ if (!data.value)
               v-for="tag in data?.tags ?? []"
               :key="tag"
             >
-              <Tag :tag :to="{ name: 'tags-tag', params: { tag } }" />
+              <Tag :tag />
             </li>
           </ul>
         </section>

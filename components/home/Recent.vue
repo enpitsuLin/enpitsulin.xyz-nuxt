@@ -4,8 +4,22 @@ import { formatDate } from '@vueuse/core'
 const { data } = await useAsyncData(
   'recent-posts',
   () => queryContent()
+    .where({
+      $or: [
+        {
+          draft: {
+            $exists: false,
+          },
+        },
+        {
+          draft: {
+            $ne: true,
+          },
+        },
+      ],
+    })
     .sort({ date: -1 })
-    .only(['title', 'date', 'description', 'slug', 'tags', 'readingTime', '_id'])
+    .only(['title', 'draft', 'date', 'description', 'slug', 'tags', 'readingTime', '_id'])
     .limit(4)
     .find(),
 )

@@ -25,6 +25,7 @@ declare module '@nuxt/content/dist/runtime/types'{
     date: string
     image?: string
     slug: string
+    draft?: boolean
     readingTime: {
       text: string
       time: number
