@@ -1,11 +1,18 @@
 <script lang="ts" setup>
-defineProps<{
+const { language } = defineProps<{
   code: string
   language?: string
   filename?: string
   highlights?: number[]
   meta?: string
 }>()
+const languageLength = (language?.length ?? 0)
+
+function getBaseLog(y: number) {
+  return Math.log(y) / Math.log(1.75)
+}
+
+const mr = Math.ceil((getBaseLog(languageLength) + 1) * 16) + 4
 </script>
 
 <template>
@@ -28,9 +35,25 @@ defineProps<{
     </div>
     <div relative bg="#d4d4d8/5">
       <ProseCodeCopyButton :source="code" />
-      <div relative of-hidden>
-        <pre px-4><slot /></pre>
+      <div
+        relative of-hidden
+        :style="language && {
+          '--pre-language-margin': `${mr}px`,
+          '--mr': `${languageLength * 14 + 4}px`,
+        }"
+      >
+        <pre px-4 pb-2 class="scroll-track-mr"><slot /></pre>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+pre {
+  scrollbar-color: initial !important;
+}
+pre::-webkit-scrollbar-track {
+  margin-left: 1rem;
+  margin-right: var(--pre-language-margin, 1rem);
+}
+</style>
