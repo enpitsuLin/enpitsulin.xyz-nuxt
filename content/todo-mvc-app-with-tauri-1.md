@@ -2,7 +2,7 @@
 title: 使用Tauri构建桌面端应用程序——以TodoMVC为例（上）
 date: 2022-05-02 17:29:00
 tags: [Rust,Tauri]
-excerpt: rust太难学了？学习了rust不会实践？简单使用 Tauri 搭建经典实战项目TodoMVC 来做实践吧。你会发现rust真的很好玩，tauri也是非常的快，转变思维使用rust来写代码真的很爽。
+description: rust太难学了？学习了rust不会实践？简单使用 Tauri 搭建经典实战项目TodoMVC 来做实践吧。你会发现rust真的很好玩，tauri也是非常的快，转变思维使用rust来写代码真的很爽。
 ---
 
 Rust 学的一头雾水？错，是太难了根本学不会，直接上实践就完事了。就用学习一个框架最经典的实战项目 TodoMVC，我们实现一个 rust+sqlite 做后端 、react 做前端的~~跨平台~~桌面端 app

@@ -2,7 +2,7 @@
 title: 基于Faunadb和serverless函数为你的静态博客增加阅读计数功能
 date: 2022-04-12 15:04:00
 tags: [Blog, Serverless]
-excerpt: 对于基于Nextjs的静态站点生成计数的博客，为文章增加阅读计数功能不同于基于Wordpress等CMS框架的博客，但是如果使用Vercel等支持serverless函数的托管平台，我们可以比较轻易的集成一些数据库服务来做阅读计数功能。
+description: 对于基于Nextjs的静态站点生成计数的博客，为文章增加阅读计数功能不同于基于Wordpress等CMS框架的博客，但是如果使用Vercel等支持serverless函数的托管平台，我们可以比较轻易的集成一些数据库服务来做阅读计数功能。
 ---
 博客由于全站都是静态导出的页面，没有后台服务器的接口支持，所以增加阅读计数这种简单的功能也无法实现
 

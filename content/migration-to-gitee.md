@@ -2,7 +2,7 @@
 title: 博客迁移到gitee
 date: 2020-03-27 13:32:00
 tags: [Blog, Hexo, Git]
-excerpt: github 在国内是越来越难访问，闲的蛋疼就把这个博客迁移到 gitee 上，现在访问速度终于可以接受了
+description: github 在国内是越来越难访问，闲的蛋疼就把这个博客迁移到 gitee 上，现在访问速度终于可以接受了
 ---
 
 github 在国内是越来越难访问，闲的蛋疼就把这个博客迁移到 gitee 上，现在访问速度终于可以接受了

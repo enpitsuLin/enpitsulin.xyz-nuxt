@@ -2,7 +2,7 @@
 title: 简单上手一下Rust
 date: 2021-11-23 21:47:00
 tags: [Rust]
-excerpt: Rust 正在 JS 基建圈愈发流行,在开发中也或多或少的使用了基于rust的工具,或许趁机了解一下并不是坏事
+description: Rust 正在 JS 基建圈愈发流行,在开发中也或多或少的使用了基于rust的工具,或许趁机了解一下并不是坏事
 ---
 
 本身就有一个想学习一下 rust 的[目标](/about)，但是总好似没时间和精力去接触，直到看到[《Rust 是 JS 基建的未来》](https://github.com/ascoders/weekly/blob/master/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/218.%E7%B2%BE%E8%AF%BB%E3%80%8ARust%20%E6%98%AF%20JS%20%E5%9F%BA%E5%BB%BA%E7%9A%84%E6%9C%AA%E6%9D%A5%E3%80%8B.md)这篇文章，似乎很多现有的前端开发链上的工具都有了 rust 的替代方案。

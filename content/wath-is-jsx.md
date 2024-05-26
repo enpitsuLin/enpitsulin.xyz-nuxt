@@ -2,7 +2,7 @@
 title: 什么是JSX
 date: 2020-10-12 19:52:00
 tags: [JavaScript, React]
-excerpt: 在过去的一年中，Vue 团队一直都在开发 Vue.js 的下一个主要版本，从各方面来看JSX 在 Vue3 的语境下更契合 Vue 的发展方向，所以接触一下JSX并开始React的学习。
+description: 在过去的一年中，Vue 团队一直都在开发 Vue.js 的下一个主要版本，从各方面来看JSX 在 Vue3 的语境下更契合 Vue 的发展方向，所以接触一下JSX并开始React的学习。
 ---
 
 ## JSX 的本质

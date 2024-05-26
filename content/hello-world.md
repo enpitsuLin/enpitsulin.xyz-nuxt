@@ -3,7 +3,7 @@ title: Hello world
 date: 2019-03-26 19:04:00
 updateDate: 2022-12-02 10:32:00
 tags: [Blog, Life]
-excerpt: Hello world
+description: Hello world
 ---
 
 <details>
