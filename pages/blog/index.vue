@@ -5,6 +5,11 @@ useHead({
   title: '文章',
 })
 
+definePageMeta({
+  title: '全部文章',
+  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque recusandae atque earum a ut impedit dolor est temporibus animi repudiandae, similique fugit quisquam facilis autem, veniam doloribus hic reiciendis?',
+})
+
 const page = ref(1)
 
 const { data: total } = useAsyncData(
@@ -44,26 +49,16 @@ async function loadMore() {
 </script>
 
 <template>
-  <div flex="~ col items-center" pt-10>
-    <header pb="10 md:20">
-      <h2 pb-10 font-bold text="4xl md:6xl">
-        所有文章
-      </h2>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui nihil voluptatum ex tempore, voluptatem tenetur, unde eligendi harum neque facilis nulla labore voluptate reprehenderit. Totam, sed mollitia. Aliquid, similique nam?
-      </p>
-    </header>
-    <div pl="md:6" border="md:l border" py-10>
-      <ul flex="~ col gap-16">
-        <li v-for="article in data" :key="article._id">
-          <BlogArticle :article />
-        </li>
-      </ul>
-    </div>
+  <div pl="md:6" border="md:l border" py-10>
+    <ul flex="~ col gap-16">
+      <li v-for="article in data" :key="article._id">
+        <BlogArticle :article />
+      </li>
+    </ul>
+  </div>
 
-    <div v-if="!isReachEnd" mt-30>
-      <div class="loader" />
-    </div>
+  <div v-if="!isReachEnd" mt-30>
+    <div class="loader" />
   </div>
 </template>
 
