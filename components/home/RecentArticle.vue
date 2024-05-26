@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { formatDate } from '@vueuse/core'
+import type { MarkdownContent } from '~/types/content'
 
 interface Props {
-  title?: string
-  date: string
-  description?: string
-  slug: string
+  article: Pick<MarkdownContent, 'slug' | 'title' | 'date' | 'description'>
 }
 defineProps<Props>()
 </script>
@@ -18,19 +16,19 @@ defineProps<Props>()
   >
     <h2 class="text-base text-zinc-800 font-semibold tracking-tight dark:text-zinc-100">
       <div class="absolute z-0 scale-95 bg-zinc-50 opacity-0 transition -inset-x-4 -inset-y-6 group-hover:scale-100 sm:rounded-2xl dark:bg-zinc-800/50 group-hover:opacity-100 sm:-inset-x-6" />
-      <NuxtLink :to="{ name: 'blog-slug', params: { slug } }">
+      <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }">
         <span class="absolute z-20 -inset-x-4 -inset-y-6 sm:rounded-2xl sm:-inset-x-6" />
-        <span class="relative z-10">{{ title ?? "Untitle Post" }}</span>
+        <span class="relative z-10">{{ article.title ?? "Untitled Post" }}</span>
       </NuxtLink>
     </h2>
-    <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 dark:text-zinc-500" :datetime="date">
+    <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.date">
       <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
         <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
       </span>
-      {{ formatDate(new Date(date), 'MMM DD YYYY', { locales: 'en-US' }) }}
+      {{ formatDate(new Date(article.date), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
     </time>
     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-      {{ description }}
+      {{ article.description }}
     </p>
     <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm text-accent font-medium">
       Read article

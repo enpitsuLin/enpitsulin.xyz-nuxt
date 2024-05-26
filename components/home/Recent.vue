@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ArticleCard from '../ArticleCard.vue'
 import type { MarkdownContent } from '~/types/content'
 
 const { data } = await useAsyncData(
@@ -43,10 +42,10 @@ const { data } = await useAsyncData(
     </Button>
   </h1>
   <div grid="~ cols-1 md:cols-2 gap-16">
-    <ArticleCard
+    <HomeRecentArticle
       v-for="article in data"
       :key="article._id"
-      v-bind="article"
+      :article
     />
   </div>
 </template>
