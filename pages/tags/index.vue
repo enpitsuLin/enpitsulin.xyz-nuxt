@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { MarkdownContent } from '~/types/content'
+
 useHead({
   title: '标签',
 })
 
 const { data } = useAsyncData(async () => {
-  const tags = await queryContent({
+  const tags = await queryContent<MarkdownContent>({
     where: [
       {
         tags: {

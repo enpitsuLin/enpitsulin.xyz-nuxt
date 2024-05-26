@@ -10,27 +10,10 @@ declare module 'nitropack' {
 
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('content:file:afterParse', (file) => {
-    if (file._id.endsWith('.md')) {
+    if (file._id.endsWith('.md')) { 
       parseLinkNode(file.body!)
       unwrapElement(file.body!)
       file.slug = file._file!.replace(/.md$/, '')!
     }
   })
 })
-
-declare module '@nuxt/content/dist/runtime/types'{
-
-  export interface ParsedContent {
-    tags: string[]
-    date: string
-    image?: string
-    slug: string
-    draft?: boolean
-    readingTime: {
-      text: string
-      time: number
-      words: number
-      minutes: number
-    }
-  }
-}

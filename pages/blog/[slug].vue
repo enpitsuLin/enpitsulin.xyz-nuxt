@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ProseGithubCard, ProseInput } from '#components'
 import { toc } from '~/composables/content'
+import type { MarkdownContent } from '~/types/content'
 
 const route = useRoute('blog-slug')
 
 const { data } = await useAsyncData(
   'slug',
-  () => queryContent(route.params.slug).findOne(),
+  () => queryContent<MarkdownContent>(route.params.slug).findOne(),
 )
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent()
+} = useAsyncData('surround', () => queryContent<MarkdownContent>()
   .only(['slug', 'title'])
   .sort({ date: -1 })
   .findSurround({ slug: route.params.slug }))
