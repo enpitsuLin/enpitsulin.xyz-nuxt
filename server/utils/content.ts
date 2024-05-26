@@ -3,7 +3,7 @@ import { SKIP, visit } from 'unist-util-visit'
 
 const GITHUB_HOST_REG = /https:\/\/github.com\/\S+\/\S+/
 function isGithubRepoUrl(url: string) {
-  return url.match(GITHUB_HOST_REG)
+  return typeof url === 'string' && url.match(GITHUB_HOST_REG)
 }
 
 export function parseLinkNode(node: MarkdownNode | MarkdownRoot) {

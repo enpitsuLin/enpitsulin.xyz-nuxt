@@ -1,3 +1,7 @@
+import { createResolver } from '@nuxt/kit'
+
+const resolver = createResolver(import.meta.url)
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -40,6 +44,11 @@ export default defineNuxtConfig({
       },
       langs: ['js', 'jsx', 'json', 'ts', 'tsx', 'vue', 'css', 'html', 'vue', 'bash', 'md', 'mdc', 'yaml', 'toml', 'rust', 'sql'],
     },
-
+    sources: {
+      xlog: {
+        driver: resolver.resolve('./xlog-driver.mjs'),
+        characterId: 54315,
+      },
+    },
   },
 })

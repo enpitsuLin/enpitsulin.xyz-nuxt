@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { formatDate } from '@vueuse/core'
-import type { MarkdownContent } from '~/types/content'
+import type { XLogMarkdownParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<MarkdownContent, 'slug' | 'title' | 'date' | 'description' | 'tags'>
+  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'create_time' | 'publish_time' | 'update_time' | 'description' | 'tags'>
 }
 defineProps<Props>()
 </script>
@@ -18,11 +18,11 @@ defineProps<Props>()
           <span class="relative z-10">{{ article.title ?? "Untitled Post" }}</span>
         </NuxtLink>
       </h2>
-      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 md:hidden dark:text-zinc-500" :datetime="article.date">
+      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 md:hidden dark:text-zinc-500" :datetime="article.publish_time">
         <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
           <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
         </span>
-        {{ formatDate(new Date(article.date), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
+        {{ formatDate(new Date(article.publish_time), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
       </time>
       <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
         {{ article.description }}
@@ -35,8 +35,8 @@ defineProps<Props>()
       </div>
     </div>
     <div relative z-10 order-first class="hidden md:flex" flex="col items-start">
-      <time class="mb-3 mt-1 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.date">
-        {{ formatDate(new Date(article.date), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
+      <time class="mb-3 mt-1 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.publish_time">
+        {{ formatDate(new Date(article.publish_time), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
       </time>
       <div flex="~ gap-1 wrap" pr-10>
         <Tag v-for="tag in article.tags" :key="tag" :tag text-xs />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MarkdownContent } from '~/types/content'
+import type { XLogMarkdownParsedContent } from '~/types/content'
 
 useHead({
   title: '文章',
@@ -29,7 +29,7 @@ const { data: total } = useAsyncData(
 
 const { data, pending } = useAsyncData(
   'blog-index',
-  () => queryContent<MarkdownContent>()
+  () => queryContent<XLogMarkdownParsedContent>()
     .where({
       $or: [
         {
@@ -45,7 +45,7 @@ const { data, pending } = useAsyncData(
       ],
     })
     .limit(page.value * 10)
-    .sort({ date: -1 })
+    .sort({ publish_date: -1 })
     .find(),
   { watch: [page] },
 )

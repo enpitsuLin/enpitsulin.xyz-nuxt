@@ -16,7 +16,8 @@
     "@ark-ui/vue": "^3.0.0",
     "remark-reading-time": "^2.0.1",
     "remark-unwrap-images": "^4.0.0",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "unstorage-xlog-driver": "^0.0.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.18.1",
