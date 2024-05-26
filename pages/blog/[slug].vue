@@ -20,7 +20,7 @@ const {
   data: surroundData,
 } = useAsyncData('surround', () => queryContent<XLogMarkdownParsedContent>()
   .only(['slug', 'title'])
-  .sort({ publish_time: -1 })
+  .sort({ publishTime: -1 })
   .findSurround({ slug: route.params.slug }))
 
 watch(data, (val) => {

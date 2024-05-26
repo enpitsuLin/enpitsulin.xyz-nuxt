@@ -10,42 +10,14 @@ const page = ref(1)
 const { data: total } = useAsyncData(
   'posts-count',
   () => queryContent()
-    .where({
-      $or: [
-        {
-          draft: {
-            $exists: false,
-          },
-        },
-        {
-          draft: {
-            $ne: true,
-          },
-        },
-      ],
-    })
     .count(),
 )
 
 const { data, pending } = useAsyncData(
   'blog-index',
   () => queryContent<XLogMarkdownParsedContent>()
-    .where({
-      $or: [
-        {
-          draft: {
-            $exists: false,
-          },
-        },
-        {
-          draft: {
-            $ne: true,
-          },
-        },
-      ],
-    })
     .limit(page.value * 10)
-    .sort({ publish_date: -1 })
+    .sort({ publishTime: -1 })
     .find(),
   { watch: [page] },
 )
