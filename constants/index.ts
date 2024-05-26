@@ -18,7 +18,7 @@ export const appNavigation = [
     href: '/projects',
   },
   {
-    label: '关于',
-    href: '/about',
+    label: '留言',
+    href: '/guestbook',
   },
 ]

@@ -34,12 +34,22 @@ const { data } = useAsyncData(
 </script>
 
 <template>
-  <div flex="~ wrap gap-2">
-    <ArticleTag
-      v-for="([tag, count]) in data" :key="tag" :tag
-      flex="inline items-center gap-1"
-    >
-      {{ count }}
-    </ArticleTag>
+  <div flex="~ col items-center" pt-10>
+    <header pb="10 md:20">
+      <h2 pb-10 font-bold text="4xl md:6xl">
+        所有标签
+      </h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui nihil voluptatum ex tempore, voluptatem tenetur, unde eligendi harum neque facilis nulla labore voluptate reprehenderit. Totam, sed mollitia. Aliquid, similique nam?
+      </p>
+    </header>
+    <div flex="~ wrap gap-2" w-full>
+      <ArticleTag
+        v-for="([tag, count]) in data" :key="tag" :tag
+        flex="inline items-center gap-1"
+      >
+        {{ count }}
+      </ArticleTag>
+    </div>
   </div>
 </template>

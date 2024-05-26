@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useHead({
-  title: '关于',
+  title: '留言',
 })
 </script>
 
 <template>
-  <h1>about</h1>
+  <h1>guestbook</h1>
 </template>
