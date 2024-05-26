@@ -32,10 +32,17 @@ export default defineNuxtConfig({
 
   content: {
     markdown: {
-      remarkPlugins: [
-        'remark-unwrap-images',
-        'remark-reading-time',
-      ],
+      remarkPlugins: {
+        'remark-unwrap-images': {
+
+        },
+        'remark-reading-time': {
+
+        },
+        'remark-directive': {},
+        'remark-directive-rehype': {},
+        'remark-mdc': false,
+      },
     },
     highlight: {
       theme: {
