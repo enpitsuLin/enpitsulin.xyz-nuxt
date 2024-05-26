@@ -50,9 +50,9 @@ async function fetchFiles(options) {
         {
           ...data,
           uri: i.uri ?? '',
-          createTime: i?.createdAt ?? '',
-          updateTime: i?.updatedAt ?? '',
-          publishTime: i.metadata?.content?.date_published ?? '',
+          createAt: i?.createdAt ?? '',
+          updateAt: i?.updatedAt ?? '',
+          publishAt: i.metadata?.content?.date_published ?? '',
           title: i.metadata?.content?.title ?? '',
           tags,
           slug: slug ?? '',

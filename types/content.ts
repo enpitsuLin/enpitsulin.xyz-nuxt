@@ -3,9 +3,9 @@ import type { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
 export interface XLogMarkdownParsedContent extends MarkdownParsedContent {
   slug: string
   uri: string
-  createTime: string
-  updateTime: string
-  publishTime: string
+  createAt: string
+  updateAt: string
+  publishAt: string
   tags: string[]
   summary: string
   readingTime: {

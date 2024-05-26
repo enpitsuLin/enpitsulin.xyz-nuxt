@@ -3,7 +3,7 @@ import { formatDate } from '@vueuse/core'
 import type { XLogMarkdownParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'createTime' | 'publishTime' | 'updateTime' | 'description' | 'tags' | 'summary'>
+  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary'>
 }
 const { article } = defineProps<Props>()
 </script>
@@ -18,11 +18,11 @@ const { article } = defineProps<Props>()
           <span class="relative z-10">{{ article.title ?? "Untitled Post" }}</span>
         </NuxtLink>
       </h2>
-      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 md:hidden dark:text-zinc-500" :datetime="article.publishTime">
+      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 md:hidden dark:text-zinc-500" :datetime="article.publishAt">
         <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
           <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
         </span>
-        {{ formatDate(new Date(article.publishTime), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
+        {{ formatDate(new Date(article.publishAt), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
       </time>
       <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
         {{ article.summary || article.description }}
@@ -35,8 +35,8 @@ const { article } = defineProps<Props>()
       </div>
     </div>
     <div relative z-10 order-first class="hidden md:flex" flex="col items-start">
-      <time class="mb-3 mt-1 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.publishTime">
-        {{ formatDate(new Date(article.publishTime), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
+      <time class="mb-3 mt-1 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.publishAt">
+        {{ formatDate(new Date(article.publishAt), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
       </time>
       <div flex="~ gap-1 wrap" pr-10>
         <Tag v-for="tag in article.tags" :key="tag" :tag text-xs />

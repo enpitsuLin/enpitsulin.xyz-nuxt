@@ -17,7 +17,7 @@ const { data, pending } = useAsyncData(
   'blog-index',
   () => queryContent<XLogMarkdownParsedContent>()
     .limit(page.value * 10)
-    .sort({ publishTime: -1 })
+    .sort({ publishAt: -1 })
     .find(),
   { watch: [page] },
 )
