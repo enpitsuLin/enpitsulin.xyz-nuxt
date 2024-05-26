@@ -46,7 +46,7 @@ export default defineNuxtConfig({
     },
     sources: {
       xlog: {
-        driver: resolver.resolve('./xlog-driver.mjs'),
+        driver: resolver.resolve('./storage/xlog-driver.mjs'),
         characterId: 54315,
       },
     },

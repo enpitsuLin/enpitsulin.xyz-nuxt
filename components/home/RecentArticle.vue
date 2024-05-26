@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { formatDate } from '@vueuse/core'
-import type { MarkdownContent } from '~/types/content'
+import type { XLogMarkdownParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<MarkdownContent, 'slug' | 'title' | 'date' | 'description'>
+  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'publishTime' | 'description'>
 }
 defineProps<Props>()
 </script>
@@ -21,11 +21,11 @@ defineProps<Props>()
         <span class="relative z-10">{{ article.title ?? "Untitled Post" }}</span>
       </NuxtLink>
     </h2>
-    <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.date">
+    <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.publishTime">
       <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
         <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
       </span>
-      {{ formatDate(new Date(article.date), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
+      {{ formatDate(new Date(article.publishTime), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
     </time>
     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {{ article.description }}

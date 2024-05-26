@@ -1,25 +1,12 @@
 <script setup lang="ts">
-import type { MarkdownContent } from '~/types/content'
+import type { XLogMarkdownParsedContent } from '~/types/content'
 
 const { data } = await useAsyncData(
   'recent-posts',
-  () => queryContent<MarkdownContent>()
-    .where({
-      $or: [
-        {
-          draft: {
-            $exists: false,
-          },
-        },
-        {
-          draft: {
-            $ne: true,
-          },
-        },
-      ],
-    })
+  () => queryContent<XLogMarkdownParsedContent>()
+    .where()
     .sort({ date: -1 })
-    .only(['title', 'draft', 'date', 'description', 'slug', 'tags', 'readingTime', '_id'])
+    .only(['title', 'draft', 'publishTime', 'description', 'slug', 'tags', 'readingTime', '_id'])
     .limit(4)
     .find(),
 )

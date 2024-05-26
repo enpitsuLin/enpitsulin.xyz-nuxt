@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@ark-ui/vue": "^3.0.0",
+    "crossbell": "^1.11.9",
     "remark-reading-time": "^2.0.1",
     "remark-unwrap-images": "^4.0.0",
-    "unist-util-visit": "^5.0.0",
-    "unstorage-xlog-driver": "^0.0.1"
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.18.1",
