@@ -17,13 +17,13 @@ const { data } = await useAsyncData(
     class="text-3xl text-zinc-700 font-bold tracking-tight sm:text-4xl dark:text-zinc-100"
     pb-12
   >
-    Recent Posts
+    最新文章
     <Button as-child>
       <NuxtLink
         role="button"
         href="/blog"
       >
-        <span text-sm>View all</span>
+        <span text-sm>查看全部</span>
       </NuxtLink>
     </Button>
   </h1>
