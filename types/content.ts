@@ -7,6 +7,7 @@ export interface XLogMarkdownParsedContent extends MarkdownParsedContent {
   updateTime: string
   publishTime: string
   tags: string[]
+  summary: string
   readingTime: {
     text: string
     time: number

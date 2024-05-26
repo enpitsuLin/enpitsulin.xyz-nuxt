@@ -3,7 +3,7 @@ import { formatDate } from '@vueuse/core'
 import type { XLogMarkdownParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'createTime' | 'publishTime' | 'updateTime' | 'description' | 'tags'>
+  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'createTime' | 'publishTime' | 'updateTime' | 'description' | 'tags' | 'summary'>
 }
 const { article } = defineProps<Props>()
 </script>
@@ -25,7 +25,7 @@ const { article } = defineProps<Props>()
         {{ formatDate(new Date(article.publishTime), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
       </time>
       <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        {{ article.description }}
+        {{ article.summary || article.description }}
       </p>
       <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm text-accent font-medium">
         Read article

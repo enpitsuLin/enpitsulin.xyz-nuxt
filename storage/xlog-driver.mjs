@@ -40,7 +40,7 @@ async function fetchFiles(options) {
     for (const i of lists) {
       const attributes = i.metadata?.content?.attributes ?? []
       const slug = attributes.find(item => item.trait_type === 'xlog_slug')?.value?.toString() ?? `note-${i.noteId}`
-      const summary = i.metadata?.content && 'summay' in i.metadata?.content ? /** @type {string} */(i.metadata?.content.summay) : ''
+      const summary = i.metadata?.content && 'summary' in i.metadata?.content ? /** @type {string} */(i.metadata?.content.summary) : ''
       const body = i.metadata?.content?.content ?? ''
 
       const tags = (i.metadata?.content?.tags ?? []).filter(tag => tag !== POST_TAG)

@@ -4,9 +4,8 @@ import type { XLogMarkdownParsedContent } from '~/types/content'
 const { data } = await useAsyncData(
   'recent-posts',
   () => queryContent<XLogMarkdownParsedContent>()
-    .where()
-    .sort({ date: -1 })
-    .only(['title', 'draft', 'publishTime', 'description', 'slug', 'tags', 'readingTime', '_id'])
+    .sort({ publishTime: -1 })
+    .only(['title', 'draft', 'publishTime', 'description', 'slug', 'tags', 'readingTime', '_id', 'summary'])
     .limit(4)
     .find(),
 )
