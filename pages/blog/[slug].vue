@@ -37,7 +37,7 @@ const formatDate = useDateFormat(
   () => data.value?.date,
   'YYYY MMM DD dddd',
   {
-    locales: 'en-US',
+    locales: 'zh-Hans',
   },
 )
 
