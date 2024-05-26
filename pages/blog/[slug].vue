@@ -75,7 +75,7 @@ if (!data.value)
               v-for="tag in data?.tags ?? []"
               :key="tag"
             >
-              <Tag :tag />
+              <ArticleTag :tag />
             </li>
           </ul>
         </section>

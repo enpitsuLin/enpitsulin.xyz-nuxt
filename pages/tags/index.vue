@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { MarkdownContent } from '~/types/content'
+import type { XLogMarkdownParsedContent } from '~/types/content'
 
 useHead({
   title: '标签',
 })
 
 const { data } = useAsyncData(async () => {
-  const tags = await queryContent<MarkdownContent>({
+  const tags = await queryContent<XLogMarkdownParsedContent>({
     where: [
       {
         tags: {
@@ -14,7 +14,8 @@ const { data } = useAsyncData(async () => {
         },
       },
     ],
-  }).only(['tags', 'title'])
+  })
+    .only(['tags'])
     .find()
     .then((posts) => {
       return posts.map(p => p.tags).flat()
@@ -31,11 +32,11 @@ const { data } = useAsyncData(async () => {
 
 <template>
   <div flex="~ wrap gap-2">
-    <Tag
+    <ArticleTag
       v-for="([tag, count]) in data" :key="tag" :tag
       flex="inline items-center gap-1"
     >
       {{ count }}
-    </Tag>
+    </ArticleTag>
   </div>
 </template>
