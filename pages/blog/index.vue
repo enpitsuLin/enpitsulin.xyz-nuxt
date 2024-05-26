@@ -72,9 +72,9 @@ async function loadMore() {
 </script>
 
 <template>
-  <div flex="~ col items-center">
+  <div flex="~ col items-center" pt-20>
     <div flex="~ col">
-      <header pb-10>
+      <header pb-20>
         <h2 pb-3 text-3xl>
           所有文章
         </h2>

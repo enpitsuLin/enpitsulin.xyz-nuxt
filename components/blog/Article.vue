@@ -38,7 +38,7 @@ defineProps<Props>()
       <time class="mb-3 mt-1 text-sm text-zinc-500 dark:text-zinc-500" :datetime="article.date">
         {{ formatDate(new Date(article.date), 'MMM DD YYYY', { locales: 'zh-Hans' }) }}
       </time>
-      <div flex="gap-1 wrap" pr-10>
+      <div flex="~ gap-1 wrap" pr-10>
         <Tag v-for="tag in article.tags" :key="tag" :tag text-xs />
       </div>
     </div>
