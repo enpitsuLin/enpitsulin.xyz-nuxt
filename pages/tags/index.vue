@@ -5,29 +5,32 @@ useHead({
   title: '标签',
 })
 
-const { data } = useAsyncData(async () => {
-  const tags = await queryContent<XLogMarkdownParsedContent>({
-    where: [
-      {
-        tags: {
-          $exists: true,
+const { data } = useAsyncData(
+  'tags-index',
+  async () => {
+    const tags = await queryContent<XLogMarkdownParsedContent>({
+      where: [
+        {
+          tags: {
+            $exists: true,
+          },
         },
-      },
-    ],
-  })
-    .only(['tags'])
-    .find()
-    .then((posts) => {
-      return posts.map(p => p.tags).flat()
+      ],
     })
-  const tagCountMap = tags.reduce((acc, curTag) => {
-    if (curTag in acc)
-      acc[curTag]++
-    else acc[curTag] = 1
-    return acc
-  }, {} as Record<string, number>)
-  return Object.entries(tagCountMap)
-})
+      .only(['tags'])
+      .find()
+      .then((posts) => {
+        return posts.map(p => p.tags).flat()
+      })
+    const tagCountMap = tags.reduce((acc, curTag) => {
+      if (curTag in acc)
+        acc[curTag]++
+      else acc[curTag] = 1
+      return acc
+    }, {} as Record<string, number>)
+    return Object.entries(tagCountMap)
+  },
+)
 </script>
 
 <template>
