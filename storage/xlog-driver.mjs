@@ -83,12 +83,30 @@ const xLogStorageDriver = defineDriver(
       ...opt,
     }
 
-    fetchFiles(options)
+    let lastCheck = 0
+    /** @type {Promise<void>|undefined} */
+    let syncPromise
+
+    const syncFiles = async () => {
+      if (!options.characterId)
+        throw new Error(`${DRIVER_NAME} Error: Not set characterId`)
+
+      if (lastCheck + options.ttl * 1000 > Date.now())
+        return
+
+      if (!syncPromise)
+        syncPromise = fetchFiles(options)
+
+      await syncPromise
+      lastCheck = Date.now()
+      syncPromise = undefined
+    }
 
     return {
       name: DRIVER_NAME,
       options,
       async hasItem(key) {
+        await syncFiles()
         return fileCache.hasItem(key)
       },
       /**
@@ -96,12 +114,15 @@ const xLogStorageDriver = defineDriver(
        * @returns
        */
       async getItem(key) {
+        await syncFiles()
         return fileCache.getItem(key)
       },
       async getKeys() {
+        await syncFiles()
         return fileCache.getKeys()
       },
       async getMeta(key) {
+        await syncFiles()
         return fileCache.getMeta(key)
       },
     }
