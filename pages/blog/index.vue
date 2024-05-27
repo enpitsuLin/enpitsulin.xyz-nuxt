@@ -15,12 +15,14 @@ const page = ref(1)
 const { data: total } = useAsyncData(
   'posts-count',
   () => queryContent()
+    .where({ _type: 'markdown', _source: 'xlog' })
     .count(),
 )
 
 const { data, pending } = useAsyncData(
   'blog-index',
   () => queryContent<XLogMarkdownParsedContent>()
+    .where({ _type: 'markdown', _source: 'xlog' })
     .limit(page.value * 10)
     .sort({ publishAt: -1 })
     .find(),
@@ -53,7 +55,7 @@ async function loadMore() {
     <div pl="md:6" border="md:l border" py-10>
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">
-          <BlogArticle :article />
+          <BlogArticle :article="article" />
         </li>
       </ul>
     </div>

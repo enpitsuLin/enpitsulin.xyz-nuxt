@@ -13,15 +13,14 @@ definePageMeta({
 const { data } = useAsyncData(
   'tags-index',
   async () => {
-    const tags = await queryContent<XLogMarkdownParsedContent>({
-      where: [
-        {
-          tags: {
-            $exists: true,
-          },
+    const tags = await queryContent<XLogMarkdownParsedContent>()
+      .where({
+        _type: 'markdown',
+        _source: 'xlog',
+        tags: {
+          $exists: true,
         },
-      ],
-    })
+      })
       .only(['tags'])
       .find()
       .then((posts) => {
@@ -42,7 +41,7 @@ const { data } = useAsyncData(
   <LayoutPageContainer>
     <div flex="~ wrap gap-2" w-full>
       <ArticleTag
-        v-for="([tag, count]) in data" :key="tag" :tag
+        v-for="([tag, count]) in data" :key="tag" :tag="tag"
         flex="inline items-center gap-1"
       >
         {{ count }}

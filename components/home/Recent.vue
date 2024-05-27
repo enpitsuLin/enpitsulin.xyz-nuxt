@@ -4,6 +4,7 @@ import type { XLogMarkdownParsedContent } from '~/types/content'
 const { data } = await useAsyncData(
   'recent-posts',
   () => queryContent<XLogMarkdownParsedContent>()
+    .where({ _type: 'markdown', _source: 'xlog' })
     .sort({ publishAt: -1 })
     .only(['title', 'draft', 'publishAt', 'description', 'slug', 'tags', 'readingAt', '_id', 'summary'])
     .limit(4)
@@ -31,7 +32,7 @@ const { data } = await useAsyncData(
     <HomeRecentArticle
       v-for="article in data"
       :key="article._id"
-      :article
+      :article="article"
     />
   </div>
 </template>

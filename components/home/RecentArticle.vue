@@ -2,7 +2,7 @@
 import type { XLogMarkdownParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'publishAt' | 'description' | 'summary'>
+  article: Pick<XLogMarkdownParsedContent, '_id' | 'title' | 'publishAt' | 'slug' | 'tags' | 'summary' | 'description' | 'draft' | 'readingAt'>
 }
 defineProps<Props>()
 </script>

@@ -8,6 +8,7 @@ const route = useRoute('blog-slug')
 const { data } = await useAsyncData(
   'slug',
   () => queryContent<XLogMarkdownParsedContent>()
+    .where({ _type: 'markdown', _source: 'xlog' })
     .where({
       slug: {
         $eq: route.params.slug,
@@ -75,7 +76,7 @@ if (!data.value)
               v-for="tag in data?.tags ?? []"
               :key="tag"
             >
-              <ArticleTag :tag />
+              <ArticleTag :tag="tag" />
             </li>
           </ul>
         </section>
