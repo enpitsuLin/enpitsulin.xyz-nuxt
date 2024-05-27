@@ -5,11 +5,6 @@ useHead({
   title: '文章',
 })
 
-definePageMeta({
-  title: '全部文章',
-  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque recusandae atque earum a ut impedit dolor est temporibus animi repudiandae, similique fugit quisquam facilis autem, veniam doloribus hic reiciendis?',
-})
-
 const page = ref(1)
 
 const { data: total } = useAsyncData(
@@ -51,7 +46,10 @@ async function loadMore() {
 </script>
 
 <template>
-  <LayoutPageContainer>
+  <LayoutPageContainer
+    title="全部文章"
+    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque recusandae atque earum a ut impedit dolor est temporibus animi repudiandae, similique fugit quisquam facilis autem, veniam doloribus hic reiciendis?"
+  >
     <div pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">
