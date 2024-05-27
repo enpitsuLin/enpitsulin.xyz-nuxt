@@ -21,12 +21,12 @@ const route = useRoute()
         />
       </div>
       <nav
-        bg="white/60 dark:black/60"
-        rounded-full px-10 py="2"
+        bg="zinc-50/50 dark:zinc-950/50"
+        rounded-full px-6 py="2"
         class="flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
       >
         <ul
-          flex="~ items-center justify-center gap-5"
+          flex="~ items-center justify-center gap-2"
           class="w-88 text-0.9rem text-gray-500 font-medium"
         >
           <li

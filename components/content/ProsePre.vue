@@ -16,7 +16,7 @@ const mr = Math.ceil((getBaseLog(languageLength) + 1) * 16) + 4
 </script>
 
 <template>
-  <div class="group" relative my-6 of-hidden rounded-md>
+  <div class="group" relative my-6 of-hidden rounded-md text-14px>
     <div
       v-if="!filename && language"
       aria-hidden="true" uppercase
@@ -37,7 +37,7 @@ const mr = Math.ceil((getBaseLog(languageLength) + 1) * 16) + 4
       <ProseCodeCopyButton :source="code" />
       <div
         relative of-hidden
-        :style="language && {
+        :style="language && !filename && {
           '--pre-language-margin': `${mr}px`,
           '--mr': `${languageLength * 14 + 4}px`,
         }"

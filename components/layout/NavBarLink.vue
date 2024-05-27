@@ -9,21 +9,16 @@ defineProps<{
 <template>
   <NuxtLink
     flex="~ items-center justify-center"
-    h-full w-full cursor-pointer p-3
-    active-class="active"
+    h-full w-full cursor-pointer px-3
+    active-class="bg-white dark:bg-zinc-200 rounded-full view-transition-navbar-link"
     :href="href"
-    class="navbar-link relative transition-color hover:text-gray-9 dark:hover:text-gray-6"
+    class="navbar-link relative transition-color hover:text-zinc-9 dark:hover:text-zinc-6"
   >
     <slot />
   </NuxtLink>
 </template>
 
 <style>
-.navbar-link.active {
-  --at-apply: bg-gray-100 rounded-full;
-  view-transition-name: navbar-link;
-}
-
 ::view-transition-group(navbar-link) {
   mix-blend-mode: normal;
   background-clip: text;

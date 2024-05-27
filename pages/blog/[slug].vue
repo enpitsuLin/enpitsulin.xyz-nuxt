@@ -99,7 +99,7 @@ if (!data.value)
         />
       </ContentRenderer>
     </div>
-    <aside sticky top-80px ml-4 w="20%" h-full class="hidden md:block">
+    <aside sticky top-80px ml-4 w="20%" h-full pb-20 class="hidden md:block">
       <h2 class="m-[20px_0_10px]">
         Table of content
       </h2>
