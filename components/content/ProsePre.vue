@@ -16,7 +16,7 @@ const mr = Math.ceil((getBaseLog(languageLength) + 1) * 16) + 4
 </script>
 
 <template>
-  <div class="group" relative my-6 of-hidden rounded-sm>
+  <div class="group" relative my-6 of-hidden rounded-md>
     <div
       v-if="!filename && language"
       aria-hidden="true" uppercase
@@ -33,7 +33,7 @@ const mr = Math.ceil((getBaseLog(languageLength) + 1) * 16) + 4
       <span class="shrink-0 grow truncate">{{ filename }}</span>
       <span uppercase class="pointer-events-none shrink-0 grow-0" aria-hidden="true">{{ language }}</span>
     </div>
-    <div relative bg="#d4d4d8/5">
+    <div relative bg="zinc-200 dark:zinc-800">
       <ProseCodeCopyButton :source="code" />
       <div
         relative of-hidden

@@ -16,7 +16,8 @@ const { data, pending } = useAsyncData(
     ref="target" :href="url.toString()" :rel="rel" target="_blank"
     flex="~ justify-between items-center gap-4"
     m="x-auto" p="x-4 y-2"
-    relative max-w-110 min-h-24 w-full rounded-md bg-accent:10 decoration-none
+    relative max-w-110 min-h-24 w-full rounded-md bg="zinc-200 dark:zinc-800"
+    decoration-none
   >
     <ProseGithubCardSkeleton v-if="pending" />
     <template v-else>
