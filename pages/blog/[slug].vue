@@ -51,23 +51,29 @@ if (!data.value)
 </script>
 
 <template>
-  <div text-14px flex="~ justify-between">
+  <div mt-16 text-14px flex="~ justify-between">
     <div
       text="1.1em" class="w-full md:w-80%" pb-20 pr="0 md:7.5"
       border="md:r border"
     >
-      <header pb-10>
-        <section flex="~ items-center wrap gap-2" pb-10 op-80>
+      <header
+        pb-10 space-y-10
+        bg="gradient-to-r [position:bottom] [size:10px_1px] repeat-x"
+        class="from-border to-transparent"
+      >
+        <section flex="~ items-center wrap gap-2" text-sm op-80>
           <div flex="~ items-center gap-2">
+            <span class="sr-only">发布时间</span>
             <i inline-block class="i-mingcute:calendar-fill" />
             <time :datetime="data?.date">{{ formatDate }}</time>
           </div>
-          <div flex="~ items-center gap-2">
+          <div v-if="data?.readingTime.minutes" flex="~ items-center gap-2">
+            <span class="sr-only">阅读时间</span>
             <i inline-block class="i-mingcute:time-fill" />
-            <span>{{ data?.readingTime.text }}</span>
+            <span>约 {{ Math.ceil(data?.readingTime.minutes) }} 分钟</span>
           </div>
         </section>
-        <h1 pb-5 text-4xl font-semibold>
+        <h1 text-4xl font-semibold>
           {{ data?.title }}
         </h1>
         <section>
