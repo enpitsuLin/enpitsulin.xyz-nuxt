@@ -39,12 +39,14 @@ const { data } = useAsyncData(
 </script>
 
 <template>
-  <div flex="~ wrap gap-2" w-full>
-    <ArticleTag
-      v-for="([tag, count]) in data" :key="tag" :tag
-      flex="inline items-center gap-1"
-    >
-      {{ count }}
-    </ArticleTag>
-  </div>
+  <LayoutPageContainer>
+    <div flex="~ wrap gap-2" w-full>
+      <ArticleTag
+        v-for="([tag, count]) in data" :key="tag" :tag
+        flex="inline items-center gap-1"
+      >
+        {{ count }}
+      </ArticleTag>
+    </div>
+  </LayoutPageContainer>
 </template>

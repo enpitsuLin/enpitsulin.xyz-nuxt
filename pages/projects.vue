@@ -10,5 +10,7 @@ definePageMeta({
 </script>
 
 <template>
-  <h1>projects</h1>
+  <LayoutPageContainer>
+    <h1>projects</h1>
+  </LayoutPageContainer>
 </template>

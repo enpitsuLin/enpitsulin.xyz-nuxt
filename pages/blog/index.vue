@@ -49,17 +49,19 @@ async function loadMore() {
 </script>
 
 <template>
-  <div pl="md:6" border="md:l border" py-10>
-    <ul flex="~ col gap-16">
-      <li v-for="article in data" :key="article._id">
-        <BlogArticle :article />
-      </li>
-    </ul>
-  </div>
+  <LayoutPageContainer>
+    <div pl="md:6" border="md:l border" py-10>
+      <ul flex="~ col gap-16">
+        <li v-for="article in data" :key="article._id">
+          <BlogArticle :article />
+        </li>
+      </ul>
+    </div>
 
-  <div v-if="!isReachEnd" mt-30>
-    <div class="loader" />
-  </div>
+    <div v-if="!isReachEnd" mt-30>
+      <div class="loader" />
+    </div>
+  </LayoutPageContainer>
 </template>
 
 <style>

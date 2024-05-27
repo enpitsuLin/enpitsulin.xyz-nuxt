@@ -1,7 +1,3 @@
-<script setup lang="ts">
-const route = useRoute()
-</script>
-
 <template>
   <div px="sm:8" pointer-events-none fixed inset-0 flex="~ justify-center">
     <div max-w-7xl w-full flex px="lg:8">
@@ -15,20 +11,7 @@ const route = useRoute()
     >
       <LayoutNavBar />
       <main relative mt-16 w-full px="8 sm:12">
-        <div v-if="route.meta.title && route.meta.description" flex="~ col items-center" pt-10>
-          <header pb="10 md:20">
-            <h2 pb-10 font-bold text="4xl md:6xl">
-              {{ route.meta.title }}
-            </h2>
-            <p>
-              {{ route.meta.description }}
-            </p>
-          </header>
-          <slot />
-        </div>
-        <template v-else>
-          <slot />
-        </template>
+        <slot />
       </main>
       <div mt-auto aria-hidden="true" />
       <LayoutFooter />
