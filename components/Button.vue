@@ -12,7 +12,7 @@ interface ButtonProps {
 
 <template>
   <Root
-    :as-child
+    :as-child="asChild"
     flex="inline items-center justify-center gap-2"
     bg="zinc-100 active:zinc-200 hover:zinc-200 dark:zinc-800/50 dark:active:zinc-800/50 dark:hover:zinc-800"
     rounded-md text-sm font-medium p="x-3 y-2"

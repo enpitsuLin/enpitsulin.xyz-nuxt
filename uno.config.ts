@@ -61,7 +61,6 @@ export default defineConfig<Theme>({
           name: 'Inter',
           weights: ['400', '500', '700'],
         },
-        serif: 'Noto Serif SC',
         mono: {
           provider: 'none',
           name: 'MonaspiceArNerdFont',

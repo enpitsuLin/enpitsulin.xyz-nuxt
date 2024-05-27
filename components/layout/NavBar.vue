@@ -27,14 +27,14 @@ const route = useRoute()
       >
         <ul
           flex="~ items-center justify-center gap-5"
-          class="w-88 text-0.9rem text-gray-500 font-medium font-sans"
+          class="w-88 text-0.9rem text-gray-500 font-medium"
         >
           <li
             v-for="{ href, label } in appNavigation" :key="href"
             relative flex="~ items-center justify-center"
             class="h-7 break-keep"
           >
-            <LayoutNavBarLink :href>
+            <LayoutNavBarLink :href="href">
               {{ label }}
             </LayoutNavBarLink>
           </li>

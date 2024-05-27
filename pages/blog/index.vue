@@ -52,7 +52,7 @@ async function loadMore() {
 
 <template>
   <LayoutPageContainer>
-    <div pl="md:6" border="md:l border" py-10>
+    <div pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">
           <BlogArticle :article="article" />

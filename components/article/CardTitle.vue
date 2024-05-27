@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <h2 text="base zinc-800 dark:zinc-100" font-semibold tracking-tight>
+  <h2 text="base zinc-800 dark:zinc-100" tracking-tight>
     <div
       absolute z-0 op="0 group-hover:100"
       bg="zinc-50 dark:zinc-800/50"
