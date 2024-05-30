@@ -17,6 +17,20 @@ export default defineConfig<Theme>({
       accent: 'hsl(var(--theme-accent))',
       border: 'hsl(var(--theme-border))',
     },
+    animation: {
+      keyframes: {
+        'marquee': `{from {transform:translateX(0)} to{transform:translateX(calc(-100% - var(--gap)))}}`,
+        'marquee-vertical': `{from {transform:translateY(0)} to{transform:translateY(calc(-100% - var(--gap)))}}`,
+      },
+      durations: {
+        'marquee': 'var(--duration)',
+        'marquee-vertical': 'var(--duration)',
+      },
+      counts: {
+        'marquee': 'infinite',
+        'marquee-vertical': 'infinite',
+      },
+    },
   },
   presets: [
     presetUno(),
