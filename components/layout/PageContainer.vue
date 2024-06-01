@@ -10,11 +10,11 @@ defineProps<{
     <header pb="10 md:20">
       <h2
         pb-10 font-bold text="4xl md:6xl" capitalize
-        class="animate-duration-800 animate-ease-$spring-easing animate-in fade-in-0 slide-in-from-left-16"
+        class="animate-in fade-in slide-in-from-left-16 animate-duration-800! animate-ease-$spring-easing!"
       >
         {{ title }}
       </h2>
-      <p class="animate-duration-800 animate-delay-100 animate-ease-$spring-easing animate-in fade-in-0 slide-in-from-left-16">
+      <p class="animate-delay-100 animate-in fade-in slide-in-from-left-16 animate-duration-800! animate-ease-$spring-easing!">
         {{ description }}
       </p>
       <slot name="header" />

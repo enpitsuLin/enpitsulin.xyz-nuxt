@@ -41,11 +41,11 @@ export default defineConfig<Theme>({
   rules: [
     [
       'animate-in',
-      { 'animation-name': 'animate-enter' },
+      { animation: 'animate-enter .2s ease-out' },
     ],
     [
       'animate-out',
-      { 'animation-name': 'animate-exit' },
+      { animation: 'animate-exit .2s ease-out' },
     ],
     [/^fade-in-?(.+)?$/, ([, d]) => ({ '--un-enter-opacity': `${Number(handleMatchNumber(d) || 0) / 100}` })],
     [/^fade-out-?(.+)?$/, ([, d]) => ({ '--un-exit-opacity': `${Number(handleMatchNumber(d) || 0) / 100}` })],
