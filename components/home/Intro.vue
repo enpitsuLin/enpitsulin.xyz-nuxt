@@ -34,15 +34,16 @@ const links = [
               <a
                 flex="~ items-center justify-center"
                 inline-block aspect-square size-9
-                rounded-full p-1
+                rounded-full text-white
                 rel="noreferrer"
-                :href="link.href" text-white
+                class="group"
+                :href="link.href"
                 :title="link.name"
                 :class="link.class"
               >
                 <span class="sr-only">{{ link.name }}</span>
-                <i v-if="typeof link.icon === 'string'" inline-block :class="link.icon" />
-                <component :is="link.icon" v-else />
+                <i v-if="typeof link.icon === 'string'" inline-block class="transition-transform group-hover:scale-110" :class="link.icon" />
+                <component :is="link.icon" v-else class="transition-transform group-hover:scale-110" />
               </a>
             </li>
           </ul>
