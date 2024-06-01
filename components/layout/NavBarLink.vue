@@ -10,7 +10,7 @@ defineProps<{
   <NuxtLink
     flex="~ items-center justify-center"
     h-full w-full cursor-pointer px-3
-    active-class="bg-white dark:bg-zinc-200 rounded-full view-transition-navbar-link"
+    active-class="bg-white dark:bg-zinc-200 rounded-full view-transition-navbar-link shadow-md"
     :href="href"
     class="navbar-link relative transition-color hover:text-zinc-9 dark:hover:text-zinc-6"
   >
