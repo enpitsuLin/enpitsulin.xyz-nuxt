@@ -1,36 +1,54 @@
 <script setup lang="ts">
+import { IconsBilibili } from '#components'
+
 const { y } = useWindowScroll()
 const isClient = import.meta.client
+const links = [
+  { name: 'Email', href: 'mailto://enpitsulin@gmail.com', icon: 'i-mingcute:mail-line', class: 'bg-#c45040' },
+  { name: 'Twitter', href: 'https://twitter.com/enpitsulin', icon: 'i-mingcute:twitter-line', class: 'bg-#4d9feb' },
+  { name: 'Github', href: 'https://github.com/enpitsulin', icon: 'i-mingcute:github-line', class: 'bg-black' },
+  { name: 'Mastodon', href: 'https://elk.zone/m.cmx.im/@enpitsulin', icon: 'i-mingcute:mastodon-fill', class: 'bg-#479fd1' },
+  { name: 'Bilibili', href: 'https://space.bilibili.com/423632', icon: IconsBilibili, class: 'bg-#e479b4' },
+]
 </script>
 
 <template>
   <section w-full flex="~ col items-center" class="mb-10 sm:mb-0">
-    <div flex="~ items-center justify-center">
-      <div relative>
-        <div class="view-transition-avatar">
-          <NuxtImg
-            alt="avatar"
-            width="250" height="250" decoding="async"
-            class="h-28 w-28 border-[0.35rem] border-white rounded-full object-cover shadow-xl"
-            src="https://avatars.githubusercontent.com/enpitsuLin"
-          />
+    <div flex="~ col-reverse md:row md:justify-between gap-8" class="w-full md:my-16">
+      <div
+        flex="~ col gap-4"
+        class="[will-change:transform,opacity]"
+      >
+        <h1 text-2xl>
+          Hi, 这里是 enpitsulin. <br>
+        </h1>
+        <p text-2xl>
+          是一位很喜欢写代码的 <code class="font-mono">&lt;Developer /&gt;</code>.
+        </p>
+        <p text-sm op-70>
+          每天充满激情还有带着 🧡 地写代码.
+        </p>
+        <div mt-4>
+          <ul flex="~ gap-2">
+            <li v-for="link in links" :key="link.name">
+              <a
+                flex="~ items-center justify-center"
+                inline-block aspect-square size-9
+                rounded-full p-1
+                rel="noreferrer"
+                :href="link.href" text-white
+                :title="link.name"
+                :class="link.class"
+              >
+                <span class="sr-only">{{ link.name }}</span>
+                <i v-if="typeof link.icon === 'string'" inline-block :class="link.icon" />
+                <component :is="link.icon" v-else />
+              </a>
+            </li>
+          </ul>
         </div>
-        <span
-          absolute bottom-0 right-0 cursor-default text-4xl
-          class="transition-transform view-transition-avatar-wave-hand hover:animate-name-wave-hand hover:animate-duration-1000 hover:animate-iteration-infinite"
-        >
-          👋
-        </span>
       </div>
-    </div>
-    <h1 leading="1.5" text="2xl sm:text-4xl" mb-10 mt-4 px-4 text-center font-medium>
-      <span class="text-sm tracking-wider">Hi, my name is</span>
-      <p>
-        <span class="text-center text-4xl font-bold tracking-tight sm:text-5xl">enpitsulin</span>
-      </p>
-    </h1>
-    <div flex="~ col sm:row items-center justify-center gap-3" px-4 text-lg font-medium>
-      //
+      <HomeIntroAvatar class="size-28 md:size-34" />
     </div>
     <div
       class="mt-auto hidden pb-6 pt-8 transition-opacity duration-500 sm:flex sm:justify-center"

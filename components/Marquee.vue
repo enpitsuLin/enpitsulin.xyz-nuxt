@@ -18,6 +18,10 @@ withDefaults(
   <div
     flex="~" of-hidden p-2
     class="group [--duration:40s] [--gap:1rem] gap-$gap"
+    :class="{
+      'flex-row': !vertical,
+      'flex-col': vertical,
+    }"
   >
     <div
       v-for="(_, i) in Array.from({ length: repeat })"
