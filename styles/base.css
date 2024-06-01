@@ -14,6 +14,7 @@
 
 
 :root { 
+  color-scheme: light only;
   font-family: 'HarmonyOS_Medium';
   --theme-background: 210 17% 98%; /** #f8f9fa */
   --theme-accent: 200 77% 39%; /* #177CB0 */
@@ -21,6 +22,7 @@
 }
 
 .dark {
+  color-scheme: dark only;
   --theme-background: 222 32% 10%; /* #121723 */
   --theme-accent: 195 50% 39%; /* #177CB0 */
   --theme-border: 240 6% 15%; /* #242429*/
