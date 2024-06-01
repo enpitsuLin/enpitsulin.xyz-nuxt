@@ -36,14 +36,15 @@ nuxtApp.hook('page:loading:end', () => {
   position: relative;
   transform-style: preserve-3d;
   rotate: x 125deg;
-  transform: rotateY(20deg);
   animation: spin 1s infinite;
+  --webkit-animation: spin 1s infinite;
   border-radius: 12px;
 }
 
 @keyframes spin {
   to {
-    transform: rotateY(380deg);
+    --webkit-transform: rotate3d(0, 1, 0, 360deg);
+    transform: rotate3d(0, 1, 0, 360deg);
   }
 }
 
