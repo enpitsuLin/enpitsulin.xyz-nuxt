@@ -4,7 +4,7 @@ import { appDescription, appName, siteUrl } from '~/constants'
 
 export default defineEventHandler(async (event) => {
   try {
-    const posts = await serverQueryContent(event).where({ _type: 'markdown', _source: 'xlog' }).sort({ date: -1 }).find()
+    const posts = await serverQueryContent(event).where({ _type: 'markdown', _source: 'xlog' }).sort({ publishAt: -1 }).find()
 
     const feed = new RSS({
       title: appName,

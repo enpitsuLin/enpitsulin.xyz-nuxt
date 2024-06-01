@@ -32,16 +32,16 @@ nuxtApp.hook('page:loading:end', () => {
   width: 6rem;
   aspect-ratio: 2 / 1.5;
   background: canvas;
-  border: 2px solid canvasText;
+  border: 1px solid canvasText;
   position: relative;
   transform-style: preserve-3d;
   rotate: x 125deg;
   transform: rotateY(20deg);
-  animation: spin-fin 1s infinite;
+  animation: spin 1s infinite;
   border-radius: 12px;
 }
 
-@keyframes spin-fin {
+@keyframes spin {
   to {
     transform: rotateY(380deg);
   }
@@ -49,9 +49,9 @@ nuxtApp.hook('page:loading:end', () => {
 
 .app-loader__fin {
   position: absolute;
-  inset: -2px;
+  inset: -1px;
   background: canvas;
-  border: 2px solid canvasText;
+  border: 1px solid canvasText;
   transform: rotateY(calc(45deg + var(--i, 0) * 45deg));
   border-radius: 12px;
 }
@@ -60,13 +60,12 @@ nuxtApp.hook('page:loading:end', () => {
 .app-loader__fin::after {
   content: '';
   position: absolute;
-  box-shadow: inset 0 0 20px 5px currentColor;
+  box-shadow: inset 0 0 20px 5px canvasText;
   opacity: 0.25;
-  inset: -2px;
-  border: 2px solid var(--theme-border);
+  inset: -1px;
+  border: 1px solid canvasText;
   border-radius: 12px;
 }
-
 .app-loader__fin:nth-of-type(1) {
   --i: 0;
 }
