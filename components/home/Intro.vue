@@ -2,7 +2,7 @@
 import { IconsBilibili } from '#components'
 
 const { y } = useWindowScroll()
-const isClient = import.meta.client
+
 const links = [
   { name: 'Email', href: 'mailto://enpitsulin@gmail.com', icon: 'i-mingcute:mail-line', class: 'bg-#c45040' },
   { name: 'Twitter', href: 'https://twitter.com/enpitsulin', icon: 'i-mingcute:twitter-line', class: 'bg-#4d9feb' },
@@ -51,14 +51,16 @@ const links = [
       </div>
       <HomeIntroAvatar class="size-28 md:size-34" />
     </div>
-    <div
-      class="mt-auto hidden pb-6 pt-8 transition-opacity duration-500 sm:flex sm:justify-center"
-      :class="isClient && y > 20 ? 'op-0' : 'op-100'"
-    >
-      <span class="animate-bounce text-gray-500">
-        <i inline-block class="i-mingcute:right-line rotate-90" />
-      </span>
-    </div>
+    <ClientOnly>
+      <div
+        class="mt-auto hidden pb-6 pt-8 transition-opacity duration-500 sm:flex sm:justify-center"
+        :class=" y > 20 ? 'op-0' : 'op-100'"
+      >
+        <span class="animate-bounce text-gray-500">
+          <i inline-block class="i-mingcute:right-line rotate-90" />
+        </span>
+      </div>
+    </ClientOnly>
   </section>
 </template>
 

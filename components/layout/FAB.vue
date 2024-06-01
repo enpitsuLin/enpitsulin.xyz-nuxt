@@ -9,6 +9,8 @@
     class="shadow-black/10 shadow-md backdrop-blur-10px transition-all" fixed z-999 p-1
   >
     <LayoutThemeButton />
-    <LayoutTopUpButton />
+    <ClientOnly>
+      <LayoutTopUpButton />
+    </ClientOnly>
   </div>
 </template>
