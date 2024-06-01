@@ -37,11 +37,11 @@ nuxtApp.hook('page:loading:end', () => {
   transform-style: preserve-3d;
   rotate: x 125deg;
   transform: rotateY(20deg);
-  animation: spin 1s infinite;
+  animation: spin-fin 1s infinite;
   border-radius: 12px;
 }
 
-@keyframes spin {
+@keyframes spin-fin {
   to {
     transform: rotateY(380deg);
   }

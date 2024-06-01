@@ -1,6 +1,34 @@
+<script setup lang="ts">
+const easterEgg = ref(false)
+const inputQueue = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA']
+const currentIndex = ref(0)
+
+function handleKeyDown(e: KeyboardEvent) {
+  if (e.code === inputQueue[currentIndex.value]) {
+    currentIndex.value++
+    if (currentIndex.value === inputQueue.length) {
+      easterEgg.value = true
+      setTimeout(() => {
+        easterEgg.value = false
+        currentIndex.value = 0
+      }, 1000)
+    }
+  }
+  else {
+    currentIndex.value = 0
+  }
+}
+
+useEventListener('keydown', handleKeyDown)
+</script>
+
 <template>
   <div relative>
-    <div class="view-transition-avatar">
+    <div
+      class="view-transition-avatar" :class="{
+        'animate-spin': easterEgg,
+      }"
+    >
       <NuxtImg
         alt="avatar"
         width="250" height="250" decoding="async"
