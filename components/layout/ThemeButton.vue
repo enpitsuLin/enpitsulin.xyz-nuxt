@@ -39,6 +39,10 @@ function onClick() {
 </template>
 
 <style>
+.theme-toggle-animating {
+  overflow: hidden;
+}
+
 .theme-toggle-animating::view-transition-group(root) {
   animation-duration: 1.25s;
 }
