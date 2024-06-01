@@ -7,7 +7,10 @@ const route = useRoute()
 <template>
   <header sticky top-0 z-9999 pt-5 flex="~ items-center justify-center">
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
-    <div class="navbar hidden md:block" relative z-2 h-full w-fit>
+    <div
+      relative z-2 h-full w-fit
+      class="hidden transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px md:block"
+    >
       <div
         v-if="route.path !== '/'"
         absolute top="1/2" class="left--12 translate-y--1/2 view-transition-avatar"
@@ -45,28 +48,6 @@ const route = useRoute()
 </template>
 
 <style>
-@property --translate-y {
-  syntax: '<length>';
-  initial-value: 0;
-  inherits: false;
-}
-
-@keyframes slide-in {
-  from {
-    --translate-y: -4.25rem;
-  }
-
-  to {
-    --translate-y: 0;
-  }
-}
-
-.navbar {
-  --un-translate-y: var(--translate-y);
-  animation-timing-function: cubic-bezier(0.05, -0.83, 0.24, 1.12);
-  --at-apply: transform animate-name-slide-in animate-duration-500;
-}
-
 .navbar-blur {
   --at-apply: backdrop-blur-10px op-95;
   mask-image: linear-gradient(

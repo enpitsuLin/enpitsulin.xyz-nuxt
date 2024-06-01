@@ -7,7 +7,7 @@ const { data } = await useAsyncData(
     .where({ _type: 'markdown', _source: 'xlog' })
     .sort({ publishAt: -1 })
     .only(['title', 'draft', 'publishAt', 'description', 'slug', 'tags', 'readingAt', '_id', 'summary'])
-    .limit(4)
+    .limit(2)
     .find(),
 )
 </script>
