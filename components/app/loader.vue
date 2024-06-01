@@ -60,10 +60,10 @@ nuxtApp.hook('page:loading:end', () => {
 .app-loader__fin::after {
   content: '';
   position: absolute;
-  box-shadow: inset 0 0 20px 5px canvasText;
+  box-shadow: inset 0 0 20px 5px currentColor;
   opacity: 0.25;
   inset: -2px;
-  border: 2px solid canvasText;
+  border: 2px solid var(--theme-border);
   border-radius: 12px;
 }
 
