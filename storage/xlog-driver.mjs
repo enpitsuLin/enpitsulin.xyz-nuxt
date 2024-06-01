@@ -91,7 +91,7 @@ const xLogStorageDriver = defineDriver(
       if (!options.characterId)
         throw new Error(`${DRIVER_NAME} Error: Not set characterId`)
 
-      if (lastCheck + options.ttl * 1000 > Date.now())
+      if (lastCheck + options.ttl * 1000 > Date.now() && (await fileCache.getKeys()).length > 0)
         return
 
       if (!syncPromise)

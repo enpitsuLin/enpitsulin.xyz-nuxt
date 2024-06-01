@@ -8,6 +8,7 @@ const links = [
   { name: 'Twitter', href: 'https://twitter.com/enpitsulin', icon: 'i-mingcute:twitter-line', class: 'bg-#4d9feb' },
   { name: 'Github', href: 'https://github.com/enpitsulin', icon: 'i-mingcute:github-line', class: 'bg-black' },
   { name: 'Mastodon', href: 'https://elk.zone/m.cmx.im/@enpitsulin', icon: 'i-mingcute:mastodon-fill', class: 'bg-#479fd1' },
+  { name: 'RSS', href: '/feed.xml', icon: 'i-mingcute:rss-line', class: 'bg-#f2a93b' },
   { name: 'Bilibili', href: 'https://space.bilibili.com/423632', icon: IconsBilibili, class: 'bg-#e479b4' },
 ]
 </script>

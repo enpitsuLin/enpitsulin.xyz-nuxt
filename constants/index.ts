@@ -1,3 +1,5 @@
+export const siteUrl = 'https://enpitsulin.xyz'
+
 export const appName = 'Promise { <pending> }'
 export const appDescription = 'What are you looking for?'
 export const appNavigation = [
