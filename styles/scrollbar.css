@@ -8,6 +8,10 @@
   --c-scrollbar-hover: #222;
 }
 
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
 * {
   scrollbar-color: var(--c-scrollbar) transparent;
 }
