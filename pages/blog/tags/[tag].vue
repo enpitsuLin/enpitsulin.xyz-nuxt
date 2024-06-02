@@ -18,7 +18,10 @@ const { data } = await useAsyncData(
 </script>
 
 <template>
-  <LayoutPageContainer :title="tag">
+  <LayoutPageContainer
+    :title="`标签: ${tag}`"
+    :description="`共 ${tag.length} 个结果`"
+  >
     <div pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">

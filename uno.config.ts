@@ -97,6 +97,10 @@ export default defineConfig<Theme>({
           'border-bottom-color': 'hsl(var(--theme-border))',
           'border-bottom-width': '1px',
         },
+        'li': {
+          'margin': '1em 0',
+          'line-height': '1.75',
+        },
       },
     }),
     presetWebFonts({

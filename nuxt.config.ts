@@ -1,3 +1,4 @@
+import { pathToFileURL } from 'node:url'
 import { createResolver } from '@nuxt/kit'
 
 const resolver = createResolver(import.meta.url)
@@ -53,7 +54,7 @@ export default defineNuxtConfig({
     },
     sources: {
       xlog: {
-        driver: resolver.resolve('./storage/xlog-driver.mjs'),
+        driver: pathToFileURL(resolver.resolve('./storage/xlog-driver.mjs')).href,
         characterId: 54315,
       },
     },

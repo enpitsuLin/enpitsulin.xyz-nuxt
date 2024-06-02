@@ -8,7 +8,7 @@ const { data } = await useAsyncData('about', async () => queryContent('/about').
       <ContentRenderer v-if="data" :value="data">
         <ContentRendererMarkdown
           :value="data"
-          w-full
+          w-full text-14px
           tag="article"
           class="animate-delay-100 prose animate-in fade-in slide-in-from-left-16 max-w-unset! animate-duration-800! animate-ease-$spring-easing!"
         />
