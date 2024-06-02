@@ -6,22 +6,47 @@ useHead({
 })
 
 const page = ref(1)
+const search = ref('')
+const debounceSearch = refDebounced(search)
+
+function getQuery() {
+  const query = queryContent<XLogMarkdownParsedContent>()
+    .where({ _type: 'markdown', _source: 'xlog' })
+
+  if (debounceSearch.value) {
+    query.where({
+      $or: [
+        {
+          title: {
+            $regex: new RegExp(debounceSearch.value),
+          },
+        },
+        {
+          summary: {
+            $regex: new RegExp(debounceSearch.value),
+          },
+        },
+      ],
+    })
+  }
+  return query
+}
 
 const { data: total } = useAsyncData(
   'posts-count',
-  () => queryContent()
-    .where({ _type: 'markdown', _source: 'xlog' })
-    .count(),
+  () => getQuery().count(),
+  { watch: [debounceSearch] },
 )
 
 const { data, pending } = useAsyncData(
   'blog-index',
-  () => queryContent<XLogMarkdownParsedContent>()
-    .where({ _type: 'markdown', _source: 'xlog' })
-    .limit(page.value * 10)
-    .sort({ publishAt: -1 })
-    .find(),
-  { watch: [page] },
+  () => {
+    return getQuery()
+      .limit(page.value * 10)
+      .sort({ publishAt: -1 })
+      .find()
+  },
+  { watch: [page, debounceSearch] },
 )
 
 const isReachEnd = computed(() => {
@@ -53,6 +78,7 @@ async function loadMore() {
     <template #header>
       <div relative mt-4>
         <input
+          v-model="search"
           b="~ border rounded-md"
           h-10 w-full bg-transparent
           flex="~" p="x-3 l-12 r-2" text-sm
