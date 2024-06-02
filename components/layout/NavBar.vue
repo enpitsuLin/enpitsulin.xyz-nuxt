@@ -25,12 +25,12 @@ const route = useRoute()
       </div>
       <nav
         bg="zinc-50/50 dark:zinc-950/50"
-        rounded-full px-6 py="2"
+        rounded-full px-8 py="2"
         class="flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
       >
         <ul
           flex="~ items-center justify-center gap-2"
-          class="w-88 text-0.9rem text-gray-500 font-medium"
+          class="text-0.9rem text-gray-500 font-medium"
         >
           <li
             v-for="{ href, label } in appNavigation" :key="href"

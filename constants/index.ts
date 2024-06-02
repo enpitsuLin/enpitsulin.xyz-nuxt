@@ -12,15 +12,15 @@ export const appNavigation = [
     href: '/blog',
   },
   {
-    label: '标签',
-    href: '/tags',
-  },
-  {
     label: '项目',
     href: '/projects',
   },
   {
     label: '留言墙',
     href: '/guestbook',
+  },
+  {
+    label: '关于',
+    href: '/about',
   },
 ]

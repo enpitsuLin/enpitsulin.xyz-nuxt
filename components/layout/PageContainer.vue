@@ -7,9 +7,9 @@ defineProps<{
 
 <template>
   <div flex="~ col items-center" pt-10>
-    <header pb="10 md:20">
+    <header pb="10 md:20" w-full>
       <h2
-        pb-10 font-bold text="4xl md:6xl" capitalize
+        pb-10 text="4xl md:6xl"
         class="animate-in fade-in slide-in-from-left-16 animate-duration-800! animate-ease-$spring-easing!"
       >
         {{ title }}

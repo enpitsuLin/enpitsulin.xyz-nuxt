@@ -7,7 +7,7 @@ useHead({
 <template>
   <LayoutPageContainer
     title="留言墙"
-    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque recusandae atque earum a ut impedit dolor est temporibus animi repudiandae, similique fugit quisquam facilis autem, veniam doloribus hic reiciendis?"
+    description="在这里，你可以留下什么想说的证明你来过这里的足迹，随便说些什么吧🤗。"
   >
     <h1>guestbook</h1>
   </LayoutPageContainer>

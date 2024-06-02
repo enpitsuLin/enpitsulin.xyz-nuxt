@@ -2,11 +2,6 @@
 import { appDescription, appName } from '~/constants'
 import '~/styles/base.css'
 
-const { load } = useStyleTag(
-  `* { scrollbar-color: var(--c-scrollbar) transparent;}`,
-  { immediate: false },
-)
-
 useHead({
   titleTemplate(title) {
     if (title)
@@ -16,12 +11,6 @@ useHead({
   bodyAttrs: {
     class: 'text-gray-950 dark:text-gray-50 bg-slate-50 dark:bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px] dark:bg-[radial-gradient(#e5e7eb20_1px,transparent_1px)]',
   },
-})
-
-onMounted(() => {
-  if (/macintosh|mac os x/i.test(navigator.userAgent)) {
-    load()
-  }
 })
 </script>
 

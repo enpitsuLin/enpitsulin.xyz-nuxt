@@ -48,7 +48,7 @@ async function loadMore() {
 <template>
   <LayoutPageContainer
     title="全部文章"
-    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque recusandae atque earum a ut impedit dolor est temporibus animi repudiandae, similique fugit quisquam facilis autem, veniam doloribus hic reiciendis?"
+    description="一般写博客文章是随心所欲的，想到什么就有可能会写一些，会希望能够把好用的技术知识传递给更多的人。喜欢围绕着技术为主的话题，但是也会写一些非技术的奇奇怪怪的话题。"
   >
     <template #header>
       <div relative mt-4>

@@ -98,8 +98,11 @@ const xLogStorageDriver = defineDriver(
         syncPromise = fetchFiles(options)
 
       await syncPromise
-      lastCheck = Date.now()
-      syncPromise = undefined
+        .then(() => {
+          lastCheck = Date.now()
+          syncPromise = undefined
+        })
+        .catch(() => fetchFiles(options))
     }
 
     return {

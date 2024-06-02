@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const route = useRoute('tags-tag')
+const route = useRoute('blog-tags-tag')
 const tag = route.params.tag
 </script>
 

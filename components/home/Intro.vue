@@ -21,13 +21,13 @@ const links = [
         class="[will-change:transform,opacity]"
       >
         <h1 text-2xl>
-          Hi, 这里是 enpitsulin. <br>
+          Hi, 这里是 <ruby>enpitsu<rp>(</rp><rt>鉛筆</rt><rp>)</rp>lin</ruby>. <br>
         </h1>
         <p text-2xl>
-          是一位很喜欢写代码的 <code class="font-mono">&lt;Developer /&gt;</code>.
+          是一位普通的 <code class="font-mono">&lt;Developer /&gt;</code>.
         </p>
         <p text-sm op-70>
-          每天充满激情还有带着 🧡 地写代码.
+          每天随心所欲充满激情还有带着 🧡 地写代码.
         </p>
         <div mt-4>
           <ul flex="~ gap-2">

@@ -7,7 +7,7 @@ useHead({
 <template>
   <LayoutPageContainer
     title="项目"
-    description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero neque recusandae atque earum a ut impedit dolor est temporibus animi repudiandae, similique fugit quisquam facilis autem, veniam doloribus hic reiciendis?"
+    description="我是一个开源爱好者，一直在做一些小项目满足自己，但我的创意不是很多，这些是一些我觉得还不错令我自豪的项目。"
   >
     <h1>projects</h1>
   </LayoutPageContainer>
