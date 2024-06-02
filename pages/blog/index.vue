@@ -50,7 +50,9 @@ const { data, pending } = useAsyncData(
 )
 
 const isReachEnd = computed(() => {
-  return (data.value && total.value && data.value?.length >= total?.value)
+  if (data.value !== null && total.value !== null)
+    return (data.value?.length >= total?.value)
+  return false
 })
 
 useInfiniteScroll(
@@ -91,12 +93,16 @@ async function loadMore() {
         </label>
       </div>
     </template>
-    <div pl="md:6" border="md:l border">
+    <div v-if="data && data?.length > 0" pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">
           <BlogArticle :article="article" />
         </li>
       </ul>
+    </div>
+
+    <div v-else>
+      No Posts
     </div>
 
     <div v-if="!isReachEnd" mt-30>
