@@ -1,3 +1,18 @@
+<script setup lang="ts">
+const { data } = await useAsyncData('about', async () => queryContent('/about').findOne())
+</script>
+
 <template>
-  <h1>about</h1>
+  <LayoutPageContainer title="关于我">
+    <template #header>
+      <ContentRenderer v-if="data" :value="data">
+        <ContentRendererMarkdown
+          :value="data"
+          w-full
+          tag="article"
+          class="animate-delay-100 prose animate-in fade-in slide-in-from-left-16 max-w-unset! animate-duration-800! animate-ease-$spring-easing!"
+        />
+      </ContentRenderer>
+    </template>
+  </LayoutPageContainer>
 </template>

@@ -21,10 +21,10 @@ const links = [
         class="[will-change:transform,opacity]"
       >
         <h1 text-2xl>
-          Hi, 这里是 <ruby>enpitsu<rp>(</rp><rt>えんぴつ</rt><rp>)</rp>lin</ruby>.
+          Hi, 这里是 <ruby>enpitsu<rp>(</rp><rt>えんぴつ</rt><rp>)</rp>lin</ruby>。
         </h1>
         <p text-2xl>
-          可以叫我铅笔，是一位普通的 <code class="font-mono">&lt;Developer /&gt;</code>.
+          是一位普通的 <code class="font-mono">&lt;Developer /&gt;</code>。
         </p>
         <p text-sm op-60>
           每天随心所欲充满激情还有带着 🧡 地写代码.

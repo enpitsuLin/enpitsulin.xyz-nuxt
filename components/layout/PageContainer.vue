@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   title: string
-  description: string
+  description?: string
 }>()
 </script>
 
@@ -14,7 +14,7 @@ defineProps<{
       >
         {{ title }}
       </h2>
-      <p class="animate-delay-100 animate-in fade-in slide-in-from-left-16 animate-duration-800! animate-ease-$spring-easing!">
+      <p v-if="description" class="animate-delay-100 animate-in fade-in slide-in-from-left-16 animate-duration-1000! animate-ease-$spring-easing!">
         {{ description }}
       </p>
       <slot name="header" />
