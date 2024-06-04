@@ -30,8 +30,8 @@ function isExternalLink(url?: string) {
     </span>
   </template>
   <template v-else>
-    <a :="attrs" decoration-none>
+    <NuxtLink :="attrs">
       <slot />
-    </a>
+    </NuxtLink>
   </template>
 </template>
