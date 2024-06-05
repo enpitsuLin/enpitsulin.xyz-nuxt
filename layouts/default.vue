@@ -3,14 +3,10 @@
 
 <template>
   <div relative px="sm:8" flex="~ 1 justify-center">
-    <div px="sm:8" pointer-events-none absolute inset-0 flex="~ justify-center">
-      <div max-w-6xl w-full flex px="lg:8">
-        <div w-full class="bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
-      </div>
-    </div>
     <div
       flex="~ 1 col items-center"
       px="lg:8" relative max-w-6xl w-full
+      class="bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20"
     >
       <LayoutNavBar />
       <main relative mt-16 w-full px="8 sm:12">

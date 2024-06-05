@@ -36,12 +36,12 @@ nuxtApp.hook('page:loading:end', () => {
   position: relative;
   transform-style: preserve-3d;
   rotate: x 125deg;
-  animation: spin 1s infinite;
-  --webkit-animation: spin 1s infinite;
+  animation: app-loader-spin 1s infinite;
+  --webkit-animation: app-loader-spin 1s infinite;
   border-radius: 12px;
 }
 
-@keyframes spin {
+@keyframes app-loader-spin {
   to {
     --webkit-transform: rotate3d(0, 1, 0, 360deg);
     transform: rotate3d(0, 1, 0, 360deg);
