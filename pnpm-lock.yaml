@@ -11,6 +11,9 @@ importers:
       '@ark-ui/vue':
         specifier: ^3.0.3
         version: 3.0.3(@internationalized/date@3.5.4)(vue@3.4.27(typescript@5.4.5))
+      '@skirtle/vue-vnode-utils':
+        specifier: ^0.1.4
+        version: 0.1.4(vue@3.4.27(typescript@5.4.5))
       crossbell:
         specifier: ^1.11.9
         version: 1.11.9(typescript@5.4.5)
@@ -1311,6 +1314,11 @@ packages:
   '@sindresorhus/merge-streams@2.3.0':
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
+
+  '@skirtle/vue-vnode-utils@0.1.4':
+    resolution: {integrity: sha512-ymv0p/k2KbzX8hD4LdQAI6sFLfle4RNmEtOxfl//QkbyWl7EoAluHJbB/+sscMiwTnwdD26L69rO/ZKfwm4EBw==}
+    peerDependencies:
+      vue: ^3.2.0
 
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
@@ -7755,6 +7763,10 @@ snapshots:
   '@sindresorhus/is@4.6.0': {}
 
   '@sindresorhus/merge-streams@2.3.0': {}
+
+  '@skirtle/vue-vnode-utils@0.1.4(vue@3.4.27(typescript@5.4.5))':
+    dependencies:
+      vue: 3.4.27(typescript@5.4.5)
 
   '@socket.io/component-emitter@3.1.2': {}
 

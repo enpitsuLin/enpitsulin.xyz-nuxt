@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@ark-ui/vue": "^3.0.3",
+    "@skirtle/vue-vnode-utils": "^0.1.4",
     "crossbell": "^1.11.9",
     "remark-directive": "^3.0.0",
     "remark-directive-rehype": "^0.4.2",

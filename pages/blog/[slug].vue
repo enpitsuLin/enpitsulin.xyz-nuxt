@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProseGithubCard, ProseInput } from '#components'
+import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { toc } from '~/composables/content'
 import type { XLogMarkdownParsedContent } from '~/types/content'
 
@@ -32,6 +32,8 @@ watch(data, (val) => {
 const components = {
   'input': ProseInput,
   'prose-github-card': ProseGithubCard,
+  'details': ProseDetails,
+  'summary': ProseSummary,
 }
 
 const formatDate = useDateFormat(
@@ -52,13 +54,9 @@ if (!data.value)
 
 <template>
   <div mt-16 text-14px flex="~ justify-between">
-    <div
-      text="1.1em" class="w-full md:w-80%" pb-20 pr="0 md:7.5"
-      border="md:r border"
-    >
+    <div text="1.1em" class="w-full md:w-80%" pb-20 pr="0 md:7.5" border="md:r border">
       <header
-        pb-10 space-y-10
-        bg="gradient-to-r [position:bottom] [size:10px_1px] repeat-x"
+        pb-10 space-y-10 bg="gradient-to-r [position:bottom] [size:10px_1px] repeat-x"
         class="from-border to-transparent"
       >
         <section flex="~ items-center wrap gap-2" text-sm op-80>
@@ -78,10 +76,7 @@ if (!data.value)
         </h1>
         <section>
           <ul flex="~ wrap items-center gap-2" tracking-tight>
-            <li
-              v-for="tag in data?.tags ?? []"
-              :key="tag"
-            >
+            <li v-for="tag in data?.tags ?? []" :key="tag">
               <ArticleTag :tag="tag" />
             </li>
           </ul>
@@ -91,12 +86,7 @@ if (!data.value)
         <template #empty>
           <p>No content found.</p>
         </template>
-        <ContentRendererMarkdown
-          tag="article"
-          class="max-w-unset prose"
-          :value="data!"
-          :components="components"
-        />
+        <ContentRendererMarkdown tag="article" class="max-w-unset prose" :value="data!" :components="components" />
       </ContentRenderer>
     </div>
     <aside sticky top-80px ml-4 w="20%" h-full pb-20 class="hidden md:block">
@@ -111,8 +101,7 @@ if (!data.value)
   <footer mx="-8 sm:-12" px="8 sm:12" border="t border">
     <nav flex="~ justify-between" my-20px>
       <NuxtLink
-        v-if="surroundData?.[0]"
-        flex="~ col items-start" space-y-5px max-w="1/2"
+        v-if="surroundData?.[0]" flex="~ col items-start" space-y-5px max-w="1/2"
         :to="{ name: 'blog-slug', params: { slug: surroundData[0].slug } }"
       >
         <p op-50>
@@ -122,8 +111,7 @@ if (!data.value)
       </NuxtLink>
       <div v-else aria-hidden="true" />
       <NuxtLink
-        v-if="surroundData?.[1]"
-        flex="~ col items-end" space-y-5px max-w="1/2"
+        v-if="surroundData?.[1]" flex="~ col items-end" space-y-5px max-w="1/2"
         :to="{ name: 'blog-slug', params: { slug: surroundData[1].slug } }"
       >
         <p op-50>
