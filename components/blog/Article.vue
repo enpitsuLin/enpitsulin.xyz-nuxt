@@ -9,7 +9,10 @@ const { article } = defineProps<Props>()
 </script>
 
 <template>
-  <article grid="md:~ md:cols-4 md:items-baseline">
+  <article
+    grid="md:~ md:cols-4 md:items-baseline"
+    class="ease-$spring-easing animate-in zoom-in-70 [animation-fill-mode:both]! [animation-range:entry_0%,exit_100%]! [animation-timeline:view(y)]!"
+  >
     <div
       relative
       flex="~ col items-start"
