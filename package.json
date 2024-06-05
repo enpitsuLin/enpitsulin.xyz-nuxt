@@ -13,7 +13,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@ark-ui/vue": "^3.0.3",
+    "@ark-ui/vue": "^3.2.0",
     "@skirtle/vue-vnode-utils": "^0.1.4",
     "crossbell": "^1.11.9",
     "remark-directive": "^3.0.0",
@@ -23,7 +23,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.19.2",
+    "@antfu/eslint-config": "^2.20.0",
     "@iconify-json/logos": "^1.1.42",
     "@iconify-json/mingcute": "^1.1.17",
     "@nuxt/content": "^2.12.1",
@@ -41,5 +41,10 @@
     "pinia": "^2.1.7",
     "rss": "^1.2.2",
     "unocss": "^0.60.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "jiti": "1.21.0"
+    }
   }
 }
