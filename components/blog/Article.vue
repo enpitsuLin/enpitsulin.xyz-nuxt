@@ -6,10 +6,47 @@ interface Props {
   article: Pick<XLogMarkdownParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary'>
 }
 const { article } = defineProps<Props>()
+const el = ref<HTMLElement>()
+
+declare const ScrollTimeline: any
+
+function shouldAnimationBeStopped(animation: CSSAnimation, animationName: string | null = null) {
+  if (!ScrollTimeline || !(animation.timeline instanceof ScrollTimeline))
+    return false
+
+  if (animationName === null) {
+    return true
+  }
+
+  return animation.animationName === animationName
+}
+
+const unsubscribe = useEventListener(el, 'animationend', (e) => {
+  if (e.elapsedTime === 0)
+    return
+  const animations = (e.target! as HTMLElement).getAnimations() as CSSAnimation[]
+  const animation = animations.find(a => a.animationName === e.animationName)
+  if (!animation)
+    return
+
+  // Only process if the animation name matches
+  if (shouldAnimationBeStopped(animation, 'animate-enter')) {
+    const fill = animation.effect?.getComputedTiming().fill
+    if (fill && !['forwards', 'both'].includes(fill)) {
+      console.warn(`The fillMode for the animation “animate-enter” is not set to \`forwards\`. This can cause a glitch when removing the animation.`)
+    }
+
+    // Commit the styles and remove the animation
+    animation.commitStyles()
+    animation.cancel()
+    unsubscribe()
+  }
+})
 </script>
 
 <template>
   <article
+    ref="el"
     grid="md:~ md:cols-4 md:items-baseline"
     class="ease-$spring-easing animate-in zoom-in-70 [animation-fill-mode:both]! [animation-range:entry_0%,exit_100%]! [animation-timeline:view(y)]!"
   >
