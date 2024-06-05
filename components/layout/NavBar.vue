@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { appNavigation } from '~/constants'
+import { navigation } from '~/constants'
 
 const route = useRoute()
 </script>
@@ -33,7 +33,7 @@ const route = useRoute()
           class="text-0.9rem text-gray-500 font-medium"
         >
           <li
-            v-for="{ href, label } in appNavigation" :key="href"
+            v-for="{ href, label } in navigation" :key="href"
             relative flex="~ items-center justify-center"
             class="h-7 break-keep"
           >

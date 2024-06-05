@@ -1,14 +1,14 @@
 import RSS from 'rss'
 import { serverQueryContent } from '#content/server'
-import { appDescription, appName, siteUrl } from '~/constants'
+import { description, siteUrl, title } from '~/constants'
 
 export default defineEventHandler(async (event) => {
   try {
     const posts = await serverQueryContent(event).where({ _type: 'markdown', _source: 'xlog' }).sort({ publishAt: -1 }).find()
 
     const feed = new RSS({
-      title: appName,
-      description: appDescription,
+      title,
+      description,
       site_url: siteUrl,
       feed_url: new URL(`/feed.xml`, siteUrl).toString(),
       language: 'zh-Hans',

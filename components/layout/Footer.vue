@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { appNavigation } from '~/constants'
+import { navigation } from '~/constants'
 </script>
 
 <template>
@@ -7,7 +7,7 @@ import { appNavigation } from '~/constants'
     <div flex="~ col items-center justify-between gap-6 sm:row">
       <div class="flex gap-6 text-sm text-zinc-800 font-medium dark:text-zinc-200">
         <NuxtLink
-          v-for="{ label, href } in appNavigation"
+          v-for="{ label, href } in navigation"
           :key="href"
           :href
           class="transition hover:text-accent/80 dark:hover:text-accent"
