@@ -12,7 +12,7 @@ defineProps<{ id?: string }>()
       op="0 group-hover:100 focus:100"
       class="transition-opacity duration-200"
       role="button"
-      tabindex="0"
+      tabindex="-1"
       aria-hidden="true"
       ml-2 select-none text-accent
       :href="`#${id}`"
