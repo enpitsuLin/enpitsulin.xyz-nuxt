@@ -8,6 +8,9 @@ useHead({
       return `${t} - ${title}`
     return `${t} - ${description}`
   },
+  htmlAttrs: {
+    lang: 'zh-cmn-Hans',
+  },
   bodyAttrs: {
     class: 'text-gray-950 dark:text-gray-50 bg-slate-50 dark:bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px] dark:bg-[radial-gradient(#e5e7eb20_1px,transparent_1px)]',
   },

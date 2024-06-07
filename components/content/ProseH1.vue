@@ -17,7 +17,7 @@ defineProps<{ id?: string }>()
       ml-2 select-none text-accent
       :href="`#${id}`"
     >
-      <i class="i-mingcute:hashtag-line" size-1em />
+      <i class="i-mingcute:hashtag-line" size-1em aria-hidden="true" />
     </a>
   </h1>
 </template>

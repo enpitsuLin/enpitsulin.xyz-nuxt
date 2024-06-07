@@ -12,6 +12,7 @@ const { copy, copied } = useClipboard({ source, legacy: true, copiedDuring: 800 
     rounded-md
     class="absolute right-2 top-2 z-1 p-2 text-xs backdrop-blur duration-200 transition-property-[opacity,transform] hover:scale-110"
     tabindex="0"
+    aria-label="复制代码"
     @click="() => copy()"
   >
     <i
