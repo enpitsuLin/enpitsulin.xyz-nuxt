@@ -6,7 +6,7 @@ import type { XLogMarkdownParsedContent } from '~/types/content'
 const route = useRoute('blog-slug')
 
 const { data } = await useAsyncData(
-  'slug',
+  `post:${route.params.slug}`,
   () => queryContent<XLogMarkdownParsedContent>()
     .where({ _type: 'markdown', _source: 'xlog' })
     .where({
