@@ -23,6 +23,10 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
 
+  future: {
+    compatibilityVersion: 4,
+  },
+
   css: [
     '@unocss/reset/tailwind.css',
   ],
