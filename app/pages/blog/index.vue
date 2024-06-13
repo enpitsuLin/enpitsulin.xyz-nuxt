@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { XLogMarkdownParsedContent } from '~/types/content'
+import type { XLogPostParsedContent } from '~/types/content'
 
 useHead({
   title: '文章',
@@ -10,8 +10,7 @@ const search = ref('')
 const debounceSearch = refDebounced(search)
 
 function getQuery() {
-  const query = queryContent<XLogMarkdownParsedContent>()
-    .where({ _type: 'markdown', _source: 'xlog' })
+  const query = queryContent<XLogPostParsedContent>('post')
 
   if (debounceSearch.value) {
     query.where({

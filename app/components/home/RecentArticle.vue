@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { XLogMarkdownParsedContent } from '~/types/content'
+import type { XLogPostParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<XLogMarkdownParsedContent, '_id' | 'title' | 'publishAt' | 'slug' | 'tags' | 'summary' | 'description' | 'draft' | 'readingAt'>
+  article: Pick<XLogPostParsedContent, '_id' | 'title' | 'publishAt' | 'slug' | 'tags' | 'summary' | 'description' | 'draft' | 'readingAt'>
 }
 defineProps<Props>()
 </script>

@@ -1,6 +1,6 @@
-import type { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { MarkdownParsedContent, ParsedContent } from '@nuxt/content/dist/runtime/types'
 
-export interface XLogMarkdownParsedContent extends MarkdownParsedContent {
+export interface XLogPostParsedContent extends MarkdownParsedContent {
   slug: string
   uri: string
   createAt: string
@@ -14,4 +14,12 @@ export interface XLogMarkdownParsedContent extends MarkdownParsedContent {
     words: number
     minutes: number
   }
+}
+
+export interface XLogPortfolioParsedContent extends ParsedContent {
+  id: number
+  cover: string
+  summary: string
+  title: string
+  href: string
 }

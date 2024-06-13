@@ -1,25 +1,19 @@
 <script setup lang="ts">
 import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { toc } from '~/composables/content'
-import type { XLogMarkdownParsedContent } from '~/types/content'
+import type { XLogPostParsedContent } from '~/types/content'
 
 const route = useRoute('blog-slug')
 
 const { data } = await useAsyncData(
   `post:${route.params.slug}`,
-  () => queryContent<XLogMarkdownParsedContent>()
-    .where({ _type: 'markdown', _source: 'xlog' })
-    .where({
-      slug: {
-        $eq: route.params.slug,
-      },
-    })
+  () => queryContent<XLogPostParsedContent>(`post`, `${route.params.slug}`)
     .findOne(),
 )
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent<XLogMarkdownParsedContent>()
+} = useAsyncData('surround', () => queryContent<XLogPostParsedContent>()
   .only(['slug', 'title'])
   .sort({ publishAt: -1 })
   .findSurround({ slug: route.params.slug }))

@@ -18,13 +18,14 @@ const DRIVER_NAME = 'xLog-driver'
 const LIMIT = 100
 const SOURCE = 'xlog'
 const POST_TAG = 'post'
+const PORTFOLIO_TAG = 'portfolio'
 
 /**
  *
  * @param {import('./xlog-driver').XLogStorageDriverOptions} options
  * @returns
  */
-async function fetchFiles(options) {
+async function fetchPosts(options) {
   try {
     const characterId = Number(options.characterId)
     const rawRes = await indexer.note.getMany({
@@ -64,7 +65,40 @@ async function fetchFiles(options) {
         ),
       )
 
-      await fileCache.setItem(`${slug}.md`, markdownText)
+      await fileCache.setItem(`post:${slug}.md`, markdownText)
+    }
+  }
+  catch {
+    throw new Error(`${DRIVER_NAME} Error: Failed`)
+  }
+}
+
+/**
+ *
+ * @param {import('./xlog-driver').XLogStorageDriverOptions} options
+ * @returns
+ */
+async function fetchPortfolio(options) {
+  try {
+    const characterId = Number(options.characterId)
+    const rawRes = await indexer.note.getMany({
+      characterId,
+      includeNestedNotes: false,
+      limit: LIMIT,
+      sources: [SOURCE],
+      tags: [PORTFOLIO_TAG],
+    })
+
+    const lists = rawRes.list ?? []
+
+    for (const i of lists) {
+      const attachments = i.metadata?.content?.attachments ?? []
+      const cover = attachments.find(item => item.name === 'cover')?.address
+      const title = i.metadata?.content?.title
+      const summary = i.metadata?.content && 'summary' in i.metadata?.content ? i.metadata?.content?.summary : ''
+      const external_urls = i.metadata?.content?.external_urls?.at(0)
+
+      await fileCache.setItem(`portfolio:${i.noteId}.json`, JSON.stringify({ id: i.noteId, cover, summary, title, href: external_urls }))
     }
   }
   catch {
@@ -84,7 +118,7 @@ const xLogStorageDriver = defineDriver(
     }
 
     let lastCheck = 0
-    /** @type {Promise<void>|undefined} */
+    /** @type {Promise<[void,void]>|undefined} */
     let syncPromise
 
     const syncFiles = async () => {
@@ -95,14 +129,13 @@ const xLogStorageDriver = defineDriver(
         return
 
       if (!syncPromise)
-        syncPromise = fetchFiles(options)
+        syncPromise = Promise.all([fetchPosts(options), fetchPortfolio(options)])
 
       await syncPromise
         .then(() => {
           lastCheck = Date.now()
           syncPromise = undefined
         })
-        .catch(() => fetchFiles(options))
     }
 
     return {
