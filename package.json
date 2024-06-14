@@ -13,7 +13,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@ark-ui/vue": "^3.3.1",
+    "@ark-ui/vue": "^3.4.0",
     "@skirtle/vue-vnode-utils": "^0.1.4",
     "crossbell": "^1.11.9",
     "remark-directive": "^3.0.0",
@@ -34,7 +34,7 @@
     "@types/rss": "^0.0.32",
     "@unocss/eslint-plugin": "^0.61.0",
     "@unocss/nuxt": "^0.61.0",
-    "@vueuse/nuxt": "^10.10.1",
+    "@vueuse/nuxt": "^10.11.0",
     "eslint": "^9.4.0",
     "eslint-plugin-format": "^0.1.1",
     "nuxt": "^3.12.1",

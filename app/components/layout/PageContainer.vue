@@ -14,7 +14,10 @@ defineProps<{
       >
         {{ title }}
       </h2>
-      <p v-if="description" class="animate-delay-100 animate-in fade-in slide-in-from-left-16 animate-duration-1000! animate-ease-$spring-easing!">
+      <p
+        v-if="description"
+        class="animate-delay-100 text-sm animate-in fade-in slide-in-from-left-16 animate-duration-1000! animate-ease-$spring-easing! md:text-base"
+      >
         {{ description }}
       </p>
       <slot name="header" />

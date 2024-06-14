@@ -5,7 +5,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <header sticky top-0 z-9999 pt-5 flex="~ items-center justify-center">
+  <header flex="~ items-center justify-between md:justify-center" sticky top-0 z-9999 w-screen px-8 pt-5>
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
     <div
       relative z-2 h-full w-fit
@@ -25,7 +25,8 @@ const route = useRoute()
       </div>
       <nav
         bg="zinc-50/50 dark:zinc-950/50"
-        rounded-full px-8 py="2"
+        px-8 py="2"
+        border="~ border rounded-full"
         class="flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
       >
         <ul
@@ -43,6 +44,22 @@ const route = useRoute()
           </li>
         </ul>
       </nav>
+    </div>
+
+    <NuxtLink v-if="route.path !== '/'" href="/" relative class="view-transition-avatar md:hidden">
+      <NuxtImg
+        alt="avatar"
+        width="250" height="250"
+        decoding="async"
+        class="size-9 border-2 border-white rounded-full object-cover shadow-xl"
+        src="https://avatars.githubusercontent.com/enpitsuLin"
+      />
+    </NuxtLink>
+    <div
+      relative ml-auto
+      class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px"
+    >
+      <LayoutNavBarMenu />
     </div>
   </header>
 </template>
