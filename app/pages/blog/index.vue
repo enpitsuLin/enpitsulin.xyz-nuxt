@@ -31,13 +31,13 @@ function getQuery() {
   return query
 }
 
-const { data: total } = useAsyncData(
+const { data: total } = await useAsyncData(
   'posts-count',
   () => getQuery().count(),
   { watch: [debounceSearch] },
 )
 
-const { data, pending } = useAsyncData(
+const { data, status } = await useAsyncData(
   'blog-index',
   () => {
     return getQuery()
@@ -60,7 +60,7 @@ useInfiniteScroll(
   {
     distance: 10,
     canLoadMore: () => {
-      if (pending.value || isReachEnd.value)
+      if (status.value === 'pending' || isReachEnd.value)
         return false
       return true
     },
@@ -92,7 +92,7 @@ async function loadMore() {
         </label>
       </div>
     </template>
-    <div v-if="data && data?.length > 0" pl="md:6" border="md:l border">
+    <div v-if="data && data?.length > 0 && status !== 'pending'" pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">
           <BlogArticle :article="article" />

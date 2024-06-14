@@ -5,7 +5,7 @@ const { url } = useParseHref(href)
 
 const target = ref<HTMLDivElement>()
 
-const { data, pending } = useAsyncData(
+const { data, status } = useAsyncData(
   `github-repo${url.value.pathname.replaceAll('/', ':')}`,
   () => $fetch<{ name: string, stargazers_count: number, description: string, owner: { avatar_url: string } }>(`https://api.github.com/repos${url.value.pathname}`),
 )
@@ -19,7 +19,7 @@ const { data, pending } = useAsyncData(
     relative max-w-110 min-h-24 w-full rounded-md bg="zinc-200 dark:zinc-800"
     decoration-none
   >
-    <ProseGithubCardSkeleton v-if="pending" />
+    <ProseGithubCardSkeleton v-if="status === 'pending'" />
     <template v-else>
       <div flex="~ col grow-1 shrink-1 gap-1 basis-auto" min-w0>
         <div flex="~ justify-between">
