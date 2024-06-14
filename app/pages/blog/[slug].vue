@@ -13,7 +13,7 @@ const { data } = await useAsyncData(
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent<XLogPostParsedContent>()
+} = useAsyncData('surround', () => queryContent<XLogPostParsedContent>('post')
   .only(['slug', 'title'])
   .sort({ publishAt: -1 })
   .findSurround({ slug: route.params.slug }))
