@@ -3,8 +3,7 @@ import type { NotePostParsedContent } from '~/types/content'
 
 const { data } = await useAsyncData(
   'recent-posts',
-  () => queryContent<NotePostParsedContent>()
-    .where({ _type: 'markdown', _source: 'xlog' })
+  () => queryContent<NotePostParsedContent>('post')
     .sort({ publishAt: -1 })
     .only(['title', 'draft', 'publishAt', 'description', 'slug', 'tags', 'readingAt', '_id', 'summary'])
     .limit(2)
