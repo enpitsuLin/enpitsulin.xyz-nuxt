@@ -50,7 +50,7 @@ function onSelect(details: MenuSelectionDetails) {
           :value="href"
           flex="~ items-center"
           relative h-8 px-2
-          class="[&:not(:last-child)]:border-b [&:not(:last-child)]:border-b-border/30"
+          class="not-last:border-b not-last:border-b-border/30"
         >
           {{ label }}
         </MenuItem>
