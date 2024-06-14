@@ -12,8 +12,6 @@ const fileCache = createStorage({
 
 const indexer = createIndexer()
 
-const IPFS_GATEWAY = 'https://ipfs.4everland.xyz/ipfs/'
-
 const DRIVER_NAME = 'xLog-driver'
 const LIMIT = 100
 const SOURCE = 'xlog'
@@ -61,7 +59,7 @@ async function fetchPosts(options) {
         },
         content.replace(
           /ipfs:\/\/([^\n ]+)/g,
-          `${IPFS_GATEWAY}$1`,
+          `${options.baseURL}$1`,
         ),
       )
 
@@ -110,6 +108,7 @@ const xLogStorageDriver = defineDriver(
   (/** @type {import('./xlog-driver').XLogStorageDriverOptions} */opt) => {
     const defaultOpt = {
       ttl: 60 * 60,
+      baseURL: 'https://ipfs.crossbell.io/ipfs',
     }
     /** @type {import('./xlog-driver').XLogStorageDriverOptions} */
     const options = {

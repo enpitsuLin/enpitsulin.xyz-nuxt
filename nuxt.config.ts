@@ -60,6 +60,19 @@ export default defineNuxtConfig({
       xlog: {
         driver: pathToFileURL(resolver.resolve('./storage/xlog-driver.mjs')).href,
         characterId: 54315,
+        baseURL: 'https://ipfs.crossbell.io/ipfs/',
+      },
+    },
+  },
+
+  image: {
+    providers: {
+      ipfs: {
+        name: 'ipfs', // optional value to overrider provider name
+        provider: '~/providers/ipfs.ts', // Path to custom provider
+        options: {
+          baseURL: 'https://ipfs.crossbell.io/ipfs/',
+        },
       },
     },
   },
