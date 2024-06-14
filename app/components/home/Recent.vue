@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { XLogPostParsedContent } from '~/types/content'
+import type { NotePostParsedContent } from '~/types/content'
 
 const { data } = await useAsyncData(
   'recent-posts',
-  () => queryContent<XLogPostParsedContent>()
+  () => queryContent<NotePostParsedContent>()
     .where({ _type: 'markdown', _source: 'xlog' })
     .sort({ publishAt: -1 })
     .only(['title', 'draft', 'publishAt', 'description', 'slug', 'tags', 'readingAt', '_id', 'summary'])

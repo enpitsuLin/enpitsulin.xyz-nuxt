@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { XLogPostParsedContent } from '~/types/content'
+import type { NotePostParsedContent } from '~/types/content'
 
 const route = useRoute('blog-tags-tag')
 const tag = route.params.tag
 
 const { data } = await useAsyncData(
   'blog-tags-tag',
-  () => queryContent<XLogPostParsedContent>()
+  () => queryContent<NotePostParsedContent>()
     .where({ _type: 'markdown', _source: 'xlog' })
     .where({
       tags: {

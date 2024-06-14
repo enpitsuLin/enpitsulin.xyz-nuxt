@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { XLogPortfolioParsedContent } from '~/types/content'
+import type { NotePortfolioParsedContent } from '~/types/content'
 
 useHead({
   title: '项目',
@@ -7,7 +7,7 @@ useHead({
 
 const { data } = await useAsyncData(
   'portfolio',
-  () => queryContent<XLogPortfolioParsedContent>('portfolio').find(),
+  () => queryContent<NotePortfolioParsedContent>('portfolio').find(),
 )
 </script>
 

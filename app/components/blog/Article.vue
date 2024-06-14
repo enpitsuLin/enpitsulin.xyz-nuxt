@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { formatDate } from '@vueuse/core'
-import type { XLogPostParsedContent } from '~/types/content'
+import type { NotePostParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<XLogPostParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary'>
+  article: Pick<NotePostParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary'>
 }
 const { article } = defineProps<Props>()
 const el = ref<HTMLElement>()
