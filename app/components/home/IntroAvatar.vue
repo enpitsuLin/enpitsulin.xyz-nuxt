@@ -25,13 +25,11 @@ useEventListener('keydown', handleKeyDown)
 <template>
   <div relative>
     <div
-      class="view-transition-avatar" :class="{
-        'animate-spin': easterEgg,
-      }"
+      class="view-transition-avatar"
+      :class="{ 'animate-spin': easterEgg }"
     >
       <NuxtImg
-        alt="avatar"
-        width="250" height="250" decoding="async"
+        alt="avatar" width="250" height="250" decoding="async"
         class="border-[0.35rem] border-white rounded-full object-cover shadow-xl"
         src="https://avatars.githubusercontent.com/enpitsuLin"
       />
