@@ -92,7 +92,7 @@ async function loadMore() {
         </label>
       </div>
     </template>
-    <div v-if="data && data?.length > 0 && status !== 'pending'" pl="md:6" border="md:l border">
+    <div v-if="data && data?.length > 0 " pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
         <li v-for="article in data" :key="article._id">
           <BlogArticle :article="article" />
@@ -100,11 +100,11 @@ async function loadMore() {
       </ul>
     </div>
 
-    <div v-else>
+    <div v-else-if="status !== 'pending'">
       No Posts
     </div>
 
-    <div v-if="!isReachEnd" mt-30>
+    <div v-if="!isReachEnd && status === 'pending'" mt-30>
       <div class="loader" />
     </div>
   </LayoutPageContainer>
