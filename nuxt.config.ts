@@ -48,6 +48,10 @@ export default defineNuxtConfig({
         'remark-directive-rehype': {},
         'remark-mdc': false,
       },
+      toc: {
+        depth: 3,
+        searchDepth: 3,
+      },
     },
     highlight: {
       theme: {
