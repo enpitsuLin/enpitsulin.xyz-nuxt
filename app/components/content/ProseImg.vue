@@ -69,8 +69,7 @@ const id = useId().replace('_', '-')
 
 <style>
 /** disabled other view-transition */
-.zoom-image-animating
-  [class*='view-transition']:not([class*='view-transition-zoom']) {
+.zoom-image-animating [class*='view-transition'] {
   view-transition-name: none !important;
 }
 </style>
