@@ -33,6 +33,8 @@ function onClick() {
     document.documentElement.classList.remove('zoom-image-animating')
   })
 }
+
+const id = useId().replace('_', '-')
 </script>
 
 <template>
@@ -45,8 +47,8 @@ function onClick() {
       :class="{
         'cursor-zoom-in': !zoom,
         'invisible': zoom,
-        'view-transition-zoom': !zoom,
       }"
+      :style="!zoom && { viewTransitionName: `zoom-${id}` }"
       @click="onClick"
     >
     <figcaption v-if="alt" mt-1 flex="~ col items-center justify-center">
@@ -60,14 +62,15 @@ function onClick() {
       class="fixed inset-0 z-9999 cursor-zoom-out backdrop-blur-0.5rem" bg="zinc-50/80 dark:zinc-950/80"
       @click="onClick"
     >
-      <img :src="refinedSrc" :alt="alt" :width="width" :height="height" :class="{ 'view-transition-zoom': zoom }">
+      <img :src="refinedSrc" :alt="alt" :width="width" :height="height" :style="zoom && { viewTransitionName: `zoom-${id}` }">
     </div>
   </Teleport>
 </template>
 
 <style>
 /** disabled other view-transition */
-.zoom-image-animating [class*='view-transition']:not(.view-transition-zoom) {
+.zoom-image-animating
+  [class*='view-transition']:not([class*='view-transition-zoom']) {
   view-transition-name: none !important;
 }
 </style>
