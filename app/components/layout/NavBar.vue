@@ -57,7 +57,7 @@ const route = useRoute()
     </NuxtLink>
     <div
       relative ml-auto
-      class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px"
+      class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px md:hidden"
     >
       <LayoutNavBarMenu />
     </div>
