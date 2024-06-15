@@ -1,33 +1,14 @@
 <script setup lang="ts">
-import type {
-  CharacterEntity,
-  LinkEntity,
-  ListResponse,
-  NoteEntity,
-} from 'crossbell'
-import { createIndexer } from 'crossbell'
-import { parseMarkdown } from '@nuxtjs/mdc/runtime'
 import type { MDCParseOptions } from '@nuxtjs/mdc'
-import rehypeSanitize from 'rehype-sanitize'
+import { parseMarkdown } from '@nuxtjs/mdc/runtime'
 import type { UseTimeAgoMessages, UseTimeAgoUnitNamesDefault } from '@vueuse/core'
-import { AvatarFallback, AvatarImage, AvatarRoot } from '@ark-ui/vue'
+import rehypeSanitize from 'rehype-sanitize'
+import type { CharacterEntity, ListResponse, NoteEntity } from 'crossbell'
 import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 
 const { comment } = defineProps<{ comment: NoteEntity & { fromNotes?: ListResponse<NoteEntity> } }>()
 
-const { data } = await useAsyncData(
-  `comment:${comment.characterId}:${comment.noteId}:like`,
-  async () => {
-    const res = await createIndexer()
-      .fetch<ListResponse<LinkEntity>>(
-      `/notes/${comment.characterId}/${comment.noteId}/backlinks`,
-      { params: { linkType: 'like', limit: 20 } },
-      )
-
-    return res.count
-  },
-  { server: false },
-)
+const { data } = await useNoteLike(comment.characterId, comment.noteId)
 
 const ast = await parseMarkdown(
   comment.metadata?.content?.content ?? '',
@@ -43,49 +24,18 @@ const ast = await parseMarkdown(
   } as MDCParseOptions,
 )
 
-const messages: UseTimeAgoMessages<UseTimeAgoUnitNamesDefault> = {
-  justNow: 'just now',
-  past: n => n.match(/\d/) ? `${n}前` : n,
-  future: n => n.match(/\d/) ? `${n}后` : n,
-  month: (n, past) => n === 1
-    ? past
-      ? '上个月'
-      : '下个月'
-    : `${n}个月`,
-  year: (n, past) => n === 1
-    ? past
-      ? '去年'
-      : '明年'
-    : `${n}年`,
-  day: (n, past) => n === 1
-    ? past
-      ? '昨天'
-      : '明天'
-    : `${n}天`,
-  week: (n, past) => n === 1
-    ? past
-      ? '上周'
-      : '下周'
-    : `${n}周`,
-  hour: n => `${n}小时`,
-  minute: n => `${n}分钟`,
-  second: n => `${n}秒`,
-  invalid: '未知时间',
-}
-const timeAgo = useTimeAgo(new Date(comment.publishedAt), { messages })
+const timeAgo = useTimeAgo(new Date(comment.publishedAt))
 
 function getCharacterSiteUrl(character: CharacterEntity) {
   // TODO: custom metadata attributes, TDB with some admin panel?
-  if (character.metadata?.content?.attributes?.find(i => i.trait_type === 'xlog_alternate_site')) {
+  if (character.metadata?.content?.attributes?.find(i => i.trait_type === 'xlog_alternate_site')?.value) {
     return `https://${character.metadata.content.attributes.find(i => i.trait_type === 'xlog_alternate_site')!.value}`
   }
-  if (character.metadata?.content?.attributes?.find(i => i.trait_type === 'xlog_custom_domain')) {
+  if (character.metadata?.content?.attributes?.find(i => i.trait_type === 'xlog_custom_domain')?.value) {
     return `https://${character.metadata.content.attributes.find(i => i.trait_type === 'xlog_custom_domain')!.value}`
   }
   return `https://${character?.handle}.xlog.app`
 }
-
-const img = useImage()
 
 const components = {
   'input': ProseInput,
@@ -98,22 +48,10 @@ const components = {
 <template>
   <div flex="~" class="comment">
     <div mr-3>
-      <AvatarRoot
-        of-hidden rounded-full
-        flex="inline items-center justify-center"
-      >
-        <AvatarFallback size-full bg-accent:50 text-xl flex="~ items-center justify-center" class="data-[state=hidden]:hidden">
-          {{ comment.character?.metadata?.content?.name?.slice(0, 1) }}
-        </AvatarFallback>
-        <AvatarImage
-          class="size-10 md:size-12"
-          :src="img.getImage(comment.character?.metadata?.content?.avatars?.[0]!, { provider: 'ipfs' }).url"
-          object-cover
-          width="48"
-          height="48"
-          alt="avatar"
-        />
-      </AvatarRoot>
+      <CharacterAvatarHoverCard
+        v-if="comment.character"
+        :character="comment.character"
+      />
     </div>
 
     <div flex="~ 1 col gap-1">
