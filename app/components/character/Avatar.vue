@@ -4,8 +4,6 @@ import {
   AvatarFallback,
   AvatarImage,
   AvatarRoot,
-  HoverCardRoot,
-  HoverCardTrigger,
 } from '@ark-ui/vue'
 
 defineProps<{ character: CharacterEntity }>()
