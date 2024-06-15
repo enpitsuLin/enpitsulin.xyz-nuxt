@@ -7,6 +7,7 @@ const resolver = createResolver(import.meta.url)
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    '@nuxtjs/mdc',
     '@nuxt/content',
     '@vueuse/nuxt',
     '@unocss/nuxt',

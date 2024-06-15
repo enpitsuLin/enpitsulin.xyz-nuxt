@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import { type LinkEntity, type ListResponse, type NoteEntity, createIndexer } from 'crossbell'
-
+import type {
+  CharacterEntity,
+  LinkEntity,
+  ListResponse,
+  NoteEntity,
+} from 'crossbell'
+import { createIndexer } from 'crossbell'
 import { parseMarkdown } from '@nuxtjs/mdc/runtime'
+import type { MDCParseOptions } from '@nuxtjs/mdc'
+import rehypeSanitize from 'rehype-sanitize'
 
 const { comment } = defineProps<{ comment: NoteEntity & { fromNotes?: ListResponse<NoteEntity> } }>()
 
@@ -19,13 +26,30 @@ const { data } = await useAsyncData(
   { server: false },
 )
 
-const content = computed(() => comment.metadata?.content?.content)
-
-const { data: ast } = await useAsyncData(
- `markdown-content:${comment.characterId}:${comment.noteId}`,
- () => parseMarkdown(content.value ?? ''),
- { watch: [content], server: false },
+const ast = await parseMarkdown(
+  comment.metadata?.content?.content ?? '',
+  {
+    rehype: {
+      plugins: {
+        'rehype-sanitize': {
+          instance: rehypeSanitize,
+          options: undefined,
+        },
+      },
+    },
+  } as MDCParseOptions,
 )
+
+function getCharacterSiteUrl(character: CharacterEntity) {
+  // TODO: custom metadata attributes, TDB with some admin panel?
+  if (character.metadata?.content?.attributes?.find(i => i.trait_type === 'xlog_alternate_site')) {
+    return `https://${character.metadata.content.attributes.find(i => i.trait_type === 'xlog_alternate_site')!.value}`
+  }
+  if (character.metadata?.content?.attributes?.find(i => i.trait_type === 'xlog_custom_domain')) {
+    return `https://${character.metadata.content.attributes.find(i => i.trait_type === 'xlog_custom_domain')!.value}`
+  }
+  return `https://${character?.handle}.xlog.app`
+}
 </script>
 
 <template>
@@ -47,28 +71,26 @@ const { data: ast } = await useAsyncData(
     <div flex="~ 1 col gap-1">
       <NuxtLink
         is-external
-        :href="`https://${comment.character?.handle}.xlog.app`"
+        rel="noreferrer"
+        :href="getCharacterSiteUrl(comment.character!)"
         class="text-xs md:text-sm" text-accent
       >
         {{ comment.character?.metadata?.content?.name }}
       </NuxtLink>
       <div mb-2 class="text-xs md:text-sm">
-        <ContentRenderer :value="ast">
-          <template #empty>
-            <p>No content found.</p>
-          </template>
-          <ContentRendererMarkdown
-            tag="article"
-            class="relative max-w-unset prose"
-            :value="ast?.body!"
-          />
-        </ContentRenderer>
+        <MDCRenderer
+          v-if="ast"
+          tag="article"
+          class="relative mb-2 max-w-unset prose"
+          :body="ast.body"
+          :data="ast.data"
+        />
 
         <div flex="~ items-center gap-2">
           <button
             type="button"
             flex="inline items-center"
-            class="rounded-full text-[13px] text-gray-500 hover:c-rose"
+            class="rounded-full text-[13px] text-gray-500 hover:c-rose-600"
           >
             <i class="i-mingcute:thumb-up-2-fill mr-1 text-base" />
             <span class="leading-snug">{{ data }}</span>
@@ -76,7 +98,7 @@ const { data: ast } = await useAsyncData(
           <button
             type="button"
             flex="inline items-center"
-            class="rounded-full text-[13px] text-gray-500"
+            class="rounded-full text-[13px] text-gray-500 hover:c-accent"
           >
             <i class="i-mingcute:comment-fill mr-1 text-base" />
             <span class="leading-snug">{{ comment.fromNotes?.list.length ?? 0 }}</span>
