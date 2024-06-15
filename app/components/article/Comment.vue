@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { MDCParseOptions } from '@nuxtjs/mdc'
 import { parseMarkdown } from '@nuxtjs/mdc/runtime'
-import type { UseTimeAgoMessages, UseTimeAgoUnitNamesDefault } from '@vueuse/core'
 import rehypeSanitize from 'rehype-sanitize'
 import type { CharacterEntity, ListResponse, NoteEntity } from 'crossbell'
 import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'

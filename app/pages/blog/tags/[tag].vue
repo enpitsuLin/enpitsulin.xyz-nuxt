@@ -6,8 +6,7 @@ const tag = route.params.tag
 
 const { data } = await useAsyncData(
   'blog-tags-tag',
-  () => queryContent<NotePostParsedContent>()
-    .where({ _type: 'markdown', _source: 'xlog' })
+  () => queryContent<NotePostParsedContent>('post')
     .where({
       tags: {
         $contains: tag,
@@ -20,7 +19,7 @@ const { data } = await useAsyncData(
 <template>
   <LayoutPageContainer
     :title="`标签: ${tag}`"
-    :description="`共 ${tag.length} 个结果`"
+    :description="`共 ${data?.length} 个结果`"
   >
     <div pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
