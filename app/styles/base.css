@@ -63,3 +63,8 @@ body,
 html {
   scroll-padding-top: 4rem;
 }
+
+.comment p {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}

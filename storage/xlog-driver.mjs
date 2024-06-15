@@ -58,6 +58,7 @@ async function fetchNote(options, type, prefixAsTag) {
             tags,
             slug: slug ?? '',
             summary,
+            noteId: i.noteId,
           },
           content.replace(
             /ipfs:\/\/([^\n ]+)/g,

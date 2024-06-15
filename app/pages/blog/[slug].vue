@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createIndexer } from 'crossbell'
 import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { toc } from '~/composables/content'
 import type { NotePostParsedContent } from '~/types/content'
@@ -13,10 +14,46 @@ const { data } = await useAsyncData(
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent<NotePostParsedContent>('post')
+} = await useAsyncData('surround', () => queryContent<NotePostParsedContent>('post')
   .only(['slug', 'title'])
   .sort({ publishAt: -1 })
   .findSurround({ slug: route.params.slug }))
+
+if (!data.value)
+  throw createError('Not Found')
+
+const comment = ref<HTMLDivElement>()
+
+const {
+  data: commentData,
+  execute,
+} = await useAsyncData(
+  `comment:${data.value.noteId}`,
+  async () => {
+    const res = await createIndexer().note.getMany({
+      toNoteId: data.value?.noteId,
+      toCharacterId: 54315,
+      includeCharacter: true,
+      includeNestedNotes: true,
+      limit: 5,
+      nestedNotesDepth: 3,
+      nestedNotesLimit: 20,
+    })
+
+    return res
+  },
+  { server: false, immediate: false },
+)
+
+const { stop } = useIntersectionObserver(
+  comment,
+  (entries) => {
+    if (entries.at(0)?.isIntersecting) {
+      execute()
+      stop()
+    }
+  },
+)
 
 watch(data, (val) => {
   if (val)
@@ -41,9 +78,6 @@ const formatDate = useDateFormat(
 useHead({
   title: computed(() => data.value?.title ?? ''),
 })
-
-if (!data.value)
-  throw createError('Not Found')
 </script>
 
 <template>
@@ -82,6 +116,16 @@ if (!data.value)
         </template>
         <ContentRendererMarkdown tag="article" class="max-w-unset prose" :value="data!" :components="components" />
       </ContentRenderer>
+      <div ref="comment">
+        <div mb-6 border="b border" pb-2>
+          <span text-sm>{{ commentData?.count }} 评论</span>
+        </div>
+        <ArticleComment
+          v-for="comment in commentData?.list"
+          :key="`${comment.characterId}:${comment.noteId}`"
+          :comment
+        />
+      </div>
     </div>
     <aside sticky top-80px ml-4 w="20%" h-full pb-20 class="hidden md:block">
       <h2 class="m-[20px_0_10px]">
@@ -92,8 +136,8 @@ if (!data.value)
       </nav>
     </aside>
   </div>
-  <footer mx="-8 sm:-12" px="8 sm:12" border="t border">
-    <nav flex="~ justify-between" my-20px>
+  <footer mx="-8 sm:-12" px="6 sm:12" border="t border">
+    <nav class="text-sm md:text-base" flex="~ justify-between" my-20px>
       <NuxtLink
         v-if="surroundData?.[0]" flex="~ col items-start" space-y-5px max-w="1/2"
         :to="{ name: 'blog-slug', params: { slug: surroundData[0].slug } }"
