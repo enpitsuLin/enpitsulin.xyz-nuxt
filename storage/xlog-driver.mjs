@@ -17,6 +17,34 @@ const LIMIT = 100
 const SOURCE = 'xlog'
 
 /**
+ * @template T
+ * @param {() => Promise<T>} promiseFn
+ * @param {number} times
+ * @returns {Promise<T>}
+ */
+function retry(promiseFn, times = 1) {
+  return new Promise((resolve, reject) => {
+    while (times > 0) {
+      try {
+        Promise.resolve(promiseFn()).then((ret) => {
+          resolve(ret)
+        })
+
+        break // count = 0
+      }
+      catch (err) {
+        if (times === 0) {
+          reject(err)
+        }
+        // eslint-disable-next-line no-console
+        console.log(`[${DRIVER_NAME}] retry: `, times)
+        times--
+      }
+    }
+  })
+}
+
+/**
  *
  * @param {import('./xlog-driver').XLogStorageDriverOptions} options
  * @param {'markdown'|'json'} type
@@ -100,6 +128,12 @@ const xLogStorageDriver = defineDriver(
     /** @type {Promise<[void,void,void]>|undefined} */
     let syncPromise
 
+    const getPromise = () => Promise.all([
+      fetchNote(options, 'markdown', 'post'),
+      fetchNote(options, 'markdown', 'page'),
+      fetchNote(options, 'json', 'portfolio'),
+    ])
+
     const syncFiles = async () => {
       if (!options.characterId)
         throw new Error(`${DRIVER_NAME} Error: Not set characterId`)
@@ -108,11 +142,7 @@ const xLogStorageDriver = defineDriver(
         return
 
       if (!syncPromise) {
-        syncPromise = Promise.all([
-          fetchNote(options, 'markdown', 'post'),
-          fetchNote(options, 'markdown', 'page'),
-          fetchNote(options, 'json', 'portfolio'),
-        ])
+        syncPromise = retry(getPromise, 3)
       }
 
       await syncPromise

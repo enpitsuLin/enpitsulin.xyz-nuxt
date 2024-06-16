@@ -14,7 +14,9 @@ const { data, status } = useAsyncData(
 
 <template>
   <NuxtLink
-    ref="target" :href="url.toString()" :rel="rel" target="_blank"
+    ref="target"
+    is-external
+    :href="url.toString()" :rel="rel" target="_blank"
     flex="~ justify-between items-center gap-4"
     m="x-auto" p="x-4 y-2"
     relative max-w-110 min-h-24 w-full rounded-md bg="zinc-200 dark:zinc-800"
