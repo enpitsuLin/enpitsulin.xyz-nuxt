@@ -8,6 +8,7 @@ const target = ref<HTMLDivElement>()
 const { data, status } = useAsyncData(
   `github-repo${url.value.pathname.replaceAll('/', ':')}`,
   () => $fetch<{ name: string, stargazers_count: number, description: string, owner: { avatar_url: string } }>(`https://api.github.com/repos${url.value.pathname}`),
+  { server: false },
 )
 </script>
 
