@@ -45,73 +45,68 @@ const components = {
 </script>
 
 <template>
-  <Suspense>
-    <div flex="~" class="comment">
-      <div mr-3>
-        <CharacterAvatarHoverCard
-          v-if="comment.character"
-          :character="comment.character"
-        />
-      </div>
-
-      <div flex="~ 1 col gap-1">
-        <div flex="inline items-center">
-          <NuxtLink
-            is-external
-            rel="noreferrer"
-            :href="getCharacterSiteUrl(comment.character!)"
-            class="text-xs md:text-sm" text-accent
-          >
-            {{ comment.character?.metadata?.content?.name }}
-          </NuxtLink>
-          <span px-1>·</span>
-          <span text-sm op-70>{{ timeAgo }}</span>
-        </div>
-        <div mb-2 class="text-xs md:text-sm">
-          <MDCRenderer
-            v-if="ast"
-            tag="article"
-            class="relative mb-2 max-w-unset prose"
-            :body="ast.body"
-            :data="ast.data"
-            :components
-          />
-
-          <div flex="~ items-center gap-2">
-            <button
-              type="button"
-              flex="inline items-center"
-              class="rounded-full text-[13px] text-gray-500 hover:c-rose-600"
-            >
-              <i class="i-mingcute:thumb-up-2-fill mr-1 text-base" />
-              <span class="leading-snug">{{ data }}</span>
-            </button>
-            <button
-              type="button"
-              flex="inline items-center"
-              class="rounded-full text-[13px] text-gray-500 hover:c-accent"
-            >
-              <i class="i-mingcute:comment-fill mr-1 text-base" />
-              <span class="leading-snug">{{ comment.fromNotes?.list.length ?? 0 }}</span>
-            </button>
-          </div>
-        </div>
-
-        <ul
-          v-if="(comment.fromNotes?.list.length ?? 0) > 0"
-          flex="~ col gap-2"
-        >
-          <li
-            v-for="c in comment.fromNotes?.list"
-            :key="`${c.characterId}:${c.noteId}`"
-          >
-            <Comment :comment="c" />
-          </li>
-        </ul>
-      </div>
+  <div flex="~" class="comment">
+    <div mr-3>
+      <CharacterAvatarHoverCard
+        v-if="comment.character"
+        :character="comment.character"
+      />
     </div>
-    <template #fallback>
-      <ArticleCommentSkeleton />
-    </template>
-  </Suspense>
+
+    <div flex="~ 1 col gap-1">
+      <div flex="inline items-center">
+        <NuxtLink
+          is-external
+          rel="noreferrer"
+          :href="getCharacterSiteUrl(comment.character!)"
+          class="text-xs md:text-sm" text-accent
+        >
+          {{ comment.character?.metadata?.content?.name }}
+        </NuxtLink>
+        <span px-1>·</span>
+        <span text-sm op-70>{{ timeAgo }}</span>
+      </div>
+      <div mb-2 class="text-xs md:text-sm">
+        <MDCRenderer
+          v-if="ast"
+          tag="article"
+          class="relative mb-2 max-w-unset prose"
+          :body="ast.body"
+          :data="ast.data"
+          :components
+        />
+
+        <div flex="~ items-center gap-2">
+          <button
+            type="button"
+            flex="inline items-center"
+            class="rounded-full text-[13px] text-gray-500 hover:c-rose-600"
+          >
+            <i class="i-mingcute:thumb-up-2-fill mr-1 text-base" />
+            <span class="leading-snug">{{ data }}</span>
+          </button>
+          <button
+            type="button"
+            flex="inline items-center"
+            class="rounded-full text-[13px] text-gray-500 hover:c-accent"
+          >
+            <i class="i-mingcute:comment-fill mr-1 text-base" />
+            <span class="leading-snug">{{ comment.fromNotes?.list.length ?? 0 }}</span>
+          </button>
+        </div>
+      </div>
+
+      <ul
+        v-if="(comment.fromNotes?.list.length ?? 0) > 0"
+        flex="~ col gap-2"
+      >
+        <li
+          v-for="c in comment.fromNotes?.list"
+          :key="`${c.characterId}:${c.noteId}`"
+        >
+          <Comment :comment="c" />
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>

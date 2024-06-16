@@ -56,7 +56,12 @@ const { stop } = useIntersectionObserver(
         :key="`${comment.characterId}:${comment.noteId}`"
         class="not-first:pt-3 not-last:pb-3"
       >
-        <ArticleComment :comment />
+        <Suspense>
+          <ArticleComment :comment />
+          <template #fallback>
+            <ArticleCommentSkeleton />
+          </template>
+        </Suspense>
       </li>
     </ul>
   </div>
