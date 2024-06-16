@@ -1,4 +1,3 @@
-/* eslint-disable node/prefer-global/process */
 import { pathToFileURL } from 'node:url'
 import { createResolver } from '@nuxt/kit'
 
@@ -16,11 +15,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
   ],
-
-  runtimeConfig: {
-    anonymousePrivateKey: process.env.CROSSBELL_ANONYMOUSE_PRIVATE_KEY,
-    anonymouseCharacterId: process.env.CROSSBELL_ANONYMOUSE_CHARACTER_ID,
-  },
 
   experimental: {
     payloadExtraction: false,

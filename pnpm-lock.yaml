@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.21.1
@@ -13349,6 +13345,7 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.5.2
 
-  zod@3.23.8: {}
+  zod@3.23.8:
+    optional: true
 
   zwitch@2.0.4: {}
