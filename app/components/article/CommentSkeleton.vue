@@ -13,7 +13,7 @@
       />
       <div
         mb-2
-        h-6 animate-pulse rounded-md bg-border px-2
+        h-12 animate-pulse rounded-md bg-border px-2
       />
     </div>
   </div>
