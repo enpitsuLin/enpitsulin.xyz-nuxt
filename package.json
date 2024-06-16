@@ -41,5 +41,8 @@
     "rss": "^1.2.2",
     "unist-util-visit": "^5.0.0",
     "unocss": "^0.61.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
   }
 }
