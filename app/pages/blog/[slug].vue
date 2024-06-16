@@ -26,6 +26,7 @@ const comment = ref<HTMLDivElement>()
 
 const {
   data: commentData,
+  status: commentStatus,
   execute,
 } = await useAsyncData(
   `comment:${data.value.noteId}`,
@@ -118,13 +119,23 @@ useHead({
       </ContentRenderer>
       <div ref="comment">
         <div mb-6 border="b border" pb-2>
-          <span text-sm>{{ commentData?.count }} 评论</span>
+          <div flex="~ gap-0.5">
+            <span class="px-1" :class="[commentStatus === 'pending' && 'animate-pulse rounded-md bg-border ']">
+              <span :class="[commentStatus === 'pending' && 'invisible']">{{ commentData?.count ?? 0 }}</span>
+            </span>
+            <span>
+              评论
+            </span>
+          </div>
         </div>
-        <ArticleComment
-          v-for="comment in commentData?.list"
-          :key="`${comment.characterId}:${comment.noteId}`"
-          :comment
-        />
+        <ul flex="~ col">
+          <li
+            v-for="comment in commentData?.list"
+            :key="`${comment.characterId}:${comment.noteId}`"
+          >
+            <ArticleComment :comment />
+          </li>
+        </ul>
       </div>
     </div>
     <aside sticky top-80px ml-4 w="20%" h-full pb-20 class="hidden md:block">
