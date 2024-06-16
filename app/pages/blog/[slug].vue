@@ -128,10 +128,11 @@ useHead({
             </span>
           </div>
         </div>
-        <ul flex="~ col">
+        <ul flex="~ col" divide-y divide-border divide-dashed>
           <li
             v-for="comment in commentData?.list"
             :key="`${comment.characterId}:${comment.noteId}`"
+            class="not-first:pt-3 not-last:pb-3"
           >
             <ArticleComment :comment />
           </li>

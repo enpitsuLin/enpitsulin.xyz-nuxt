@@ -96,16 +96,18 @@ const components = {
             </button>
           </div>
         </div>
-        <div
+
+        <ul
           v-if="(comment.fromNotes?.list.length ?? 0) > 0"
           flex="~ col gap-2"
         >
-          <Comment
+          <li
             v-for="c in comment.fromNotes?.list"
             :key="`${c.characterId}:${c.noteId}`"
-            :comment="c"
-          />
-        </div>
+          >
+            <Comment :comment="c" />
+          </li>
+        </ul>
       </div>
     </div>
     <template #fallback>
