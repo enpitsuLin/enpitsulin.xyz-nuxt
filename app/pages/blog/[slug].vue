@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { createIndexer } from 'crossbell'
-import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
+import { ArticleComments, ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { toc } from '~/composables/content'
 import type { NotePostParsedContent } from '~/types/content'
 
@@ -21,40 +20,6 @@ const {
 
 if (!data.value)
   throw createError('Not Found')
-
-const comment = ref<HTMLDivElement>()
-
-const {
-  data: commentData,
-  status: commentStatus,
-  execute,
-} = await useAsyncData(
-  `comment:${data.value.noteId}`,
-  async () => {
-    const res = await createIndexer().note.getMany({
-      toNoteId: data.value?.noteId,
-      toCharacterId: 54315,
-      includeCharacter: true,
-      includeNestedNotes: true,
-      limit: 5,
-      nestedNotesDepth: 3,
-      nestedNotesLimit: 20,
-    })
-
-    return res
-  },
-  { server: false, immediate: false },
-)
-
-const { stop } = useIntersectionObserver(
-  comment,
-  (entries) => {
-    if (entries.at(0)?.isIntersecting) {
-      execute()
-      stop()
-    }
-  },
-)
 
 watch(data, (val) => {
   if (val)
@@ -117,27 +82,7 @@ useHead({
         </template>
         <ContentRendererMarkdown tag="article" class="max-w-unset prose" :value="data!" :components="components" />
       </ContentRenderer>
-      <div ref="comment">
-        <div mb-6 border="b border" pb-2>
-          <div flex="~ gap-0.5">
-            <span class="px-1" :class="[commentStatus === 'pending' && 'animate-pulse rounded-md bg-border ']">
-              <span :class="[commentStatus === 'pending' && 'invisible']">{{ commentData?.count ?? 0 }}</span>
-            </span>
-            <span>
-              评论
-            </span>
-          </div>
-        </div>
-        <ul flex="~ col" divide-y divide-border divide-dashed>
-          <li
-            v-for="comment in commentData?.list"
-            :key="`${comment.characterId}:${comment.noteId}`"
-            class="not-first:pt-3 not-last:pb-3"
-          >
-            <ArticleComment :comment />
-          </li>
-        </ul>
-      </div>
+      <ArticleComments v-if="data?.noteId" :note-id="data?.noteId" />
     </div>
     <aside sticky top-80px ml-4 w="20%" h-full pb-20 class="hidden md:block">
       <h2 class="m-[20px_0_10px]">
