@@ -51,7 +51,7 @@ const { data, status } = await useAsyncData(
 const isReachEnd = computed(() => {
   if (data.value !== null && total.value !== null)
     return (data.value?.length >= total?.value)
-  return false
+  return true
 })
 
 useInfiniteScroll(

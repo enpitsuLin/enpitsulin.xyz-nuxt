@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { Checkbox } from '@ark-ui/vue'
+import { CheckboxControl, CheckboxIndicator, CheckboxRoot } from '@ark-ui/vue'
 
-const id = useId()
+const id = useId().replace('_', '-')
 </script>
 
 <template>
-  <Checkbox.Root :id mr-1 inline-block align-mid>
-    <Checkbox.Control size-4 border="~ data-[state=checked]:accent/80 rounded" bg="data-[state=checked]:accent/80">
-      <Checkbox.Indicator size-full p-0.5>
+  <CheckboxRoot :id mr-1 inline-block align-mid>
+    <CheckboxControl size-4 border="~ data-[state=checked]:accent/80 rounded" bg="data-[state=checked]:accent/80">
+      <CheckboxIndicator size-full p-0.5>
         <div class="i-mingcute:check-fill" size-full />
-      </Checkbox.Indicator>
-    </Checkbox.Control>
-  </Checkbox.Root>
+      </CheckboxIndicator>
+    </CheckboxControl>
+  </CheckboxRoot>
 </template>

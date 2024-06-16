@@ -3,15 +3,16 @@ import {
   MenuContent,
   MenuIndicator,
   MenuItem,
-  MenuItemGroup,
-  MenuItemGroupLabel,
   MenuPositioner,
   MenuRoot,
   type MenuSelectionDetails,
-  MenuSeparator,
   MenuTrigger,
 } from '@ark-ui/vue'
 import { navigation } from '~/constants'
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const router = useRouter()
 

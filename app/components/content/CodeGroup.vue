@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tabs } from '@ark-ui/vue'
+import { TabContent, TabsRoot } from '@ark-ui/vue'
 import CodeGroupTabsHeader from './CodeGroupTabsHeader.vue'
 import ProsePre from './ProsePre.vue'
 
@@ -25,19 +25,20 @@ function CodeGroupTabsContent() {
   const _slot = slots.default?.() ?? []
 
   return _slot.map((slot, index) => h(
-    Tabs.Content,
+    TabContent,
     { value: `${index}` },
     {
       default: () => [h(ProsePre, slot.props as any, slot.children!)],
     },
   ))
 }
-const id = useId()
+
+const id = useId().replace('_', '-')
 </script>
 
 <template>
-  <Tabs.Root :id model-value="0">
+  <TabsRoot :id model-value="0">
     <CodeGroupTabsHeader :tabs="filterVNode($slots.default?.() ?? [])" />
     <CodeGroupTabsContent />
-  </Tabs.Root>
+  </TabsRoot>
 </template>

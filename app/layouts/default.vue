@@ -9,7 +9,7 @@
       class="bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20"
     >
       <LayoutNavBar />
-      <main relative mt-16 w-full px="8 sm:12">
+      <main relative mt-16 w-full px="6 sm:12">
         <slot />
       </main>
       <div mt-auto aria-hidden="true" />

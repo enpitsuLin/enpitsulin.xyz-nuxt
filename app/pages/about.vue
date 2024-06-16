@@ -1,4 +1,7 @@
 <script setup lang="ts">
+useHead({
+  title: '关于我',
+})
 const { data } = await useAsyncData(
   'about',
   async () => queryContent('page', 'about').findOne(),
