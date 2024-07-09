@@ -49,7 +49,7 @@ const { data, status } = await useAsyncData(
 )
 
 const isReachEnd = computed(() => {
-  if (data.value !== null && total.value !== null)
+  if (data.value && total.value)
     return (data.value?.length >= total?.value)
   return true
 })

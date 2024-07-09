@@ -6,6 +6,7 @@ const resolver = createResolver(import.meta.url)
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     '@nuxt/content',
     '@vueuse/nuxt',
@@ -80,4 +81,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-07-09',
 })
