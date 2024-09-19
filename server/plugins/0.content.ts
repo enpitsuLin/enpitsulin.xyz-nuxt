@@ -1,4 +1,4 @@
-import type { ParsedContent } from '@nuxt/content'
+import type { ParsedContent } from '@nuxt/content-edge'
 import { parseLinkNode, unwrapElement } from '../utils/content'
 
 declare module 'nitropack' {

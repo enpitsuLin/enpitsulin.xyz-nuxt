@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { MDCParseOptions } from '@nuxtjs/mdc'
 import type { CharacterEntity, ListResponse, NoteEntity } from 'crossbell'
-import type { DefineComponent } from 'vue'
 import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { parseMarkdown } from '@nuxtjs/mdc/runtime'
 import rehypeSanitize from 'rehype-sanitize'

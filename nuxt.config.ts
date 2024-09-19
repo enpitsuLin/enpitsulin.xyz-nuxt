@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
-    '@nuxt/content',
+    '@nuxt/content-edge',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
