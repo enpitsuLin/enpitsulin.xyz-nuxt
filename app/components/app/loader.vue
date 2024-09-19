@@ -5,6 +5,9 @@ const loaded = ref(false)
 nuxtApp.hook('page:loading:end', () => {
   loaded.value = true
 })
+defineOptions({
+  name: 'AppLoader',
+})
 </script>
 
 <template>

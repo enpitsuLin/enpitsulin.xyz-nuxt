@@ -16,7 +16,7 @@ defineOptions({
 
 const router = useRouter()
 
-const id = useId().replace('_', '-')
+const id = useId()
 
 function onSelect(details: MenuSelectionDetails) {
   router.push(details.value)

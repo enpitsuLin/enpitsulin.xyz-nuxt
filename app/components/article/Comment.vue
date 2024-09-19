@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { MDCParseOptions } from '@nuxtjs/mdc'
+import type { CharacterEntity, ListResponse, NoteEntity } from 'crossbell'
+import type { DefineComponent } from 'vue'
+import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { parseMarkdown } from '@nuxtjs/mdc/runtime'
 import rehypeSanitize from 'rehype-sanitize'
-import type { CharacterEntity, ListResponse, NoteEntity } from 'crossbell'
-import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 
 const { comment } = defineProps<{ comment: NoteEntity & { fromNotes?: ListResponse<NoteEntity> } }>()
 
@@ -36,7 +37,8 @@ function getCharacterSiteUrl(character: CharacterEntity) {
   return `https://${character?.handle}.xlog.app`
 }
 
-const components = {
+// TODO: fix types
+const components: Record<string, any> = {
   'input': ProseInput,
   'prose-github-card': ProseGithubCard,
   'details': ProseDetails,

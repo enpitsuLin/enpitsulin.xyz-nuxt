@@ -15,7 +15,7 @@ const bio = useCharacterBio(character)
 const { data: followers } = useCharacterFollowers(character.characterId)
 const { data: follows } = useCharacterFollows(character.characterId)
 
-const id = useId().replace('_', '-')
+const id = useId()
 
 const timeAgo = useTimeAgo(new Date(character.createdAt))
 </script>

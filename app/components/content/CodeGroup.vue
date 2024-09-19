@@ -33,7 +33,7 @@ function CodeGroupTabsContent() {
   ))
 }
 
-const id = useId().replace('_', '-')
+const id = useId()
 </script>
 
 <template>

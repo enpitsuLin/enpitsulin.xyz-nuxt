@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CheckboxControl, CheckboxIndicator, CheckboxRoot } from '@ark-ui/vue'
 
-const id = useId().replace('_', '-')
+const id = useId()
 </script>
 
 <template>

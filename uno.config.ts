@@ -1,3 +1,4 @@
+import type { Theme } from '@unocss/preset-uno'
 import { handler } from '@unocss/preset-mini/utils'
 import {
   defineConfig,
@@ -9,7 +10,6 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import type { Theme } from '@unocss/preset-uno'
 
 function handleMatchNumber(v?: string, defaultVal = '0') {
   return handler.bracket.cssvar.global.auto.fraction.number(v || defaultVal)?.toString().replace('%', '')

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { joinURL, withLeadingSlash, withTrailingSlash } from 'ufo'
 import { computed, useRuntimeConfig } from '#imports'
+import { joinURL, withLeadingSlash, withTrailingSlash } from 'ufo'
 
 const props = defineProps<{
   src: string
@@ -20,12 +20,12 @@ const refinedSrc = computed(() => {
 
 const [zoom, toggleZoom] = useToggle(false)
 
-function onClick() {
+function onClick() { 
   if (!document.startViewTransition) {
     toggleZoom()
     return
   }
-  document.documentElement.classList.add('zoom-image-animating')
+  document.documentElement.classList.add('zoom-image-animating') 
   const viewTransition = document.startViewTransition(() => {
     toggleZoom()
   })
@@ -34,7 +34,7 @@ function onClick() {
   })
 }
 
-const id = useId().replace('_', '-')
+const id = useId()
 </script>
 
 <template>
