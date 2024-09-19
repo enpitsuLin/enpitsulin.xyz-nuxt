@@ -11,10 +11,10 @@ import {
 } from 'unocss'
 import type { Theme } from '@unocss/preset-uno'
 
-function handleMatchNumber(v: string, defaultVal = '0') {
+function handleMatchNumber(v?: string, defaultVal = '0') {
   return handler.bracket.cssvar.global.auto.fraction.number(v || defaultVal)?.toString().replace('%', '')
 }
-const handleMatchRem = (v: string, defaultVal = 'full') => handler.bracket.cssvar.global.auto.fraction.rem(v || defaultVal)
+const handleMatchRem = (v?: string, defaultVal = 'full') => handler.bracket.cssvar.global.auto.fraction.rem(v || defaultVal)
 
 export default defineConfig<Theme>({
   theme: {
