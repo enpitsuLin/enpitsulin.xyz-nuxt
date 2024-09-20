@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ark } from '@ark-ui/vue'
 import type { ButtonHTMLAttributes } from 'vue'
+import { ark } from '@ark-ui/vue'
 
 defineProps<ButtonProps>()
 
