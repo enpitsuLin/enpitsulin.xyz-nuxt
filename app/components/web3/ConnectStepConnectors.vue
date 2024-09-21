@@ -6,7 +6,10 @@ const connectors = useConnectors()
 const { connect } = useConnect()
 
 function onConnectorClick(connector: Connector) {
-  if (connector.id === 'walletConnect') {
+  if (connector.id === 'metaMaskSDK') {
+    setConnectorDialogStep('metamask')
+  }
+  else if (connector.id === 'walletConnect') {
     setConnectorDialogStep('walletconnect')
   }
   else if (connector.id === 'coinbaseWalletSDK') {

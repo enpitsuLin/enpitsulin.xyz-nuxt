@@ -1,4 +1,4 @@
-import { coinbaseWallet, metaMask, walletConnect } from '@wagmi/connectors'
+import { coinbaseWallet, injected, metaMask, walletConnect } from '@wagmi/connectors'
 import { createConfig, http, WagmiPlugin } from '@wagmi/vue'
 import { crossbell } from '@wagmi/vue/chains'
 

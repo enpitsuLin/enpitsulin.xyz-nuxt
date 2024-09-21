@@ -10,22 +10,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ark-ui/vue' 
-import { useAccountEffect } from '@wagmi/vue'
+import { useAccount, useAccountEffect } from '@wagmi/vue'
 
 const id = useId()
+
+const { isConnected } = useAccount()
 
 useAccountEffect({
   onConnect: () => {
     setConnectorDialogStep('sign-in')
   },
   onDisconnect: () => {
+    token.value = null
     setConnectorDialogStep('connectors')
   },
 })
  
 function onOpenChange(details: DialogOpenChangeDetails) {
-  if (!details.open)
+  if (isConnected.value) {
+    setConnectorDialogStep('sign-in')
+  }
+  else if (!details.open) {
     setConnectorDialogStep('connectors')
+  }
 }
  
 </script>
@@ -65,7 +72,9 @@ function onOpenChange(details: DialogOpenChangeDetails) {
               </button>
               <span text-lg>连接钱包</span>
             </DialogTitle>
+            
             <Web3ConnectStepConnectors v-if="connectorDialogStep === 'connectors'" />
+            <Web3ConnectStepMetaMask v-if="connectorDialogStep === 'metamask'" />
             <Web3ConnectStepWalletConnect v-if="connectorDialogStep === 'walletconnect'" />
             <Web3ConnectStepCoinbase v-if="connectorDialogStep === 'coinbase'" />
             <Web3ConnectStepSignIn v-if="connectorDialogStep === 'sign-in'" />
