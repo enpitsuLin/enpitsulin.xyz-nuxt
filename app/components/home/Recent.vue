@@ -19,14 +19,14 @@ const { data } = await useAsyncData(
       pb-12
     >
       最新文章
-      <Button as-child>
+      <UiButton as-child>
         <NuxtLink
           role="button"
           href="/blog"
         >
           <span text-sm>查看全部</span>
         </NuxtLink>
-      </Button>
+      </UiButton>
     </h1>
     <div grid="~ cols-1 md:cols-2 gap-16">
       <HomeRecentArticle
