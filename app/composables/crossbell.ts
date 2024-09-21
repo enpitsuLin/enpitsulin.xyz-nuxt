@@ -3,6 +3,12 @@ import { createIndexer } from 'crossbell'
 
 export const indexer = createIndexer()
 
+export const connectorDialogStep = ref<'connectors' | 'walletconnect' | 'coinbase' | 'sign-in'>('connectors')
+export function setConnectorDialogStep(step: 'connectors' | 'walletconnect' | 'coinbase' | 'sign-in') {
+  connectorDialogStep.value = step
+}
+
+
 export const token = useLocalStorage('crossbell-token', '')
 
 watchEffect(() => {

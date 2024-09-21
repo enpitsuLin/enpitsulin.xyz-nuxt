@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { walletConnect } from '@wagmi/connectors'
-import { connect, getConnectors } from '@wagmi/core'
-import { config } from '~/composables/web3'
+import { useConnect, useConnectors } from '@wagmi/vue'
 
 type WalletConnectConnector = ReturnType<ReturnType<typeof walletConnect>>
 
-const connectors = getConnectors(config)
+const connectors = useConnectors()
+const { connect } = useConnect()
 
-const walletConnectConnector = computed(() => connectors.find(i => i.id === 'walletConnect') as unknown as WalletConnectConnector)
+const walletConnectConnector = computed(() => connectors.value.find(i => i.id === 'walletConnect') as unknown as WalletConnectConnector)
 
 const provider = await walletConnectConnector.value.getProvider()
 
@@ -17,7 +17,7 @@ const { state: qrUrl, isLoading } = useAsyncState(async () => {
       resolve(uri)
     })
 
-    connect(config, {
+    connect({
       // @ts-expect-error TODO
       connector: walletConnectConnector.value,
     })

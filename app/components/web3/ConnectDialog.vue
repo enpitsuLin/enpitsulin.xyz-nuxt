@@ -9,37 +9,25 @@ import {
   DialogRoot,
   DialogTitle,
   DialogTrigger,
-} from '@ark-ui/vue'
-import { deserialize, serialize, type State } from '@wagmi/core'
+} from '@ark-ui/vue' 
+import { useAccountEffect } from '@wagmi/vue'
 
 const id = useId()
 
 useAccountEffect({
   onConnect: () => {
-    setConnectorDialogStep('siwe')
+    setConnectorDialogStep('sign-in')
   },
   onDisconnect: () => {
     setConnectorDialogStep('connectors')
   },
 })
-
-const data = useCookie<{ state: State }>('wagmi.store', {
-  encode: serialize,
-  decode: deserialize,
-})
-
+ 
 function onOpenChange(details: DialogOpenChangeDetails) {
   if (!details.open)
     setConnectorDialogStep('connectors')
 }
-
-watch(data, (value) => {
-  if (!value)
-    return
-  if (!value.state)
-    return
-  config.setState(value.state)
-})
+ 
 </script>
 
 <template>
@@ -80,7 +68,7 @@ watch(data, (value) => {
             <Web3ConnectStepConnectors v-if="connectorDialogStep === 'connectors'" />
             <Web3ConnectStepWalletConnect v-if="connectorDialogStep === 'walletconnect'" />
             <Web3ConnectStepCoinbase v-if="connectorDialogStep === 'coinbase'" />
-            <Web3ConnectStepSignIn v-if="connectorDialogStep === 'siwe'" />
+            <Web3ConnectStepSignIn v-if="connectorDialogStep === 'sign-in'" />
           </div>
           <DialogCloseTrigger
             flex="inline items-center justify-center gap-2"

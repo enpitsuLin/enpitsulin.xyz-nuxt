@@ -14,12 +14,21 @@ importers:
       '@skirtle/vue-vnode-utils':
         specifier: ^0.1.4
         version: 0.1.4(vue@3.5.6(typescript@5.4.5))
+      '@tanstack/query-persist-client-core':
+        specifier: ^5.56.2
+        version: 5.56.2
+      '@tanstack/query-sync-storage-persister':
+        specifier: ^5.56.2
+        version: 5.56.2
+      '@tanstack/vue-query':
+        specifier: ^5.56.2
+        version: 5.56.2(vue@3.5.6(typescript@5.4.5))
       '@wagmi/connectors':
         specifier: ^5.1.11
-        version: 5.1.11(@wagmi/core@2.13.5(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
-      '@wagmi/core':
-        specifier: ^2.13.5
-        version: 2.13.5(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
+        version: 5.1.11(@wagmi/core@2.13.5(@tanstack/query-core@5.56.2)(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
+      '@wagmi/vue':
+        specifier: ^0.0.45
+        version: 0.0.45(@tanstack/query-core@5.56.2)(@tanstack/vue-query@5.56.2(vue@3.5.6(typescript@5.4.5)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(nuxt@3.13.2(@parcel/watcher@2.4.1)(@types/node@20.14.2)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@9.10.0(jiti@1.21.6))(idb-keyval@6.2.1)(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.18.0)(terser@5.31.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.4.6(@types/node@20.14.2)(terser@5.31.1))(vue-tsc@2.1.6(typescript@5.4.5))(webpack-sources@3.2.3))(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))(vue@3.5.6(typescript@5.4.5))
       crossbell:
         specifier: ^1.12.0
         version: 1.12.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)
@@ -2443,6 +2452,28 @@ packages:
   '@swc/helpers@0.5.11':
     resolution: {integrity: sha512-YNlnKRWF2sVojTpIyzwou9XoTNbzbzONwRhOoniEioF1AtaitTvVZblaQRrAzChWQ1bLYyYSWzM18y4WwgzJ+A==}
 
+  '@tanstack/match-sorter-utils@8.19.4':
+    resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
+    engines: {node: '>=12'}
+
+  '@tanstack/query-core@5.56.2':
+    resolution: {integrity: sha512-gor0RI3/R5rVV3gXfddh1MM+hgl0Z4G7tj6Xxpq6p2I03NGPaJ8dITY9Gz05zYYb/EJq9vPas/T4wn9EaDPd4Q==}
+
+  '@tanstack/query-persist-client-core@5.56.2':
+    resolution: {integrity: sha512-4OZ/rLAxCiQWaJCQjb5q1+UbSNIZclmF4pRMHrav1q2EUj3bjrqWzwTwdy2bUxrMTdY15ZKsFwCpAFGG4r+orA==}
+
+  '@tanstack/query-sync-storage-persister@5.56.2':
+    resolution: {integrity: sha512-aNupwjlJgaDwYW01DThrblkBSarH9E8sKVl3ATafOLpZoGvDg5Jc4SVMCiMmOC1U+PRuRbt5bpS6a8lZnbiYaA==}
+
+  '@tanstack/vue-query@5.56.2':
+    resolution: {integrity: sha512-VW7qS8JXwC3SZpawJHxQ+mWwWa5WVIQUUOh/OD6WI85eLcbJPg83ezjGupPXGKF9h31gl7CIRrnJDi4g5pK3Jg==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.2
+      vue: ^2.6.0 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
@@ -2889,6 +2920,20 @@ packages:
       viem: 2.x
     peerDependenciesMeta:
       '@tanstack/query-core':
+        optional: true
+      typescript:
+        optional: true
+
+  '@wagmi/vue@0.0.45':
+    resolution: {integrity: sha512-BBbBhMSRzElb/O7ZSWXaVXv43HuN5IBfRLo7xRzmp4QqJ1UWhyMfc0at1pmTGPdsffpnZ+iRCAV1N8ZIAMeSNw==}
+    peerDependencies:
+      '@tanstack/vue-query': '>=5.0.0'
+      nuxt: '>=3.0.0'
+      typescript: '>=5.0.4'
+      viem: 2.x
+      vue: '>=3'
+    peerDependenciesMeta:
+      nuxt:
         optional: true
       typescript:
         optional: true
@@ -7005,6 +7050,9 @@ packages:
 
   remark-unwrap-images@4.0.0:
     resolution: {integrity: sha512-Ilr5ZhrhZSvnjemy1rRuxlTC0I/39YyWDRiE9d5vF079APcwdYYzwcZL8RGehlCtQCiik8hWMyo4Xhz2Fq0JhA==}
+
+  remove-accents@0.5.0:
+    resolution: {integrity: sha512-8g3/Otx1eJaVD12e31UbJj1YzdtVvzH85HV7t+9MJYk/u3XmkOUJ5Ys9wQrf9PCPK8+xn4ymzqYCiZl6QWKn+A==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -11505,6 +11553,29 @@ snapshots:
     dependencies:
       tslib: 2.6.3
 
+  '@tanstack/match-sorter-utils@8.19.4':
+    dependencies:
+      remove-accents: 0.5.0
+
+  '@tanstack/query-core@5.56.2': {}
+
+  '@tanstack/query-persist-client-core@5.56.2':
+    dependencies:
+      '@tanstack/query-core': 5.56.2
+
+  '@tanstack/query-sync-storage-persister@5.56.2':
+    dependencies:
+      '@tanstack/query-core': 5.56.2
+      '@tanstack/query-persist-client-core': 5.56.2
+
+  '@tanstack/vue-query@5.56.2(vue@3.5.6(typescript@5.4.5))':
+    dependencies:
+      '@tanstack/match-sorter-utils': 8.19.4
+      '@tanstack/query-core': 5.56.2
+      '@vue/devtools-api': 6.6.4
+      vue: 3.5.6(typescript@5.4.5)
+      vue-demi: 0.14.10(vue@3.5.6(typescript@5.4.5))
+
   '@trysound/sax@0.2.0': {}
 
   '@types/debug@4.1.12':
@@ -12185,13 +12256,13 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@wagmi/connectors@5.1.11(@wagmi/core@2.13.5(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))':
+  '@wagmi/connectors@5.1.11(@wagmi/core@2.13.5(@tanstack/query-core@5.56.2)(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))':
     dependencies:
       '@coinbase/wallet-sdk': 4.0.4
       '@metamask/sdk': 0.28.4(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(utf-8-validate@5.0.10)
       '@safe-global/safe-apps-provider': 0.18.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)
       '@safe-global/safe-apps-sdk': 9.1.0(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)
-      '@wagmi/core': 2.13.5(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
+      '@wagmi/core': 2.13.5(@tanstack/query-core@5.56.2)(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
       '@walletconnect/ethereum-provider': 2.16.1(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(react@18.3.1)(utf-8-validate@5.0.10)
       '@walletconnect/modal': 2.6.2(react@18.3.1)
       cbw-sdk: '@coinbase/wallet-sdk@3.9.3'
@@ -12224,18 +12295,57 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@wagmi/core@2.13.5(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))':
+  '@wagmi/core@2.13.5(@tanstack/query-core@5.56.2)(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))':
     dependencies:
       eventemitter3: 5.0.1
       mipd: 0.0.7(typescript@5.4.5)
       viem: 2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)
       zustand: 4.4.1(react@18.3.1)
     optionalDependencies:
+      '@tanstack/query-core': 5.56.2
       typescript: 5.4.5
     transitivePeerDependencies:
       - '@types/react'
       - immer
       - react
+
+  '@wagmi/vue@0.0.45(@tanstack/query-core@5.56.2)(@tanstack/vue-query@5.56.2(vue@3.5.6(typescript@5.4.5)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(nuxt@3.13.2(@parcel/watcher@2.4.1)(@types/node@20.14.2)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@9.10.0(jiti@1.21.6))(idb-keyval@6.2.1)(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.18.0)(terser@5.31.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.4.6(@types/node@20.14.2)(terser@5.31.1))(vue-tsc@2.1.6(typescript@5.4.5))(webpack-sources@3.2.3))(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))(vue@3.5.6(typescript@5.4.5))':
+    dependencies:
+      '@tanstack/vue-query': 5.56.2(vue@3.5.6(typescript@5.4.5))
+      '@wagmi/connectors': 5.1.11(@wagmi/core@2.13.5(@tanstack/query-core@5.56.2)(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)))(bufferutil@4.0.8)(encoding@0.1.13)(ioredis@5.4.1)(react-native@0.75.3(@babel/core@7.24.7)(@babel/preset-env@7.25.4(@babel/core@7.24.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@5.0.10))(react@18.3.1)(rollup@4.18.0)(typescript@5.4.5)(utf-8-validate@5.0.10)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
+      '@wagmi/core': 2.13.5(@tanstack/query-core@5.56.2)(react@18.3.1)(typescript@5.4.5)(viem@2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10))
+      viem: 2.17.3(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@5.0.10)
+      vue: 3.5.6(typescript@5.4.5)
+    optionalDependencies:
+      nuxt: 3.13.2(@parcel/watcher@2.4.1)(@types/node@20.14.2)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@9.10.0(jiti@1.21.6))(idb-keyval@6.2.1)(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.18.0)(terser@5.31.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.4.6(@types/node@20.14.2)(terser@5.31.1))(vue-tsc@2.1.6(typescript@5.4.5))(webpack-sources@3.2.3)
+      typescript: 5.4.5
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@react-native-async-storage/async-storage'
+      - '@tanstack/query-core'
+      - '@types/react'
+      - '@upstash/redis'
+      - '@vercel/kv'
+      - bufferutil
+      - encoding
+      - immer
+      - ioredis
+      - react
+      - react-dom
+      - react-native
+      - rollup
+      - supports-color
+      - uWebSockets.js
+      - utf-8-validate
+      - zod
 
   '@walletconnect/core@2.16.1(bufferutil@4.0.8)(ioredis@5.4.1)(utf-8-validate@5.0.10)':
     dependencies:
@@ -17920,6 +18030,8 @@ snapshots:
       '@types/mdast': 4.0.4
       hast-util-whitespace: 3.0.0
       unist-util-visit: 5.0.0
+
+  remove-accents@0.5.0: {}
 
   require-directory@2.1.1: {}
 
