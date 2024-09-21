@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defaultOgImage, description, siteUrl, title } from '~/constants'
+import { defaultOgImage, description, title } from '~/constants'
 import '~/styles/base.css'
 
 useHead({

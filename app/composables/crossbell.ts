@@ -1,5 +1,5 @@
-import { createIndexer } from 'crossbell'
 import type { CharacterEntity, LinkEntity, ListResponse } from 'crossbell'
+import { createIndexer } from 'crossbell'
 
 export const indexer = createIndexer()
 

@@ -25,7 +25,7 @@ function onSelect(details: MenuSelectionDetails) {
     ml-auto
     class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px md:hidden"
   >
-    <MenuRoot :id="id" @select="onSelect">
+    <MenuRoot unmountOnExit :id="id" @select="onSelect">
       <MenuTrigger
         bg="zinc-50/50 dark:zinc-950/50" px-4 py="2" flex="inline items-center gap-1"
         border="~ border rounded-full" outline-none

@@ -1,5 +1,6 @@
 import { pathToFileURL } from 'node:url'
 import { createResolver } from '@nuxt/kit'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 const resolver = createResolver(import.meta.url)
 
@@ -78,6 +79,39 @@ export default defineNuxtConfig({
         options: {
           baseURL: 'https://ipfs.crossbell.io/ipfs/',
         },
+      },
+    },
+  },
+  vite: {
+    resolve: {
+      alias: {
+        process: 'process/browser',
+        util: 'util',
+      },
+    },
+    plugins: [
+      nodePolyfills({
+        globals: { Buffer: true, process: true },
+      }),
+    ],
+    build: { target: 'esnext' },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'esnext',
+        define: {
+          global: 'globalThis',
+        },
+        supported: {
+          bigint: true,
+        },
+      },
+    },
+  },
+  
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
       },
     },
   },
