@@ -4,15 +4,38 @@ import {
   DialogCloseTrigger,
   DialogContent,
   DialogContext,
+  type DialogOpenChangeDetails,
   DialogPositioner,
   DialogRoot,
   DialogTitle,
   DialogTrigger,
 } from '@ark-ui/vue'
+import { deserialize, serialize, type State } from '@wagmi/core'
+
+const id = useId()
+
+const data = useCookie<{ state: State }>('wagmi.store', {
+  encode: serialize,
+  decode: deserialize,
+})
+
+function onOpenChange(details: DialogOpenChangeDetails) {
+ 
+  if (!details.open)
+    setConnectorDialogStep('connectors')
+}
+
+watch(data, (value) => {
+  if (!value)
+    return
+  if (!value.state)
+    return
+  config.setState(value.state)
+})
 </script>
 
 <template>
-  <DialogRoot  :close-on-interact-outside="false">
+  <DialogRoot   :id="id" :prevent-scroll="false" :close-on-interact-outside="false" @open-change="onOpenChange">
     <DialogTrigger as-child>
       <slot />
     </DialogTrigger>

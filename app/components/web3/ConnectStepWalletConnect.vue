@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { walletConnect } from '@wagmi/connectors'
-import { getConnectors } from '@wagmi/core'
+import { connect, getConnectors } from '@wagmi/core'
 import { config } from '~/composables/web3'
 
 type WalletConnectConnector = ReturnType<ReturnType<typeof walletConnect>>
@@ -17,7 +17,10 @@ const { state: qrUrl, isLoading } = useAsyncState(async () => {
       resolve(uri)
     })
 
-    provider.connect()
+    connect(config, {
+      // @ts-expect-error TODO
+      connector: walletConnectConnector.value,
+    })
   })
 }, '')
 </script>

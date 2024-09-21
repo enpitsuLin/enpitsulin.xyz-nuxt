@@ -46,8 +46,8 @@ const { stop } = useIntersectionObserver(
           评论
         </span>
       </div>
-    </div>
-    <ArticleCommentForm />
+    </div> 
+    <ArticleCommentForm /> 
     <ArticleCommentSkeleton v-if="commentStatus === 'pending'" />
     <ul v-else flex="~ col" divide-y divide-border divide-dashed>
       <li

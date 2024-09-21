@@ -1,9 +1,17 @@
 import { coinbaseWallet, metaMask, walletConnect } from '@wagmi/connectors'
-import { createConfig, http } from '@wagmi/core'
+import {
+  createConfig,
+  disconnect,
+  getAccount,
+  http,
+  hydrate,
+  watchAccount,
+} from '@wagmi/core'
 import { crossbell } from '@wagmi/core/chains'
 
 export const config = createConfig({
   chains: [crossbell],
+  syncConnectedChain: true,
   connectors: [
     metaMask(),
     coinbaseWallet({
@@ -26,11 +34,44 @@ export const config = createConfig({
     [crossbell.id]: http(),
   },
 })
- 
+
+const { onMount } = hydrate(config, { reconnectOnMount: true })
+onMount()
+
 export const connectorDialogStep = ref<'connectors' | 'walletconnect' | 'coinbase'>('connectors')
 export function setConnectorDialogStep(step: 'connectors' | 'walletconnect' | 'coinbase') {
   connectorDialogStep.value = step
 }
+
+export function updateState(
+  state: Record<string, unknown>,
+  update: Record<string, any>,
+): void {
+  for (const key of Object.keys(state)) {
+    state[key] = update[key]
+  }
+}
+
+export function useAccount() {
+  const account = reactive(getAccount(config))
+  const unsubscribe = watchAccount(config, {
+    onChange(data) {
+      updateState(account, data)
+    },
+  })
+  onScopeDispose(unsubscribe)
+
+  return toRefs(readonly(account))
+}
+
+export function useDisconnect() {
+  return () => {
+    disconnect(config)
+  }
+}
+
+// @ts-expect-error TEST
+globalThis.config = config
 
 declare module '@wagmi/core' {
   interface Register {
