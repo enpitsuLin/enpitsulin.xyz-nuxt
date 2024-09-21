@@ -1,4 +1,4 @@
-import type { MarkdownParsedContent, ParsedContent } from '@nuxt/content-edge'
+import type { MarkdownParsedContent, ParsedContent } from '@nuxt/content'
 
 export interface NotePostParsedContent extends MarkdownParsedContent {
   noteId: number
