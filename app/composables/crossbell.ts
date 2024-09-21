@@ -3,6 +3,13 @@ import { createIndexer } from 'crossbell'
 
 export const indexer = createIndexer()
 
+export const token = useLocalStorage('crossbell-token', '')
+
+watchEffect(() => {
+  if (token.value)
+    indexer.siwe.token = token.value
+})
+
 export function useNoteLike(characterId: number, noteId: number) {
   return useAsyncData(
     `comment:${characterId}:${noteId}:like`,

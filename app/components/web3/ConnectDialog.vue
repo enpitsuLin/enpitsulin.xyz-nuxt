@@ -14,13 +14,21 @@ import { deserialize, serialize, type State } from '@wagmi/core'
 
 const id = useId()
 
+useAccountEffect({
+  onConnect: () => {
+    setConnectorDialogStep('siwe')
+  },
+  onDisconnect: () => {
+    setConnectorDialogStep('connectors')
+  },
+})
+
 const data = useCookie<{ state: State }>('wagmi.store', {
   encode: serialize,
   decode: deserialize,
 })
 
 function onOpenChange(details: DialogOpenChangeDetails) {
- 
   if (!details.open)
     setConnectorDialogStep('connectors')
 }
@@ -35,7 +43,7 @@ watch(data, (value) => {
 </script>
 
 <template>
-  <DialogRoot   :id="id" :prevent-scroll="false" :close-on-interact-outside="false" @open-change="onOpenChange">
+  <DialogRoot :id="id" :prevent-scroll="false" :close-on-interact-outside="false" @open-change="onOpenChange">
     <DialogTrigger as-child>
       <slot />
     </DialogTrigger>
@@ -72,6 +80,7 @@ watch(data, (value) => {
             <Web3ConnectStepConnectors v-if="connectorDialogStep === 'connectors'" />
             <Web3ConnectStepWalletConnect v-if="connectorDialogStep === 'walletconnect'" />
             <Web3ConnectStepCoinbase v-if="connectorDialogStep === 'coinbase'" />
+            <Web3ConnectStepSignIn v-if="connectorDialogStep === 'siwe'" />
           </div>
           <DialogCloseTrigger
             flex="inline items-center justify-center gap-2"

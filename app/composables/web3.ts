@@ -1,8 +1,10 @@
+import type { Compute } from '@wagmi/core/internal'
 import { coinbaseWallet, metaMask, walletConnect } from '@wagmi/connectors'
 import {
   createConfig,
   disconnect,
   getAccount,
+  type GetAccountReturnType,
   http,
   hydrate,
   watchAccount,
@@ -38,8 +40,8 @@ export const config = createConfig({
 const { onMount } = hydrate(config, { reconnectOnMount: true })
 onMount()
 
-export const connectorDialogStep = ref<'connectors' | 'walletconnect' | 'coinbase'>('connectors')
-export function setConnectorDialogStep(step: 'connectors' | 'walletconnect' | 'coinbase') {
+export const connectorDialogStep = ref<'connectors' | 'walletconnect' | 'coinbase' | 'siwe'>('connectors')
+export function setConnectorDialogStep(step: 'connectors' | 'walletconnect' | 'coinbase' | 'siwe') {
   connectorDialogStep.value = step
 }
 
@@ -62,6 +64,55 @@ export function useAccount() {
   onScopeDispose(unsubscribe)
 
   return toRefs(readonly(account))
+}
+
+export function useAccountEffect(param: {
+  onConnect?: (
+    data: Compute<
+      Pick<
+        Extract<GetAccountReturnType, { status: 'connected' }>,
+        'address' | 'addresses' | 'chain' | 'chainId' | 'connector'
+      > & {
+        isReconnected: boolean
+      }
+    >,
+  ) => void
+  onDisconnect?: () => void
+}) {
+  watchEffect((onCleanup) => {
+    const unwatch = watchAccount(config, {
+      onChange(account, prevAccount) {
+        if (
+          (prevAccount.status === 'reconnecting'
+            || (prevAccount.status === 'connecting'
+              && prevAccount.address === undefined))
+              && account.status === 'connected'
+        ) {
+          const { address, addresses, chain, chainId, connector } = account
+          const isReconnected
+          = prevAccount.status === 'reconnecting'
+          // if `previousAccount.status` is `undefined`, the connector connected immediately.
+          || prevAccount.status === undefined
+          param.onConnect?.({
+            address,
+            addresses,
+            chain,
+            chainId,
+            connector,
+            isReconnected,
+          })
+        }
+        else if (
+          prevAccount.status === 'connected'
+          && account.status === 'disconnected'
+        ) {
+          param.onDisconnect?.()
+        }
+      },
+    })
+
+    onCleanup(() => unwatch())
+  })
 }
 
 export function useDisconnect() {

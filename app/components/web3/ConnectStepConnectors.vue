@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Connector, getConnectors } from '@wagmi/core'
+import { connect, type Connector, getConnectors } from '@wagmi/core'
 import { config } from '~/composables/web3'
 
 const connectors = getConnectors(config)
@@ -12,7 +12,7 @@ function onConnectorClick(connector: Connector) {
     connectorDialogStep.value = 'coinbase'
   }
   else {
-    // TODO
+    connect(config, { connector })
   }
 }
 </script>
@@ -35,6 +35,7 @@ function onConnectorClick(connector: Connector) {
         <IconsZerion size-4 scale-90 />
         <IconsWalletConnect size-4 scale-90 />
       </div>
+      <img v-else-if="connector.icon" :src="connector.icon" size-8>
     </button>
   </div>
 </template>
