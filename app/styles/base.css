@@ -25,7 +25,7 @@
 
 .dark {
   color-scheme: dark only;
-  --theme-background: 222 32% 10%; /* #121723 */
+  --theme-background: 210 7% 11%; /* #1a1c1e */
   --theme-accent: 195 50% 39%; /* #177CB0 */
   --theme-border: 240 6% 15%; /* #242429*/
 }
@@ -62,4 +62,9 @@ body,
 
 html {
   scroll-padding-top: 4rem;
+}
+
+.comment p {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
 }

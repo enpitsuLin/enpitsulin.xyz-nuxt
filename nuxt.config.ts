@@ -1,11 +1,13 @@
 import { pathToFileURL } from 'node:url'
 import { createResolver } from '@nuxt/kit'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 const resolver = createResolver(import.meta.url)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: true, componentInspector: false },
+
   modules: [
     '@nuxt/content',
     '@vueuse/nuxt',
@@ -80,4 +82,39 @@ export default defineNuxtConfig({
       },
     },
   },
+  vite: {
+    resolve: {
+      alias: {
+        process: 'process/browser',
+        util: 'util',
+      },
+    },
+    plugins: [
+      nodePolyfills({
+        globals: { Buffer: true, process: true },
+      }),
+    ],
+    build: { target: 'esnext' },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'esnext',
+        define: {
+          global: 'globalThis',
+        },
+        supported: {
+          bigint: true,
+        },
+      },
+    },
+  },
+  
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
+  },
+
+  compatibilityDate: '2024-07-09',
 })

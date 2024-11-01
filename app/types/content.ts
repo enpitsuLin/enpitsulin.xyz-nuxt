@@ -1,6 +1,7 @@
-import type { MarkdownParsedContent, ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { MarkdownParsedContent, ParsedContent } from '@nuxt/content'
 
 export interface NotePostParsedContent extends MarkdownParsedContent {
+  noteId: number
   slug: string
   uri: string
   createAt: string

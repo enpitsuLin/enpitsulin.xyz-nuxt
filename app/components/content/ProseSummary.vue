@@ -3,7 +3,7 @@ import { CollapsibleTrigger } from '@ark-ui/vue'
 </script>
 
 <template>
-  <CollapsibleTrigger flex="~ items-center gap-2">
+  <CollapsibleTrigger flex="~ items-center gap-2" w-full>
     <i class="i-mingcute:right-fill transition-transform group-data-[state=open]:rotate-90" />
     <span>
       <slot />

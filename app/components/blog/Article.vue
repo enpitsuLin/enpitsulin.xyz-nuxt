@@ -4,7 +4,7 @@ import { vAnimationOnce } from '~/directives/v-animation-once'
 import type { NotePostParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<NotePostParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary'>
+  article: Pick<NotePostParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary' | 'excerpt'>
 }
 const { article } = defineProps<Props>()
 </script>
@@ -22,9 +22,20 @@ const { article } = defineProps<Props>()
     >
       <ArticleCardTitle :title="article.title" :slug="article.slug" />
       <ArticleCardTime :date="article.publishAt" class="md:hidden" />
-      <p relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
+      <p v-if="article.summary || article.description" relative z-10 mt-2 text-sm c="zinc-600 dark:zinc-400">
         {{ article.summary || article.description }}
       </p>
+      <ContentRenderer v-else :value="article" excerpt>
+        <template #empty>
+          <p class="relative z-10 mt-2 text-sm c-zinc-600 dark:c-zinc-400 max-w-unset prose">这篇文章没有什么好总结的，或者是作者没把总结写好 _(:з」∠)_</p>
+        </template>
+        <ContentRendererMarkdown
+          tag="article"
+          class="relative z-10 mt-2 text-sm c-zinc-600 dark:c-zinc-400 max-w-unset"
+          excerpt
+          :value="article!"
+        />
+      </ContentRenderer>
       <div
         aria-hidden="true"
         relative z-10 mt-4 flex items-center text-sm text-accent font-medium

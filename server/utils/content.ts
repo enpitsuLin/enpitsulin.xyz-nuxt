@@ -1,4 +1,4 @@
-import type { MarkdownNode, MarkdownRoot } from '@nuxt/content/types'
+import type { MarkdownNode, MarkdownRoot } from '@nuxt/content'
 import { SKIP, visit } from 'unist-util-visit'
 
 const GITHUB_HOST_REG = /https:\/\/github.com\/\S+\/\S+/

@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { TocLink } from '@nuxt/content'
 import type { PropType } from 'vue'
-import type { TocLink } from '@nuxt/content/dist/runtime/types'
 
 defineProps({
   links: {

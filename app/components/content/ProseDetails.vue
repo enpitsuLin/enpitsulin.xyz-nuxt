@@ -27,7 +27,7 @@ function Children() {
   )
 }
 
-const id = useId().replace('_', '-')
+const id = useId()
 </script>
 
 <template>
