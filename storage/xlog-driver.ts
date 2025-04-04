@@ -3,7 +3,7 @@ import { createIndexer } from 'crossbell'
 import { parseFrontMatter, stringifyFrontMatter } from 'remark-mdc'
 import { createStorage, defineDriver } from 'unstorage'
 
-import memory from 'unstorage/drivers/memory'
+import fs from 'unstorage/drivers/fs'
 
 export interface XLogStorageDriverOptions {
   characterId: number
@@ -13,7 +13,9 @@ export interface XLogStorageDriverOptions {
 
 /** @type {import('unstorage').Storage<string>} */
 const fileCache: import('unstorage').Storage<string> = createStorage({
-  driver: memory(),
+  driver: fs({
+    base: '.data/xlog',
+  }),
 })
 
 const indexer = createIndexer()

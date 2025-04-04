@@ -32,11 +32,10 @@ function CodeGroupTabsContent() {
     },
   ))
 }
-const id = useId()
 </script>
 
 <template>
-  <Tabs.Root :id model-value="0">
+  <Tabs.Root model-value="0">
     <CodeGroupTabsHeader :tabs="filterVNode($slots.default?.() ?? [])" />
     <CodeGroupTabsContent />
   </Tabs.Root>

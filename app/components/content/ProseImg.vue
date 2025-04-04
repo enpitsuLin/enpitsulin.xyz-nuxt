@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { joinURL, withLeadingSlash, withTrailingSlash } from 'ufo'
 import { computed, useRuntimeConfig } from '#imports'
+import { joinURL, withLeadingSlash, withTrailingSlash } from 'ufo'
 
 const props = defineProps<{
   src: string
@@ -34,7 +34,7 @@ function onClick() {
   })
 }
 
-const id = useId().replace('_', '-')
+const id = useId()
 </script>
 
 <template>

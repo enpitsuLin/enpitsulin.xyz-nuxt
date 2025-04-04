@@ -26,12 +26,10 @@ function Children() {
     ],
   )
 }
-
-const id = useId().replace('_', '-')
 </script>
 
 <template>
-  <CollapsibleRoot :id class="group" rounded-md>
+  <CollapsibleRoot class="group" rounded-md>
     <Children />
   </CollapsibleRoot>
 </template>

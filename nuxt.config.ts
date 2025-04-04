@@ -35,15 +35,15 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         remarkPlugins: {
-          // 'remark-unwrap-images': {
-
-          // },
           'remark-reading-time': {
 
           },
           'remark-directive': {},
           'remark-directive-rehype': {},
           'remark-mdc': false,
+        },
+        rehypePlugins: {
+          'rehype-unwrap-images': {},
         },
         toc: {
           depth: 3,

@@ -55,14 +55,9 @@ const route = useRoute()
         src="https://avatars.githubusercontent.com/enpitsuLin"
       />
     </NuxtLink>
-    <div
-      relative ml-auto
-      class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px md:hidden"
-    >
-      <ClientOnly>
-        <LayoutNavBarMenu />
-      </ClientOnly>
-    </div>
+    <ClientOnly>
+      <LayoutNavBarMenu />
+    </ClientOnly>
   </header>
 </template>
 
