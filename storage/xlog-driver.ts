@@ -1,12 +1,18 @@
 // @ts-check
 import { createIndexer } from 'crossbell'
+import { parseFrontMatter, stringifyFrontMatter } from 'remark-mdc'
 import { createStorage, defineDriver } from 'unstorage'
+
 import memory from 'unstorage/drivers/memory'
 
-import { parseFrontMatter, stringifyFrontMatter } from 'remark-mdc'
+export interface XLogStorageDriverOptions {
+  characterId: number
+  ttl: number
+  baseURL: string
+}
 
 /** @type {import('unstorage').Storage<string>} */
-const fileCache = createStorage({
+const fileCache: import('unstorage').Storage<string> = createStorage({
   driver: memory(),
 })
 
@@ -16,13 +22,11 @@ const DRIVER_NAME = 'xLog-driver'
 const LIMIT = 100
 const SOURCE = 'xlog'
 
-/**
- *
- * @param {import('./xlog-driver').XLogStorageDriverOptions} options
- * @param {'markdown'|'json'} type
- * @param {string} prefixAsTag
- */
-async function fetchNote(options, type, prefixAsTag) {
+async function fetchNote(
+  options: XLogStorageDriverOptions,
+  type: 'markdown' | 'json',
+  prefixAsTag: string,
+) {
   try {
     const characterId = Number(options.characterId)
     const ipfsGatewayBaseURL = options.baseURL
@@ -83,21 +87,20 @@ async function fetchNote(options, type, prefixAsTag) {
   }
 }
 
-const xLogStorageDriver = defineDriver(
-  (/** @type {import('./xlog-driver').XLogStorageDriverOptions} */opt) => {
+export const xLogStorageDriver = defineDriver(
+  (opt: XLogStorageDriverOptions) => {
     const defaultOpt = {
       ttl: 60 * 60,
       baseURL: 'https://ipfs.crossbell.io/ipfs',
     }
-    /** @type {import('./xlog-driver').XLogStorageDriverOptions} */
-    const options = {
+    const options: XLogStorageDriverOptions = {
       ...defaultOpt,
       ...opt,
     }
 
     let lastCheck = 0
     /** @type {Promise<[void,void,void]>|undefined} */
-    let syncPromise
+    let syncPromise: Promise<[void, void, void]> | undefined
 
     const syncFiles = async () => {
       if (!options.characterId)
@@ -132,7 +135,7 @@ const xLogStorageDriver = defineDriver(
        * @param {string} key
        * @returns
        */
-      async getItem(key) {
+      async getItem(key: string) {
         await syncFiles()
         return fileCache.getItem(key)
       },
@@ -147,4 +150,3 @@ const xLogStorageDriver = defineDriver(
     }
   },
 )
-export default xLogStorageDriver

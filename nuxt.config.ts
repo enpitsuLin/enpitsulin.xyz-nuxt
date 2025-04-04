@@ -1,11 +1,7 @@
-import { pathToFileURL } from 'node:url'
-import { createResolver } from '@nuxt/kit'
-
-const resolver = createResolver(import.meta.url)
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     '@nuxt/content',
     '@vueuse/nuxt',
@@ -36,37 +32,33 @@ export default defineNuxtConfig({
   },
 
   content: {
-    markdown: {
-      remarkPlugins: {
-        'remark-unwrap-images': {
+    build: {
+      markdown: {
+        remarkPlugins: {
+          // 'remark-unwrap-images': {
 
-        },
-        'remark-reading-time': {
+          // },
+          'remark-reading-time': {
 
+          },
+          'remark-directive': {},
+          'remark-directive-rehype': {},
+          'remark-mdc': false,
         },
-        'remark-directive': {},
-        'remark-directive-rehype': {},
-        'remark-mdc': false,
-      },
-      toc: {
-        depth: 3,
-        searchDepth: 3,
-      },
-    },
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'github-dark',
-      },
-      langs: ['js', 'jsx', 'json', 'ts', 'tsx', 'vue', 'css', 'html', 'vue', 'bash', 'md', 'mdc', 'yaml', 'toml', 'rust', 'sql'],
-    },
-    sources: {
-      xlog: {
-        driver: pathToFileURL(resolver.resolve('./storage/xlog-driver.mjs')).href,
-        characterId: 54315,
-        baseURL: 'https://ipfs.crossbell.io/ipfs/',
+        toc: {
+          depth: 3,
+          searchDepth: 3,
+        },
+        highlight: {
+          theme: {
+            default: 'github-light',
+            dark: 'github-dark',
+          },
+          langs: ['js', 'jsx', 'json', 'ts', 'tsx', 'vue', 'css', 'html', 'vue', 'bash', 'md', 'mdc', 'yaml', 'toml', 'rust', 'sql'],
+        },
       },
     },
+    experimental: { nativeSqlite: true },
   },
 
   image: {
@@ -80,4 +72,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2025-04-05',
 })

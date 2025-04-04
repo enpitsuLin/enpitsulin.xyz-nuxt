@@ -1,3 +1,5 @@
+// TO BE REFACTORED
+// @ts-expect-error ignore
 import type { MarkdownNode, MarkdownRoot } from '@nuxt/content/types'
 import { SKIP, visit } from 'unist-util-visit'
 

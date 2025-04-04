@@ -21,10 +21,10 @@ function isExternalLink(url?: string) {
     <span role="note" flex="inline items-center">
       <a
         :="attrs" decoration-none
-        class="from-accent to-accent duration-250 transition-property-[background-size] hover:bg-[size:100%_2px]"
+        class="transition-property-[background-size] from-accent to-accent duration-250 hover:bg-[size:100%_2px]"
         bg="gradient-to-r no-repeat [position:left_bottom] [size:0_2px] "
       >
-        <ContentSlot :use="$slots.default" />
+        <slot />
       </a>
       <i class="i-mingcute:arrow-right-up-line translate-y-2px op-70" inline-block />
     </span>

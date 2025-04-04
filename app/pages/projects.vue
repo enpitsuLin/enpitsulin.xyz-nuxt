@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import type { NotePortfolioParsedContent } from '~/types/content'
-
 useHead({
   title: '项目',
 })
 
 const { data } = await useAsyncData(
   'portfolio',
-  () => queryContent<NotePortfolioParsedContent>('portfolio').find(),
+  () => queryCollection('portfolios').all(),
 )
 </script>
 

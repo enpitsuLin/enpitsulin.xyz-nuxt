@@ -59,7 +59,9 @@ const route = useRoute()
       relative ml-auto
       class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px md:hidden"
     >
-      <LayoutNavBarMenu />
+      <ClientOnly>
+        <LayoutNavBarMenu />
+      </ClientOnly>
     </div>
   </header>
 </template>
@@ -67,20 +69,12 @@ const route = useRoute()
 <style>
 .navbar-blur {
   --at-apply: backdrop-blur-10px op-95;
-  mask-image: linear-gradient(
-    to bottom,
-    theme('colors.border') 10%,
-    transparent
-  );
+  mask-image: linear-gradient(to bottom, theme('colors.border') 10%, transparent);
 }
 .navbar-blur::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    theme('colors.border') 10%,
-    transparent
-  );
+  background: linear-gradient(to bottom, theme('colors.border') 10%, transparent);
 }
 </style>

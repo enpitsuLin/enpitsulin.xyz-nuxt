@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { NotePostParsedContent } from '~/types/content'
-
 useHead({
   title: '文章',
 })
@@ -9,66 +7,16 @@ const page = ref(1)
 const search = ref('')
 const debounceSearch = refDebounced(search)
 
-function getQuery() {
-  const query = queryContent<NotePostParsedContent>('post')
-
-  if (debounceSearch.value) {
-    query.where({
-      $or: [
-        {
-          title: {
-            $regex: new RegExp(debounceSearch.value),
-          },
-        },
-        {
-          summary: {
-            $regex: new RegExp(debounceSearch.value),
-          },
-        },
-      ],
-    })
-  }
-  return query
-}
-
-const { data: total } = await useAsyncData(
-  'posts-count',
-  () => getQuery().count(),
-  { watch: [debounceSearch] },
-)
-
 const { data, status } = await useAsyncData(
   'blog-index',
   () => {
-    return getQuery()
+    return queryCollection('posts')
       .limit(page.value * 10)
-      .sort({ publishAt: -1 })
-      .find()
+      .order('publishAt', 'DESC')
+      .all()
   },
   { watch: [page, debounceSearch] },
 )
-
-const isReachEnd = computed(() => {
-  if (data.value !== null && total.value !== null)
-    return (data.value?.length >= total?.value)
-  return false
-})
-
-useInfiniteScroll(
-  () => document,
-  loadMore,
-  {
-    distance: 10,
-    canLoadMore: () => {
-      if (status.value === 'pending' || isReachEnd.value)
-        return false
-      return true
-    },
-  },
-)
-async function loadMore() {
-  page.value++
-}
 </script>
 
 <template>
@@ -94,7 +42,7 @@ async function loadMore() {
     </template>
     <div v-if="data && data?.length > 0 " pl="md:6" border="md:l border">
       <ul flex="~ col gap-16">
-        <li v-for="article in data" :key="article._id">
+        <li v-for="article in data" :key="article.id">
           <BlogArticle :article="article" />
         </li>
       </ul>
@@ -102,10 +50,6 @@ async function loadMore() {
 
     <div v-else-if="status !== 'pending'">
       No Posts
-    </div>
-
-    <div v-if="!isReachEnd && status === 'pending'" mt-30>
-      <div class="loader" />
     </div>
   </LayoutPageContainer>
 </template>

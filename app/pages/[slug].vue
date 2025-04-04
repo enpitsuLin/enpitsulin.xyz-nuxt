@@ -3,9 +3,9 @@ const route = useRoute('slug')
 
 const { data } = await useAsyncData(
   `post:${route.params.slug}`,
-  () => queryContent(`post`, `${route.params.slug}`)
-    .only(['slug'])
-    .findOne(),
+  () => queryCollection('posts')
+    .where('slug', '=', route.params.slug)
+    .first(),
 )
 if (data.value) {
   await navigateTo({

@@ -1,10 +1,11 @@
+import { queryCollection } from '#imports'
 import RSS from 'rss'
-import { serverQueryContent } from '#content/server'
 import { description, siteUrl, title } from '~/constants'
 
 export default defineEventHandler(async (event) => {
   try {
-    const posts = await serverQueryContent(event).where({ _type: 'markdown', _source: 'xlog' }).sort({ publishAt: -1 }).find()
+    const posts = await queryCollection(event, 'posts')
+      .all()
 
     const feed = new RSS({
       title,
@@ -17,9 +18,9 @@ export default defineEventHandler(async (event) => {
     posts.forEach((post) => {
       feed.item({
         title: post.title ?? 'Untitled Post',
-        description: post.summary ?? post.description,
+        description: post.description,
         url: new URL(`/blog/${post.slug}`, siteUrl).toString(),
-        date: post.publishAt,
+        date: new Date(post.publishAt),
       })
     })
 

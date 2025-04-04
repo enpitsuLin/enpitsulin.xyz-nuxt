@@ -1,14 +1,11 @@
 <script setup lang="ts">
+import type { MenuSelectionDetails } from '@ark-ui/vue'
 import {
   MenuContent,
   MenuIndicator,
   MenuItem,
-  MenuItemGroup,
-  MenuItemGroupLabel,
   MenuPositioner,
   MenuRoot,
-  type MenuSelectionDetails,
-  MenuSeparator,
   MenuTrigger,
 } from '@ark-ui/vue'
 import { navigation } from '~/constants'

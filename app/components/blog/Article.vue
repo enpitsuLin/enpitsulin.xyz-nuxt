@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { PostsCollectionItem } from '@nuxt/content'
 import { formatDate } from '@vueuse/core'
 import { vAnimationOnce } from '~/directives/v-animation-once'
-import type { NotePostParsedContent } from '~/types/content'
 
 interface Props {
-  article: Pick<NotePostParsedContent, 'slug' | 'title' | 'createAt' | 'publishAt' | 'updateAt' | 'description' | 'tags' | 'summary'>
+  article: PostsCollectionItem
 }
 const { article } = defineProps<Props>()
 </script>

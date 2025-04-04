@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import type { NotePostParsedContent } from '~/types/content'
-
 const { data } = await useAsyncData(
   'recent-posts',
-  () => queryContent<NotePostParsedContent>('post')
-    .sort({ publishAt: -1 })
-    .only(['title', 'draft', 'publishAt', 'description', 'slug', 'tags', 'readingAt', '_id', 'summary'])
+  () => queryCollection('posts')
+    .order('publishAt', 'DESC')
+    .select('id', 'title', 'publishAt', 'slug', 'summary')
     .limit(2)
-    .find(),
+    .all(),
 )
 </script>
 
@@ -31,7 +29,7 @@ const { data } = await useAsyncData(
     <div grid="~ cols-1 md:cols-2 gap-16">
       <HomeRecentArticle
         v-for="article in data"
-        :key="article._id"
+        :key="article.id"
         :article="article"
       />
     </div>

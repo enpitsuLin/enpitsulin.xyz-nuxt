@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { NotePostParsedContent } from '~/types/content'
+import type { PostsCollectionItem } from '@nuxt/content'
 
 interface Props {
-  article: Pick<NotePostParsedContent, '_id' | 'title' | 'publishAt' | 'slug' | 'tags' | 'summary' | 'description' | 'draft' | 'readingAt'>
+  article: Pick<PostsCollectionItem, 'id' | 'title' | 'publishAt' | 'slug' | 'summary'>
 }
 defineProps<Props>()
 </script>
@@ -16,7 +16,7 @@ defineProps<Props>()
     <ArticleCardTitle :title="article.title" :slug="article.slug" />
     <ArticleCardTime :date="article.publishAt" />
     <p relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
-      {{ article.summary || article.description }}
+      {{ article.summary }}
     </p>
     <div
       aria-hidden="true"

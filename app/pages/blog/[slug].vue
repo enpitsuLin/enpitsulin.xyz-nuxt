@@ -1,22 +1,33 @@
 <script setup lang="ts">
 import { ProseDetails, ProseGithubCard, ProseInput, ProseSummary } from '#components'
 import { toc } from '~/composables/content'
-import type { NotePostParsedContent } from '~/types/content'
 
 const route = useRoute('blog-slug')
 
 const { data } = await useAsyncData(
   `post:${route.params.slug}`,
-  () => queryContent<NotePostParsedContent>(`post`, `${route.params.slug}`)
-    .findOne(),
+  () => queryCollection('posts')
+    .where('slug', '=', route.params.slug)
+    .first(),
 )
 
 const {
   data: surroundData,
-} = useAsyncData('surround', () => queryContent<NotePostParsedContent>('post')
-  .only(['slug', 'title'])
-  .sort({ publishAt: -1 })
-  .findSurround({ slug: route.params.slug }))
+} = useAsyncData('surround', () => {
+  if (!data.value)
+    return Promise.resolve([])
+
+  return queryCollectionItemSurroundings(
+    'posts',
+    data.value?.path ?? '',
+    {
+      after: 1,
+      before: 1,
+      fields: ['title', 'slug'],
+    },
+  )
+    .order('publishAt', 'DESC')
+})
 
 watch(data, (val) => {
   if (val)
@@ -31,7 +42,7 @@ const components = {
 }
 
 const formatDate = useDateFormat(
-  () => data.value?.date,
+  () => data.value?.publishAt,
   'YYYY MMM DD dddd',
   {
     locales: 'zh-Hans',
@@ -57,12 +68,12 @@ if (!data.value)
           <div flex="~ items-center gap-2">
             <span class="sr-only">发布时间</span>
             <i inline-block class="i-mingcute:calendar-fill" />
-            <time :datetime="data?.date">{{ formatDate }}</time>
+            <time :datetime="data?.publishAt">{{ formatDate }}</time>
           </div>
-          <div v-if="data?.readingTime.minutes" flex="~ items-center gap-2">
+          <div v-if="data?.meta.readingTime.minutes" flex="~ items-center gap-2">
             <span class="sr-only">阅读时间</span>
             <i inline-block class="i-mingcute:time-fill" />
-            <span>约 {{ Math.ceil(data?.readingTime.minutes) }} 分钟</span>
+            <span>约 {{ Math.ceil(data?.meta.readingTime.minutes) }} 分钟</span>
           </div>
         </section>
         <h1 text-4xl font-semibold>
@@ -76,11 +87,13 @@ if (!data.value)
           </ul>
         </section>
       </header>
-      <ContentRenderer :value="data!">
+      <ContentRenderer
+        :value="data!" tag="article" :components="components"
+        class="max-w-unset prose"
+      >
         <template #empty>
           <p>No content found.</p>
         </template>
-        <ContentRendererMarkdown tag="article" class="max-w-unset prose" :value="data!" :components="components" />
       </ContentRenderer>
     </div>
     <aside sticky top-80px ml-4 w="20%" h-full pb-20 class="hidden md:block">
@@ -96,7 +109,7 @@ if (!data.value)
     <nav flex="~ justify-between" my-20px>
       <NuxtLink
         v-if="surroundData?.[0]" flex="~ col items-start" space-y-5px max-w="1/2"
-        :to="{ name: 'blog-slug', params: { slug: surroundData[0].slug } }"
+        :to="{ name: 'blog-slug', params: { slug: surroundData[0].slug! as string } }"
       >
         <p op-50>
           Next
@@ -106,7 +119,7 @@ if (!data.value)
       <div v-else aria-hidden="true" />
       <NuxtLink
         v-if="surroundData?.[1]" flex="~ col items-end" space-y-5px max-w="1/2"
-        :to="{ name: 'blog-slug', params: { slug: surroundData[1].slug } }"
+        :to="{ name: 'blog-slug', params: { slug: surroundData[1].slug! as string } }"
       >
         <p op-50>
           Previous
