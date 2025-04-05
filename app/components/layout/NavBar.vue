@@ -5,7 +5,11 @@ const route = useRoute()
 </script>
 
 <template>
-  <header flex="~ items-center justify-between md:justify-center" sticky top-0 z-9999 w-screen px-8 pt-5>
+  <header
+    flex="~ items-center justify-between md:justify-center"
+    sticky top-0 z-9999 w-full
+    px-8 pt-5
+  >
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
     <div
       relative z-2 h-full w-fit
