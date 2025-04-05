@@ -37,6 +37,7 @@
     "eslint": "^9.23.0",
     "eslint-plugin-format": "^1.0.1",
     "nuxt": "^3.16.2",
+    "nuxt-content-twoslash": "^0.1.2",
     "pinia": "^3.0.1",
     "rehype-unwrap-images": "^1.0.0",
     "rss": "^1.2.2",

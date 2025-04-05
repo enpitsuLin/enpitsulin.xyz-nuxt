@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    'nuxt-content-twoslash',
     '@nuxt/content',
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -70,6 +71,9 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+  twoslash: {
+
   },
 
   compatibilityDate: '2025-04-05',
