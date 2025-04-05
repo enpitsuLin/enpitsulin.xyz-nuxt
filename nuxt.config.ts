@@ -58,7 +58,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    experimental: { nativeSqlite: true },
   },
 
   image: {

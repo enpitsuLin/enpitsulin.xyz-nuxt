@@ -1,0 +1,6 @@
+ignoredBuiltDependencies:
+  - '@skirtle/vue-vnode-utils'
+  - esbuild
+  - sharp
+onlyBuiltDependencies:
+  - better-sqlite3
