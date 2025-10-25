@@ -14,7 +14,7 @@ nuxtApp.hook('page:loading:end', () => {
   >
     <div
       v-if="!loaded"
-      fixed inset-0 z-99999
+      fixed inset-0 z-999
       grid="~ place-items-center"
       class="bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px] bg-slate-50 text-gray-950 dark:bg-[radial-gradient(#e5e7eb20_1px,transparent_1px)] dark:bg-black dark:text-gray-50"
     >

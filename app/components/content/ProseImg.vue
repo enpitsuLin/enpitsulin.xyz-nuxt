@@ -59,7 +59,7 @@ const id = useId()
   <Teleport v-if="zoom" to="body">
     <div
       flex="~ items-center justify-center"
-      class="fixed inset-0 z-9999 cursor-zoom-out backdrop-blur-0.5rem" bg="zinc-50/80 dark:zinc-950/80"
+      class="fixed inset-0 z-99 cursor-zoom-out backdrop-blur-0.5rem" bg="zinc-50/80 dark:zinc-950/80"
       @click="onClick"
     >
       <img :src="refinedSrc" :alt="alt" :width="width" :height="height" :style="zoom && { viewTransitionName: `zoom-${id}` }">
