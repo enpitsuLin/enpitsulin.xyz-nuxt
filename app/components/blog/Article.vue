@@ -22,9 +22,16 @@ const { article } = defineProps<Props>()
     >
       <ArticleCardTitle :title="article.title" :slug="article.slug" />
       <ArticleCardTime :date="article.publishAt" class="md:hidden" />
-      <p relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
-        {{ article.summary || article.description }}
-      </p>
+      <ContentRenderer
+        v-if="article.excerpt"
+        :value="article.excerpt"
+        relative z-10 mt-2 text-sm
+        text="zinc-600 dark:zinc-400"
+        class="[&>p]:py-2"
+      />
+      <div v-else relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
+        <p>{{ article.summary || article.description }}</p>
+      </div>
       <div
         aria-hidden="true"
         relative z-10 mt-4 flex items-center text-sm text-accent font-medium

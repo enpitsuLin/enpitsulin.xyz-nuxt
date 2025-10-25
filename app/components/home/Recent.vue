@@ -3,7 +3,7 @@ const { data } = await useAsyncData(
   'recent-posts',
   () => queryCollection('posts')
     .order('publishAt', 'DESC')
-    .select('id', 'title', 'publishAt', 'slug', 'summary')
+    .select('id', 'title', 'publishAt', 'slug', 'summary', 'excerpt', 'description')
     .limit(2)
     .all(),
 )

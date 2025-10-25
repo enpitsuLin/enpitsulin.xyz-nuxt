@@ -128,6 +128,10 @@ const posts = defineCollection({
         words: z.number(),
       }),
     }),
+    excerpt: z.object({
+      type: z.string(),
+      children: z.any(),
+    }),
   }),
 })
 
