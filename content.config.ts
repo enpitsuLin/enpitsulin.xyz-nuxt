@@ -1,3 +1,6 @@
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
+import process, { cwd } from 'node:process'
 import { defineCollection, defineCollectionSource, defineContentConfig, z } from '@nuxt/content'
 import { createIndexer } from 'crossbell'
 import { parseFrontMatter, stringifyFrontMatter } from 'remark-mdc'
@@ -7,6 +10,22 @@ const indexer = createIndexer()
 const LIMIT = 100
 const SOURCE = 'xlog'
 const CHARACTER_ID = 54_315
+
+function makeCacheFiles(cache: Map<string, string>) {
+  // After all data is collected, process files in batch
+  const cacheDir = join(cwd(), '.data')
+  if (!existsSync(cacheDir)) {
+    mkdirSync(cacheDir, { recursive: true })
+  }
+
+  // Process all cached files at once
+  for (const [filename, content] of cache.entries()) {
+    writeFileSync(join(cacheDir, filename), content, 'utf-8')
+  }
+
+  console.log(`Cache files saved to: ${cacheDir}`)
+  console.log(`Total files cached: ${cache.size}`)
+}
 
 function buildSourceFromXLogNotes(
   type: 'post' | 'portfolio' | 'page',
@@ -22,6 +41,7 @@ function buildSourceFromXLogNotes(
     async prepare() {
       let cursor: string | null = null
 
+      // First, collect all data into cache
       do {
         const notes = await indexer.note.getMany({
           characterId: options.characterId,
@@ -55,6 +75,8 @@ function buildSourceFromXLogNotes(
               },
               content,
             )
+
+            // Store in cache only
             cache.set(`${slug}.md`, markdownText)
           }
           else {
@@ -64,10 +86,17 @@ function buildSourceFromXLogNotes(
             const summary = note.metadata?.content && 'summary' in note.metadata?.content ? note.metadata?.content?.summary : ''
             const external_urls = note.metadata?.content?.external_urls?.at(0)
 
-            cache.set(`${note.noteId}.json`, JSON.stringify({ id: note.noteId, cover, summary, title, href: external_urls }))
+            const jsonContent = JSON.stringify({ id: note.noteId, cover, summary, title, href: external_urls }, null, 2)
+
+            // Store in cache only
+            cache.set(`${note.noteId}.json`, jsonContent)
           }
         }
       } while (cursor)
+
+      if (process.env.NODE_ENV === 'development') {
+        makeCacheFiles(cache)
+      }
     },
     getKeys: async () => {
       return Array.from(cache.keys())
