@@ -65,7 +65,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-10-25',
 
   nitro: {
-    preset: 'cloudflare-worker',
+    preset: 'cloudflare-module',
     cloudflare: {
       deployConfig: true,
       wrangler: {
