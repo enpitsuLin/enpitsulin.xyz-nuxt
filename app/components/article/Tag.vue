@@ -5,7 +5,7 @@ withDefaults(
   defineProps<{
     as?: string | Component
     tag: string
-  } >(),
+  }>(),
   {
     as: NuxtLink as any,
   },

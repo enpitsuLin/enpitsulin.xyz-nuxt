@@ -1,8 +1,8 @@
 // @ts-check
 import antfu from '@antfu/eslint-config'
-import { defineFlatConfigs } from '@nuxt/eslint-config/flat'
+import nuxt from './.nuxt/eslint.config.mjs'
 
-export default defineFlatConfigs(antfu(
+export default antfu(
   {
     unocss: true,
     formatters: true,
@@ -10,4 +10,4 @@ export default defineFlatConfigs(antfu(
       'content/**/*.md',
     ],
   },
-))
+).append(nuxt())

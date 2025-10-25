@@ -9,7 +9,7 @@
   --c-scrollbar: #111;
   --c-scrollbar-hover: #222;
 }
- 
+
 * {
   scrollbar-color: var(--c-scrollbar) transparent;
 }

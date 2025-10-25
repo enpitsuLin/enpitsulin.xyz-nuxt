@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
 
   modules: [
     'nuxt-content-twoslash',
@@ -12,17 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
   ],
-
-  experimental: {
-    payloadExtraction: false,
-    renderJsonPayloads: true,
-    typedPages: true,
-    viewTransition: true,
-  },
-
-  future: {
-    compatibilityVersion: 4,
-  },
+  devtools: { enabled: true },
 
   css: [
     '@unocss/reset/tailwind.css',
@@ -61,6 +50,49 @@ export default defineNuxtConfig({
     },
   },
 
+  future: {
+    compatibilityVersion: 5,
+  },
+
+  experimental: {
+    payloadExtraction: false,
+    renderJsonPayloads: true,
+    typedPages: true,
+    viewTransition: true,
+    viteEnvironmentApi: true,
+  },
+
+  compatibilityDate: '2025-10-25',
+
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
+    prerender: {
+      autoSubfolderIndex: false,
+    },
+    replace: {
+      // workaround for `https://github.com/nitrojs/nitro/issues/3071`
+      'typeof window': 'typeof window',
+    },
+    unenv: {
+      alias: {
+        'typeof window': '"undefined"',
+      },
+    },
+  },
+
+  eslint: {
+    config: {
+      standalone: false,
+      nuxt: {
+        sortConfigKeys: true,
+      },
+    },
+  },
+
   image: {
     providers: {
       ipfs: {
@@ -75,6 +107,4 @@ export default defineNuxtConfig({
   twoslash: {
 
   },
-
-  compatibilityDate: '2025-04-05',
 })
