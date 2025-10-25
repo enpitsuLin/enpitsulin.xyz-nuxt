@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import Fuse from 'fuse.js'
+
 useHead({
   title: '文章',
 })
 
 const page = ref(1)
-const search = ref('')
+const search = useRouteQuery('q', '', v => v === '' ? null : v)
 const debounceSearch = refDebounced(search)
+
+const { data: totalCount } = await useAsyncData('posts-count', () => queryCollection('posts').count())
+const { data: searchData } = await useAsyncData('search-data', () => queryCollection('posts').all(), { lazy: true })
 
 const { data, status } = await useAsyncData(
   'blog-index',
@@ -17,6 +22,39 @@ const { data, status } = await useAsyncData(
   },
   { watch: [page, debounceSearch] },
 )
+
+const fuse = new Fuse(searchData.value ?? [], {
+  keys: ['title', 'description'],
+})
+
+const result = computed(() => {
+  if (!search.value)
+    return data.value ?? []
+  return fuse.search(search.value).map(item => item.item)
+})
+
+const isReachEnd = computed(() => {
+  if (data.value && totalCount.value)
+    return (data.value?.length >= totalCount?.value)
+  return true
+})
+
+useInfiniteScroll(
+  () => document,
+  loadMore,
+  {
+    distance: 10,
+    canLoadMore: () => {
+      if (status.value === 'pending' || isReachEnd.value)
+        return false
+      return true
+    },
+  },
+)
+
+async function loadMore() {
+  page.value++
+}
 </script>
 
 <template>
@@ -40,9 +78,9 @@ const { data, status } = await useAsyncData(
         </label>
       </div>
     </template>
-    <div v-if="data && data?.length > 0 " pl="md:6" border="md:l border">
+    <div v-if="result.length > 0 " pl="md:6" border="md:l border" w-full>
       <ul flex="~ col gap-16" pb-16>
-        <li v-for="article in data" :key="article.id">
+        <li v-for="article in result" :key="article.id">
           <BlogArticle :article="article" />
         </li>
       </ul>
@@ -50,6 +88,10 @@ const { data, status } = await useAsyncData(
 
     <div v-else-if="status !== 'pending'">
       No Posts
+    </div>
+
+    <div v-if="!isReachEnd && status === 'pending'" mt-30>
+      <div class="loader" />
     </div>
   </LayoutPageContainer>
 </template>

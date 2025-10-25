@@ -15,7 +15,9 @@
   "dependencies": {
     "@ark-ui/vue": "^5.26.2",
     "@skirtle/vue-vnode-utils": "^0.2.0",
+    "@vueuse/core": "^14.0.0",
     "crossbell": "^1.13.1",
+    "fuse.js": "^7.1.0",
     "motion-v": "^1.7.4",
     "remark-directive": "^4.0.0",
     "remark-directive-rehype": "^0.4.2",
@@ -30,6 +32,7 @@
     "@iconify-json/logos": "^1.2.9",
     "@iconify-json/mingcute": "^1.2.5",
     "@nuxt/content": "^3.7.1",
+    "@nuxt/devtools": "^2.6.5",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/image": "^1.11.0",
     "@nuxtjs/color-mode": "^3.5.2",
@@ -37,6 +40,8 @@
     "@types/rss": "^0.0.32",
     "@unocss/eslint-plugin": "^66.5.4",
     "@unocss/nuxt": "^66.5.4",
+    "@unocss/preset-mini": "^66.5.4",
+    "@unocss/preset-uno": "^66.5.4",
     "@vueuse/nuxt": "^14.0.0",
     "eslint": "^9.38.0",
     "eslint-plugin-format": "^1.0.2",
@@ -47,6 +52,8 @@
     "rss": "^1.2.2",
     "typescript": "^5.9.3",
     "unocss": "^66.5.4",
+    "unplugin-vue-router": "^0.16.0",
+    "vue-router": "^4.6.3",
     "wrangler": "^4.45.0"
   }
 }

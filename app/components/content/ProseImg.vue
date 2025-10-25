@@ -60,7 +60,7 @@ const id = useId()
   <Teleport v-if="zoom" to="body">
     <div
       flex="~ items-center justify-center"
-      class="fixed inset-0 z-99 cursor-zoom-out backdrop-blur-0.5rem" 
+      class="fixed inset-0 z-99 cursor-zoom-out backdrop-blur-0.5rem"
       bg="zinc-50/80 dark:zinc-950/80"
       @click="onClick"
     >
