@@ -65,6 +65,19 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-10-25',
 
   nitro: {
+    preset: 'cloudflare-worker',
+    cloudflare: {
+      deployConfig: true,
+      wrangler: {
+        d1_databases: [
+          {
+            binding: 'DB',
+            database_name: 'enpitsulin-dev-db',
+            database_id: 'a9ca9f7a-0efc-4aaa-a3b4-febbf0ae0170',
+          },
+        ],
+      },
+    },
     esbuild: {
       options: {
         target: 'esnext',

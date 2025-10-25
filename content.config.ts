@@ -1,37 +1,89 @@
 import { defineCollection, defineCollectionSource, defineContentConfig, z } from '@nuxt/content'
-import { createStorage } from 'unstorage'
+import { createIndexer } from 'crossbell'
+import { parseFrontMatter, stringifyFrontMatter } from 'remark-mdc'
 
-import { xLogStorageDriver } from './storage/xlog-driver'
+const indexer = createIndexer()
 
-const CHARACTER_ID = 54315
+const LIMIT = 100
+const SOURCE = 'xlog'
+const CHARACTER_ID = 54_315
 
-const storage = createStorage<string>({
-  driver: xLogStorageDriver({
+function buildSourceFromXLogNotes(
+  type: 'post' | 'portfolio' | 'page',
+  fileType: 'markdown' | 'json',
+) {
+  const options = {
     characterId: CHARACTER_ID,
-    baseURL: 'https://ipfs.crossbell.io/ipfs/',
-    ttl: 60 * 60,
-  }),
-})
+    baseURL: 'https://ipfs.crossbell.io/ipfs',
+  }
 
-function xLogPostsSource(type: 'post' | 'portfolio' | 'page') {
+  const cache = new Map<string, string>()
   return defineCollectionSource({
-    getKeys: async () => {
-      const keys = await storage.getKeys()
-      return keys.filter(key => key.startsWith(`${type}:`)).map(key => key.replace(`${type}:`, ''))
+    async prepare() {
+      let cursor: string | null = null
+
+      do {
+        const notes = await indexer.note.getMany({
+          characterId: options.characterId,
+          includeNestedNotes: false,
+          limit: LIMIT,
+          sources: SOURCE,
+          tags: type,
+        })
+        cursor = notes.cursor
+        for (const note of notes.list) {
+          if (fileType === 'markdown') {
+            const attributes = note.metadata?.content?.attributes ?? []
+            const slug = attributes.find(item => item.trait_type === 'xlog_slug')?.value?.toString() ?? `note-${note.noteId}`
+            const summary = note.metadata?.content && 'summary' in note.metadata?.content ? /** @type {string} */(note.metadata?.content.summary) : ''
+            const body = note.metadata?.content?.content ?? ''
+
+            const tags = (note.metadata?.content?.tags ?? []).filter(tag => tag !== type)
+            const { content, data } = parseFrontMatter(body)
+
+            const markdownText = stringifyFrontMatter(
+              {
+                ...data,
+                uri: note.uri,
+                createAt: note?.createdAt ?? '',
+                updateAt: note?.updatedAt ?? '',
+                publishAt: note.metadata?.content?.date_published ?? '',
+                title: note.metadata?.content?.title ?? '',
+                tags,
+                slug: slug ?? '',
+                summary,
+              },
+              content,
+            )
+            cache.set(`${slug}.md`, markdownText)
+          }
+          else {
+            const attachments = note.metadata?.content?.attachments ?? []
+            const cover = attachments.find(item => item.name === 'cover')?.address
+            const title = note.metadata?.content?.title
+            const summary = note.metadata?.content && 'summary' in note.metadata?.content ? note.metadata?.content?.summary : ''
+            const external_urls = note.metadata?.content?.external_urls?.at(0)
+
+            cache.set(`${note.noteId}.json`, JSON.stringify({ id: note.noteId, cover, summary, title, href: external_urls }))
+          }
+        }
+      } while (cursor)
     },
-    getItem: async (key: string) => {
-      const content = await storage.getItem(`${type}:${key}`)
-      if (type === 'portfolio') {
-        return JSON.stringify(content)
+    getKeys: async () => {
+      return Array.from(cache.keys())
+    },
+    getItem: async (path: string) => {
+      if (!cache.has(path)) {
+        throw new Error(`Error: Not found`)
       }
-      return content!
+      return cache.get(path)!
     },
   })
 }
 
 const posts = defineCollection({
   type: 'page',
-  source: xLogPostsSource('post'),
+  source: buildSourceFromXLogNotes('post', 'markdown'),
   schema: z.object({
     uri: z.string(),
     updateAt: z.string(),
@@ -52,12 +104,12 @@ const posts = defineCollection({
 
 const pages = defineCollection({
   type: 'page',
-  source: xLogPostsSource('page'),
+  source: buildSourceFromXLogNotes('page', 'markdown'),
 })
 
 const portfolios = defineCollection({
   type: 'data',
-  source: xLogPostsSource('portfolio'),
+  source: buildSourceFromXLogNotes('portfolio', 'json'),
   schema: z.object({
     cover: z.string(),
     title: z.string(),
