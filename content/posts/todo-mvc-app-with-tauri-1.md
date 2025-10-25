@@ -4,6 +4,7 @@ publishAt: 2022-05-02 17:29:00
 tags: [Rust,Tauri]
 excerpt: rust太难学了？学习了rust不会实践？简单使用 Tauri 搭建经典实战项目TodoMVC 来做实践吧。你会发现rust真的很好玩，tauri也是非常的快，转变思维使用rust来写代码真的很爽。
 ---
+
 Rust 学的一头雾水？错，是太难了根本学不会，直接上实践就完事了。就用学习一个框架最经典的实战项目 TodoMVC，我们实现一个 rust+sqlite 做后端 、react 做前端的~~跨平台~~桌面端 app
 
 ## 创建 Tauri 项目
@@ -36,12 +37,12 @@ pnpm add todomvc-app-css
 
 然后在入口文件引入,并把原先引入的样式文件删掉
 
-```tsx:src/main.tsx {diff}
+```tsx [src/main.tsx]
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-+ import 'todomvc-app-css/index.css'
-- import './index.css'
+import 'todomvc-app-css/index.css' // [!code ++]
+import './index.css' // [!code --]
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -52,8 +53,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 然后新建 components 目录并创建 TodoItem 组件
 
-```tsx:src/components/TodoItem.tsx
-const TodoItem = () => {
+```tsx [src/components/TodoItem.tsx]
+function TodoItem() {
   return (
     <li>
       <div className="view">
@@ -69,9 +70,10 @@ export default TodoItem
 
 以及 TodoList 组件
 
-```tsx:src/components/TodoList.tsx
+```tsx [src/components/TodoList.tsx]
 import TodoItem from './TodoItem'
-const TodoList = () => {
+
+function TodoList() {
   return (
     <>
       <header className="header">
@@ -87,7 +89,9 @@ const TodoList = () => {
       </section>
       <footer className="footer">
         <span className="todo-count">
-          <strong>1</strong> items left
+          <strong>1</strong>
+          {' '}
+          items left
         </span>
         <ul className="filters">
           <li>
@@ -109,7 +113,7 @@ export default TodoList
 
 然后在 App.tsx 中把原先模板中的代码删除然后引入 TodoList 并展示出来。
 
-```tsx:src/App.tsx
+```tsx [src/App.tsx]
 import TodoList from './component/TodoList'
 
 function App() {
@@ -149,10 +153,12 @@ pnpm tauri dev
 
 首先添加 [rusqlite](https://github.com/rusqlite/rusqlite) 依赖来获得操作 sqlite 的能力
 
-```toml:Cargo.toml {diff}
+<!-- eslint-skip -->
+
+```toml [Cargo.toml]
 [dependencies]
 # ...
-+ rusqlite = { version = "0.27.0", features = ["bundled"] }
+rusqlite = { version = "0.27.0", features = ["bundled"] } // [!code ++]
 ```
 
 ### 对 sqlite 数据库的操作
@@ -215,7 +221,7 @@ impl TodoApp {
 
 于是添加以下实现
 
-```rust:src/todo.rs
+```rust [src/todo.rs]
 impl TodoApp{
     pub fn new()->Result<TodoApp>{
         let db_path = "db.sqlite";
@@ -252,9 +258,8 @@ impl TodoApp{
 
 因为 sqlite 中没有 boolean 类型所以我们使用 numeric 通过 1 或 0 来标识 true 或 false，使用对于这两个字段都需要记得处理一下
 
-```rust:src/todo.rs {diff}
+```rust [src/todo.rs]
 impl TodoApp {
-#   ...
     pub fn get_todos(&self) -> Result<Vec<Todo>> {
         let mut stmt = self.conn.prepare("SELECT * FROM Todo").unwrap();
         let todos_iter = stmt.query_map([], |row| {
@@ -281,27 +286,27 @@ impl TodoApp {
 
 于是我们可以获得 Sqlite 中的数据了，但是仍然需要提供 command 来供前端调用，我们回到 main.ts，先引入模块并导入 Todo 和 TodoApp
 
-```rust:src/main.rs {diff}
+```rust [src/main.rs]
 #![cfg_attr(
     all(not(debug_assertions), target_os = "w&mut &mut indows"),
     windows_subsystem = "windows"
 )]
-+ mod todo;
-+ use todo::{Todo, TodoApp};
+mod todo; // [!code ++]
+use todo::{Todo, TodoApp}; // [!code ++]
 
 fn main() {
     tauri::Builder::default()
-+        .invoke_handler(tauri::generate_handler![
-+            get_todos,
-+        ])
+        .invoke_handler(tauri::generate_handler![ // [!code ++]
+            get_todos, // [!code ++]
+        ]) // [!code ++]
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
-+ #[tauri::command]
-+ fn get_todos() -> Vec<Todo> {
-+     todo!()
-+ }
+#[tauri::command] // [!code ++]
+fn get_todos() -> Vec<Todo> { // [!code ++]
+    todo!() // [!code ++]
+} // [!code ++]
 ```
 
 **封装 tauri 状态**
@@ -310,7 +315,7 @@ fn main() {
 
 然后通过`tauri::Builder`的`manage`方法来管理这个状态。然后我们就可以封装`command`来使用这个对象的的方法来获取数据了。
 
-```rust:src/main.rs {diff}
+```rust [src/main.rs]
 #![cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
@@ -318,28 +323,28 @@ fn main() {
 mod todo;
 use todo::{Todo, TodoApp};
 
-+ struct AppState {
-+     app: Mutex<TodoApp>,
-+ }
+struct AppState { // [!code ++]
+    app: Mutex<TodoApp>, // [!code ++]
+} // [!code ++]
 
 fn main() {
-+   let app = TodoApp::new().unwrap();
+    let app = TodoApp::new().unwrap(); // [!code ++]
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             get_todos,
         ])
-+       .manage(AppState {
-+           app: Mutex::from(app),
-+       })
+        .manage(AppState { // [!code ++]
+            app: Mutex::from(app), // [!code ++]
+        }) // [!code ++]
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
 #[tauri::command]
 fn get_todos() -> Vec<Todo> {
-+    let app = state.app.lock().unwrap();
-+    let todos = app.get_todos().unwrap();
-+    todos
+    let app = state.app.lock().unwrap(); // [!code ++]
+    let todos = app.get_todos().unwrap(); // [!code ++]
+    todos // [!code ++]
 }
 ```
 
@@ -351,10 +356,10 @@ fn get_todos() -> Vec<Todo> {
 
 这里是因为我们返回的`Vec<Todo>`不是可以序列化的类型不能通过指令返回到前端，回到 todo.rs，我们增加注解给结构体增加序列化的功能。
 
-```rust:todo.rs {diff}
-+ use serde::{Serialize};
+```rust [todo.rs]
+use serde::{Serialize};  // [!code ++]
 
-+ #[derive(Serialize)]
+#[derive(Serialize)]  // [!code ++]
 pub struct Todo {
     pub id: String,
     pub label: String,
@@ -373,12 +378,12 @@ pub struct Todo {
 
 同时 invoke 方法也是可以接受第二个参数作为对 commond 调用的参数的，但是参数也需要具备从 json 格式反序列化数据的能力，于是增加注解
 
-```rust:todo.rs {diff}
-- use serde::{Deserialize};
-+ use serde::{Serialize, Deserialize};
+```rust [todo.rs]
+use serde::{Deserialize}; // [!code --]
+use serde::{Serialize, Deserialize}; // [!code ++]
 
-- #[derive(Serialize)]
-+ #[derive(Serialize, Deserialize)]
+#[derive(Serialize)] // [!code --]
+#[derive(Serialize, Deserialize)] // [!code ++]
 pub struct Todo {
     pub id: String,
     pub label: String,
@@ -423,7 +428,7 @@ pub fn get_todo(&self, id: String) -> Result<Todo> {
 
 同理也需要增加相应的指令
 
-```rust:main.rs
+```rust [main.rs]
 #[tauri::command]
 fn new_todo(todo: Todo) -> bool {
     let app = TodoApp::new().unwrap();
@@ -445,14 +450,14 @@ fn toggle_done(id: String) -> bool {
 
 以及别忘了在 generate_handler 中增加
 
-```rust:main.rs {diff}
+```rust [main.rs] {diff}
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             get_todos,
-+            new_todo,
-+            toggle_done,
-+            update_todo
+            new_todo, // [!code ++]
+            toggle_done, // [!code ++]
+            update_todo // [!code ++]
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -463,4 +468,4 @@ fn main() {
 
 ## 下篇链接
 
-[使用 Tauri 构建桌面端应用程序——以 TodoMVC 为例（下）](/blog/todo-mvc-app-with-tauri-1)
+[使用 Tauri 构建桌面端应用程序——以 TodoMVC 为例（下）](/blog/todo-mvc-app-with-tauri-2)

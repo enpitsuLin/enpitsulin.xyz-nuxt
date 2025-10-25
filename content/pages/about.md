@@ -1,13 +1,5 @@
 ---
-uri: ipfs://QmRbvh8ZhEyYirn5At9hLPJyn5xVtHfWL2b5VAjrNAuZM7
-createAt: 2023-06-20T06:23:02.000Z
-updateAt: 2024-06-14T07:32:29.000Z
-publishAt: 2023-06-20T06:23:05.592Z
 title: 关于我
-tags:
-  - About
-slug: about
-summary: WIP
 ---
 
 Hi，这里是 <ruby>enpitsu<rp>(</rp><rt>えんぴつ</rt><rp>)</rp>lin</ruby>，你可以叫我铅笔。

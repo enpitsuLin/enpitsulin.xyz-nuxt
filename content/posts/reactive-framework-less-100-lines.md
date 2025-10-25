@@ -9,7 +9,7 @@ excerpt: 在 Github 的时间线上看到了一个自称是世界上最小的响
 
 :::div{.flex.justify-center}
 
-  https://github.com/vanjs-org/van
+https://github.com/vanjs-org/van
 :::
 
 简单预览了一下，发现确实很小，而且很适合研究它的底层实现方式，虽然代码风格过于极简主义导致可读性比较差(作者本人也[指出](https://vanjs.org/about#coding-style))
@@ -30,6 +30,8 @@ excerpt: 在 Github 的时间线上看到了一个自称是世界上最小的响
 
 但是他这一部分的实现是比较巧妙的，不需要声明所有的tag作为属性，而是通过 Proxy包装一个函数做 target 和设置了一个 handler 来处理获取属性
 
+<!-- eslint-skip -->
+
 ```javascript
 // name形参实际上是解构的 properties name, ...args 才是最终实际上使用的函数参数
 let tags = new Proxy((name, ...args) => {
@@ -45,7 +47,7 @@ let tags = new Proxy((name, ...args) => {
     else setter(v)
   })
   return add(dom, ...children)
-}, {get: (tag, name) => 
+}, {get: (tag, name) =>
   // bind 处理掉 name 参数,实际上 target 的第一个参数变成了使用到的 property name
   tag.bind(_undefined, name)})
 ```
@@ -67,6 +69,9 @@ vanjs 提供了 state 函数来提供状态,其实本质就是实现一个响应
 所以这里就有个缺陷,就是 state 的响应式只是浅层的,就类似于 vue3 的 `shallowRef`, 必须通过修改 `State.val` 才会触发
 
 首先是定义了 `stateProto` 作为state的原型
+
+<!-- eslint-skip -->
+
 ```javascript
 let stateProto = {
   get "val"() { return this._val },
@@ -90,15 +95,18 @@ let stateProto = {
 
 实际上就是简单实现了
 
+<!-- eslint-skip -->
+
 ```ts
 interface State<T = any> {
   val: T
   onnew(l: (val: T, oldVal: T) => void): void
 }
 ```
+
 如果用 class 来写应该大多数人会直接 `class StateImpl implements State` 但是vanjs 为了极致的 size 没有选择 class (实际上几个 minor 之前还是class :satisfied:)
 
-vanjs是怎么做的呢, 其实很简单直接用个对象字面量以及将其__proto__指向这个`stateProto`就ok了,显著减少代码体积
+vanjs是怎么做的呢, 其实很简单直接用个对象字面量以及将其**proto**指向这个`stateProto`就ok了,显著减少代码体积
 
 :small[PS:如果有手写过原型链的朋友应该很熟悉这样的写法,但是脱离了构造函数而是直接对象字面量和__proto__属性 ~~不过这里使用`Object.create` w/ `Object.assgin`可能会得到一点点性能提升XD~~]
 
@@ -107,6 +115,8 @@ vanjs是怎么做的呢, 其实很简单直接用个对象字面量以及将其_
 vanjs 提供了[`bind`](https://vanjs.org/tutorial#api-bind)函数来将状态和一些有副作用的调度任务进行绑定,内部如之前的 tags 中处理 props/attrs 更新的地方也是用到这个函数
 
 :small[PS:我给vanjs贡献的就是这个函数的签名类型,简单的跳了个类型体操解决原先手写10个函数重载但实际上还是不够用的的签名:grin:]
+
+<!-- eslint-skip -->
 
 ```javascript
 let bind = (...deps) => {
@@ -130,6 +140,8 @@ let bind = (...deps) => {
 
 然后就是当对 `State.val`进行修改的时候会触发调度任务来进行副作用的执行通过 `updateDoms`这个函数,回到`stateProto`这个原型对象中可以看到 val 的 setter 函数中的逻辑是当 setter 传入的值与当前值`_val`不同时会进行一系列逻辑
 
+<!-- eslint-skip -->
+
 ```javascript
 set "val"(value) {
   // Aliasing `this` to reduce the bundle size.
@@ -151,7 +163,7 @@ set "val"(value) {
 
 那么副作用的实际执行逻辑其实就是在 `updateDoms`
 
-***
+---
 
 但是`else if`的分支是干什么的呢?
 
@@ -164,6 +176,8 @@ set "val"(value) {
 :small[PS:不过这里还是有引用类型比较的问题,还是造成shlldowRef的效果,改变深层值可能并不会触发该有的副作用,当然甚至修改状态也不会有:pig:]
 
 ### 执行副作用
+
+<!-- eslint-skip -->
 
 ```javascript
 let updateDoms = () => {

@@ -14,6 +14,7 @@ excerpt: 业务中遇到需要对图层裁切可以使用Openlayer根据矢量�
 ```typescript
 import { Tile } from 'ol/layer'
 import { XYZ } from 'ol/source'
+
 const baseLayer = new Tile({
   source: new XYZ({
     url: `sourceUrl`,
@@ -26,6 +27,8 @@ const baseLayer = new Tile({
 # GIS 服务中获取裁切范围
 
 然后需要以裁切的面要素数据建立一个`Vector`图层，并绑定其 source 的`addFeature`事件使基础图层可见范围与`clipLayer`一致
+
+<!-- eslint-skip -->
 
 ```typescript
 import VectorLayer from 'ol/layer/Vector';
@@ -49,7 +52,8 @@ clipLayer.getSource().on('addfeature', ()=> {
 
 ```typescript
 baseLayer.on('postrender', (evt) => {
-  if (!evt.context || !('save' in evt.context)) return
+  if (!evt.context || !('save' in evt.context))
+    return
   const vecCtx = getVectorContext(evt)
   evt.context.globalCompositeOperation = 'destination-in'
   clipLayer.getSource().forEachFeature((feature) => {
@@ -68,7 +72,7 @@ baseLayer.on('postrender', (evt) => {
 ```typescript
 const clipLayer = new VectorLayer({
   source: new VectorSource({
-    features: [new EsriJson().readFeatures(require('路径'))],//format 同服务
-  });
-});
+    features: [new EsriJson().readFeatures(require('路径'))] // format 同服务
+  })
+})
 ```

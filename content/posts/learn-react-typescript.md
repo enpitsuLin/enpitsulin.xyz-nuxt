@@ -29,19 +29,19 @@ excerpt: TypeScript 作为 JavaScript 具有类型的超集, 并支持所有的�
 
 所以一般推荐使用函数表达式方式声明组件并导出使用
 
-```ts
+```tsx
 /**
  * function statement
  * 不会将props推断需要显示声明
  */
-function Button(props:PropsWithChildren<ButtonProps>): ReactElement<Props> {
-	return <button>{somethings}</button>;
+function Button(props: PropsWithChildren<ButtonProps>): ReactElement<Props> {
+  return <button>{somethings}</button>
 }
 /**
  * function expression
  * 此处props会推断成PropsWithChildren<ButtonProps>
  */
-const Button:React.FC<Props> = (props)=>
+const Button: React.FC<Props> = (props) => {}
 ```
 
 ## 对于 Class 组件的 Prop 类型
@@ -52,6 +52,6 @@ Class 组件可能在某些场合还是很有必要存在的所以还是要注�
 
 ```typescript
 class SomeComponent extends Component<Props, State> {
-  ///...
+  /// ...
 }
 ```

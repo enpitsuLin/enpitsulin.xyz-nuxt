@@ -4,6 +4,7 @@ publishAt: 2022-04-12 15:04:00
 tags: [Blog, Serverless]
 excerpt: 对于基于Nextjs的静态站点生成计数的博客，为文章增加阅读计数功能不同于基于Wordpress等CMS框架的博客，但是如果使用Vercel等支持serverless函数的托管平台，我们可以比较轻易的集成一些数据库服务来做阅读计数功能。
 ---
+
 博客由于全站都是静态导出的页面，没有后台服务器的接口支持，所以增加阅读计数这种简单的功能也无法实现
 
 但是由于 [JAMStack](https://jamstack.org/) 概念的普及以及 Serverless 这个概念的出现一些网站托管平台如 Vercel/Netlify 均提供了 Serverless 函数服务，可以让我们的静态网站更简单的去集成一些 BaaS 来增加网站功能。
@@ -110,6 +111,8 @@ pnpm add faunadb
 
 这里仅实现 Nextjs ，其他的静态生成器不是很熟就不献丑了
 
+<!-- eslint-skip -->
+
 ```ts:/pages/api/get-visit.ts
 import { NextApiHandler } from "next";
 import { Client, query as q } from "faunadb";
@@ -159,6 +162,8 @@ export default handler;
 现在就可以访问`/api/get-visit`这个接口来获取数据了
 
 对于我的博客我在文章头部展示了这个数据，对于其他情况也是访问这个接口然后再页面上渲染出来就行了。
+
+<!-- eslint-skip -->
 
 ```tsx:/src/components/PostHeader.tsx {13-20,53-58}
 import formatDate from '@/lib/utils/formatDate'

@@ -26,15 +26,15 @@ JSX 到底是什么，我们先来看看 React 官网给出的一段定义：
 比如`ES2015+`中很好用的模板字符串语法糖：
 
 ```javascript
-var text = 'World'
-console.log(`Hello ${text}!`) //Hello World!
+let text = 'World'
+console.log(`Hello ${text}!`) // Hello World!
 ```
 
 Babel 就可以帮我们把这段代码转换为大部分低版本浏览器也能够识别的 ES5 代码：
 
 ```javascript
-var text = 'World'
-console.log('Hello'.concat(text, '!')) //Hello World!
+let text = 'World'
+console.log('Hello'.concat(text, '!')) // Hello World!
 ```
 
 类似的，**Babel 也具备将 JSX 语法转换为 JavaScript 代码的能力。** 那么 Babel 具体会将 JSX 处理成什么样子呢？[【例子】](https://www.babeljs.cn/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwEwlgbgBAxgNgQwM5IHIILYFMC8AiBAB0LwD4AoKKUSWRFdbfAFzGbizOAHpwIKqNaPGRpMuPDAD2AO2ZY5XXpAo8-pIA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=react&prettier=false&targets=&version=7.11.6&externalPlugins=)
@@ -52,6 +52,8 @@ console.log('Hello'.concat(text, '!')) //Hello World!
 ## JSX 是如何映射为 DOM 的？
 
 先来看看 createElement 源码，这里是一段抄来的有注释的源码
+
+<!-- eslint-skip -->
 
 ```javascript
 export function createElement(type, config, children) {
@@ -192,24 +194,26 @@ React.createElement(
 
 ### 拆解 config 参数
 
+<!-- eslint-skip -->
+
 ```javascript
 if (config != null) {
-  //有合理的ref
+  // 有合理的ref
   if (hasValidRef(config)) {
     ref = config.ref
   }
-  //有合理的key
+  // 有合理的key
   if (hasValidKey(config)) {
-    key = '' + config.key
+    key = `${config.key}`
   }
 
   self = config.__self === undefined ? null : config.__self
   source = config.__source === undefined ? null : config.__source
 
-  //config中剩余属性,且不是原生属性(RESERVED_PROPS对象的属性)，则添加到新props对象中
+  // config中剩余属性,且不是原生属性(RESERVED_PROPS对象的属性)，则添加到新props对象中
   for (propName in config) {
     if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-      props[propName] = config[propName] //config去除key/ref 其他属性的放到props对象中
+      props[propName] = config[propName] // config去除key/ref 其他属性的放到props对象中
     }
   }
 }
@@ -221,42 +225,45 @@ if (config != null) {
 
 从上面分解 config 之后是处理子元素的代码，此处将第二个参数以后的所有参数都存入`props.children`数组
 
+<!-- eslint-skip -->
+
 ```javascript
 // Children can be more than one argument, and those are transferred onto
 // the newly allocated props object.
 // 子元素数量（第三个参数以及之后参数都是子元素 兄弟节点）
-var childrenLength = arguments.length - 2
+let childrenLength = arguments.length - 2
 
 if (childrenLength === 1) {
   props.children = children
-} else if (childrenLength > 1) {
-  var childArray = Array(childrenLength) //声明一个数组
-  //依次将children push到数组中
-  for (var i = 0; i < childrenLength; i++) {
+}
+else if (childrenLength > 1) {
+  let childArray = new Array(childrenLength) // 声明一个数组
+  // 依次将children push到数组中
+  for (let i = 0; i < childrenLength; i++) {
     childArray[i] = arguments[i + 2]
   }
   {
-    //冻结array 返回原来的childArray且不能被修改 防止有人修改库的核心对象 冻结对象大大提高性能
+    // 冻结array 返回原来的childArray且不能被修改 防止有人修改库的核心对象 冻结对象大大提高性能
     if (Object.freeze) {
       Object.freeze(childArray)
     }
   }
-  props.children = childArray //父组件内部通过this.props.children获取子组件的值
+  props.children = childArray // 父组件内部通过this.props.children获取子组件的值
 }
 ```
 
 接下来就是处理当父组件给 children 传入 props 情况，如果子组件设置了默认值并且父组件未传入 props(即值为`undefined`) 时使用提供的默认值。
 
 ```javascript
-//为子组件设置默认值 一般针对的是组件
-//class com extends React.component 则com.defaultProps获取当前组件自己的静态方法
+// 为子组件设置默认值 一般针对的是组件
+// class com extends React.component 则com.defaultProps获取当前组件自己的静态方法
 if (type && type.defaultProps) {
-  //如果当前组件中有默认的defaultProps则把当前组件的默认内容 定义到defaultProps中
-  var defaultProps = type.defaultProps
+  // 如果当前组件中有默认的defaultProps则把当前组件的默认内容 定义到defaultProps中
+  let defaultProps = type.defaultProps
 
   for (propName in defaultProps) {
     if (props[propName] === undefined) {
-      //如果父组件中对应的值为undefined 则把默认值赋值赋值给props当作props的属性
+      // 如果父组件中对应的值为undefined 则把默认值赋值赋值给props当作props的属性
       props[propName] = defaultProps[propName]
     }
   }

@@ -44,6 +44,8 @@ pnpm add -D @types/node @types/react @types/react-dom typescript windicss windic
 
 在`package.json`中新增一个 script
 
+<!-- eslint-skip -->
+
 ```json:package.json diff
 {
     ...
@@ -58,21 +60,23 @@ pnpm add -D @types/node @types/react @types/react-dom typescript windicss windic
 在项目根目录下新建`next.config.js`
 
 ```js:next.config.js
-const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
+const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
 /** @type {import('next').NextConfig} */
 const config = {
   webpack(config) {
-    config.plugins.push(new WindiCSSWebpackPlugin());
-    return config;
+    config.plugins.push(new WindiCSSWebpackPlugin())
+    return config
   }
-};
-module.exports = config;
+}
+module.exports = config
 ```
 
 然后我们新建一个 pages 目录用于放置 nextjs 基于约定的路由页面, 里面新建`_app.tsx`文件
 
 在顶端引入`import 'windi.css'`并[自定义 App](https://nextjs.org/docs/advanced-features/custom-app)
+
+<!-- eslint-skip -->
 
 ```tsx:pages/_app.tsx
 import "windi.css";
@@ -102,9 +106,9 @@ export default App;
 ```tsx:pages/index.tsx
 const Home: React.FC<Props> = ({ records }) => {
   return <div></div>
-};
+}
 
-export default Home;
+export default Home
 ```
 
 ## 创建组件
@@ -114,12 +118,12 @@ export default Home;
 ```tsx:components/card.tsx
 const Card: React.FC = () => {
   return (
-    <section className="pb-10 relative before:(border-l-2 inset-y-0 -left-30px absolute content-open-quote) first:before:top-1 last:before:bottom-10">
-        content
+    <section className="before:content-open-quote relative pb-10 before:(absolute inset-y-0 border-l-2 -left-30px) first:before:top-1 last:before:bottom-10">
+      content
     </section>
-  );
-};
-export default Card;
+  )
+}
+export default Card
 ```
 
 然后我们先定义一个 interface 用于描述记录的信息,顺便导出一下
@@ -146,6 +150,8 @@ export interface RecordItem {
 然后我们借助这个类型将组件完善一下,其中使用 next/image 来图片优化
 
 如果选择 SSG 的话,可以直接使用 img 标签以及把对应的图片资源放在 public 下做[静态文件服务](https://nextjs.org/docs/basic-features/static-file-serving)或者使用图床链接~~如果准备托管到 Vercel 就直接使用 Image 组件~~
+
+<!-- eslint-skip -->
 
 ```tsx:components/card.tsx
 import Image from "next/image";
@@ -248,19 +254,19 @@ export const Card: React.FC<RecordItem> = (props) => {
 如果使用了 next/image 组件，我们需要修改一下 next.config.js 文件，添加[图片域名配置](https://nextjs.org/docs/api-reference/next/image#domains),添加封面图片可能的域名
 
 ```js:next.config.js {9-11}
-const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
+const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
 /** @type {import('next').NextConfig} */
 const config = {
   webpack(config) {
-    config.plugins.push(new WindiCSSWebpackPlugin());
-    return config;
+    config.plugins.push(new WindiCSSWebpackPlugin())
+    return config
   },
   images: {
-    domains: ["img1.doubanio.com", "img2.doubanio.com", "img3.doubanio.com", "img9.doubanio.com"]
+    domains: ['img1.doubanio.com', 'img2.doubanio.com', 'img3.doubanio.com', 'img9.doubanio.com']
   }
-};
-module.exports = config;
+}
+module.exports = config
 ```
 
 然后可以在 pages/index.tsx 设置看看效果
@@ -282,9 +288,9 @@ const Home: React.FC<Props> = ({ records }) => {
       />
     </div>
   )
-};
+}
 
-export default Home;
+export default Home
 ```
 
 ## 设置和获取数据
@@ -332,8 +338,8 @@ import { Octokit } from '@octokit/core'
 const octokit = new Octokit({ auth: process.env.GIT_TOKEN })
 
 export async function getRecords() {
-    const res = await octokit.request("GET /gists/{gist_id}", { gist_id: process.env.GIST_ID })
-    return res
+  const res = await octokit.request('GET /gists/{gist_id}', { gist_id: process.env.GIST_ID })
+  return res
 }
 ```
 
@@ -346,6 +352,8 @@ export async function getRecords() {
 #### getStaticProps
 
 使用 getStaticProps 则只能获取在每次构建的时候的数据,用于 ssg 最好但是数据不及时
+
+<!-- eslint-skip -->
 
 ```tsx:pages/index.tsx {2-33,35,38-40}
 import { Card } from "components/Crad";

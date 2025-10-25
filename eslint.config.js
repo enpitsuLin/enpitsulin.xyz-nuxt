@@ -6,9 +6,6 @@ export default antfu(
   {
     unocss: true,
     formatters: true,
-    ignores: [
-      'content/**/*.md',
-    ],
   },
 ).append(nuxt({
   rules: {

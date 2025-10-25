@@ -13,7 +13,7 @@ excerpt: 上篇我们完成了基于sqlite数据库+rust的后端逻辑，但是
 
 这里还有一个需要用的到就是我们 Todo 的类型，其实就是将 rust 之前写好的 struct 用 ts interface 的方式声明一下以便前端项目使用。
 
-```ts:src/types/todo.ts
+```ts [src/types/todo.ts]
 export interface Todo {
   id: string
   label: string
@@ -28,7 +28,7 @@ export interface Todo {
 
 首先先在 src 下建立一个 store 目录，添加一个 todo.ts 文件来存放声明的一些原子。
 
-```ts:src/store/todo.ts
+```ts [src/store/todo.ts]
 import { atom } from 'jotai'
 import { Todo } from '../types/todo'
 
@@ -41,14 +41,15 @@ export const allTodosAtom = atom<Todo[]>([])
 /** 未被软删除的todos */
 export const todosAtom = atom<Todo[]>((get) => {
   const todos = get(allTodosAtom)
-  return todos.filter((todo) => !todo.is_delete)
+  return todos.filter(todo => !todo.is_delete)
 })
 
 /** 经过过滤的todos */
 export const filterAtom = atom((get) => {
   const todos = get(todosAtom)
   return todos.filter((todo) => {
-    if (get(filterType) === 'all') return true
+    if (get(filterType) === 'all')
+      return true
     return todo.done === (get(filterType) === 'completed')
   })
 })
@@ -56,13 +57,13 @@ export const filterAtom = atom((get) => {
 /** 方便使用的统计未完成的todo数量的原子 */
 export const activeTodoCountAtom = atom((get) => {
   const todos = get(todosAtom)
-  return todos.filter((todo) => !todo.done).length
+  return todos.filter(todo => !todo.done).length
 })
 
 /** 也是方便实用的检查是否有todo完成的原子 */
 export const anyTodosDone = atom((get) => {
   const todos = get(todosAtom)
-  return todos.some((todo) => todo.done)
+  return todos.some(todo => todo.done)
 })
 ```
 
@@ -74,9 +75,10 @@ export const anyTodosDone = atom((get) => {
 
 那么我们需要通过 props 传递这个数据，首先需要先去定义一下这两个组件的 props。首先是 TodoItem
 
-```tsx:src/component/TodoItem.tsx
+```tsx [src/component/TodoItem.tsx]
 import { Todo } from './types/todo'
-const TodoItem: React.FC<{ todo:Todo }> = ({ todo }) => {
+
+const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {
   return (
     <li>
       <div className="view">
@@ -92,10 +94,11 @@ export default TodoItem
 
 以及 TodoList
 
-```tsx:src/component/TodoList.tsx
-import { Todo } from './types/todo'
+```tsx [src/component/TodoList.tsx]
 import TodoItem from './TodoItem'
-const TodoList:React.FC<{ todos: Todo[] }> = ({ todos }) => {
+import { Todo } from './types/todo'
+
+const TodoList: React.FC<{ todos: Todo[] }> = ({ todos }) => {
   return (
     <>
       <header className="header">
@@ -106,14 +109,16 @@ const TodoList:React.FC<{ todos: Todo[] }> = ({ todos }) => {
         <input type="checkbox" className="toggle-all" />
         <label htmlFor="togle-all"></label>
         <ul className="todo-list">
-          {todos.map((todo) => (
+          {todos.map(todo => (
             <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       </section>
       <footer className="footer">
         <span className="todo-count">
-          <strong>1</strong> items left
+          <strong>1</strong>
+          {' '}
+          items left
         </span>
         <ul className="filters">
           <li>
@@ -135,7 +140,7 @@ export default TodoList
 
 然后我们在 App.tsx 中使用一个副作用将 invoke('get_todos')返回的数据赋值给 AllTodosAtom 原子并且将 filterAtom 相应的数据传递下去。然后我们查看应用现在应该是变成一个空的列表的情况
 
-```tsx:src/App.tsx
+```tsx [src/App.tsx]
 import { invoke } from '@tauri-apps/api'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
@@ -153,7 +158,7 @@ function App() {
   }, [])
   return (
     <div className="todoapp">
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} />
     </div>
   )
 }
@@ -169,14 +174,14 @@ export default App
 
 所以修改 TodoList 让其中的 input 标签起作用以及过滤用的 a 标签能够控制 filterTypeAtom
 
-```tsx:src/component/TodoList.tsx
+```tsx [src/component/TodoList.tsx]
+import { invoke } from '@tauri-apps/api'
 import { useAtom } from 'jotai'
+import { KeyboardEventHandler, useCallback, useState } from 'react'
 import { v4 as randomUUID } from 'uuid'
-import { useState, useCallback, KeyboardEventHandler } from 'react'
 import { activeTodoCountAtom, allTodosAtom, anyTodosDone, filterType } from '../store/todos'
 import { Todo } from '../types/todo'
 import TodoItem from './TodoItem'
-import { invoke } from '@tauri-apps/api'
 
 const TodoList: React.FC<{ todos: Todo[] }> = ({ todos }) => {
   const [, setTodos] = useAtom(allTodosAtom)
@@ -240,28 +245,30 @@ const TodoList: React.FC<{ todos: Todo[] }> = ({ todos }) => {
         <input type="checkbox" className="toggle-all" />
         <label htmlFor="togle-all"></label>
         <ul className="todo-list">
-          {todos.map((todo) => (
+          {todos.map(todo => (
             <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       </section>
       <footer className="footer">
         <span className="todo-count">
-          <strong>{activeCount}</strong> items left
+          <strong>{activeCount}</strong>
+          {' '}
+          items left
         </span>
         <ul className="filters">
           <li>
-            <a onClick={() => setType('all')} className={type == 'all' ? 'selected' : ''}>
+            <a onClick={() => setType('all')} className={type === 'all' ? 'selected' : ''}>
               All
             </a>
           </li>
           <li>
-            <a onClick={() => setType('active')} className={type == 'active' ? 'selected' : ''}>
+            <a onClick={() => setType('active')} className={type === 'active' ? 'selected' : ''}>
               Active
             </a>
           </li>
           <li>
-            <a onClick={() => setType('completed')} className={type == 'completed' ? 'selected' : ''}>
+            <a onClick={() => setType('completed')} className={type === 'completed' ? 'selected' : ''}>
               Completed
             </a>
           </li>
@@ -288,15 +295,15 @@ export default TodoList
 
 最终组件代码如下，我额外使用了 react-use 和 use-debounce 这两个包的一些 hook。~~本来是想自己写的，写了一个就摆了，useDoubleClick 可以看最后仓库代码~~
 
-```tsx:src/component/TodoItem.tsx
+```tsx [src/component/TodoItem.tsx]
+import { invoke } from '@tauri-apps/api'
 import { useAtom } from 'jotai'
 import { ChangeEventHandler, KeyboardEventHandler, useCallback, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
 import { useDebouncedCallback } from 'use-debounce'
+import { useDoubleClick } from '../hooks/useDoubleClick'
 import { allTodosAtom } from '../store/todos'
 import { Todo } from '../types/todo'
-import { useDoubleClick } from '../hooks/useDoubleClick'
-import { invoke } from '@tauri-apps/api'
 
 const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {
   const [, setTodos] = useAtom(allTodosAtom)
@@ -403,7 +410,7 @@ export default TodoItem
 
 ## 打包和分发
 
-我们只需要执行`pnpm tarui build`然后就可以在`tauri-src/target/release/bundle/msi`里找到 window 平台 的安装包了，想要自定义安装程序可以[参考](https://tauri.studio/docs/distribution/windows#customizing-the-windows-installer)，至于 MacOS 和 linux 我也没尝试过~~所以鸽了~~理论上应该是可以跨平台运行的，但是不太清楚具体操作\_(:3」∠)\_
+我们只需要执行`pnpm tarui build`然后就可以在`tauri-src/target/release/bundle/msi`里找到 window 平台 的安装包了，想要自定义安装程序可以[参考](https://tauri.studio/docs/distribution/windows#customizing-the-windows-installer)，至于 MacOS 和 linux 我也没尝试过~~所以鸽了~~理论上应该是可以跨平台运行的，但是不太清楚具体操作\_\(\:3」∠\)\_
 
 ## 关于学习 rust 的讨论
 

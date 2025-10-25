@@ -89,6 +89,7 @@ if (!data.value)
       </header>
       <ContentRenderer
         :value="data!" tag="article" :components="components"
+        text-15px
         class="max-w-unset prose dark:prose-invert"
       >
         <template #empty>

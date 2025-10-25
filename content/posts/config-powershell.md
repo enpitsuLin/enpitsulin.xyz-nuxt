@@ -4,6 +4,7 @@ publishAt: 2019-03-28 19:06:00
 tags: [Windows, Shell]
 excerpt: 终端，是用户与操作系统进行交互的最原始的输入输出环境，也是一些高级系统操作必要工具。经常调试脚本，使用 git 频率多，于是今天决定配一个好用的 shell 来当做学习环境。
 ---
+
 **终端**，是用户与操作系统进行交互的最原始的输入输出环境，也是一些高级系统操作必要工具。
 经常调试脚本，使用 git 频率多，于是今天决定配一个好用的 shell 来当做学习环境。
 
@@ -64,14 +65,17 @@ colortool OneHalfDark
 由于微软对控制台字体的元数据有限制：
 
 > 这些字体必须满足以下条件，可在命令会话窗口中：
-> 　该字体必须是等宽字体。
-> 　该字体不能为斜体字体。
-> 　该字体不能有 A 或 C 负空间。
-> 　如果是 TrueType 字体，则它必须是 FF_MODERN。
-> 　如果它不是 TrueType 字体，则它必须是 OEM_CHARSET。
+>
+> - 该字体必须是等宽字体。
+> - 该字体不能为斜体字体。
+> - 该字体不能有 A 或 C 负空间。
+> - 如果是 TrueType 字体，则它必须是 FF_MODERN。
+> - 如果它不是 TrueType 字体，则它必须是 OEM_CHARSET。
+>
 > 对于亚洲字体的附加条件：
-> 　如果不是 TrueType 字体，字体名必须是“Terminal”。
-> 　如果它是亚洲的 TrueType 字体，它还必须使用亚洲语言的字符集。
+>
+> - 如果不是 TrueType 字体，字体名必须是“Terminal”。
+> - 如果它是亚洲的 TrueType 字体，它还必须使用亚洲语言的字符集。
 
 可能大多数人喜欢使用适合于编程的等宽字体如 Consolas 作为 Powershell 的字体,但这里推荐一款`Sarasa Gothic / 更纱黑体 / 更紗黑體 / 更紗ゴシック`(更纱黑体)，可以从更纱黑体的 [GitHub 页面](https://github.com/be5invis/Sarasa-Gothic/releases)下载。
 
