@@ -21,6 +21,7 @@
   --theme-background: 210 17% 98%; /** #f8f9fa */
   --theme-accent: 200 77% 39%; /* #177CB0 */
   --theme-border: 240 4% 95%; /* #f2f2f3*/
+  text-autospace: normal;
 }
 
 .dark {
