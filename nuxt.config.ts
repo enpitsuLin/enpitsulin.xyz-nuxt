@@ -73,7 +73,7 @@ export default defineNuxtConfig({
           {
             binding: 'DB',
             database_name: 'enpitsulin-dev-db',
-            database_id: 'a9ca9f7a-0efc-4aaa-a3b4-febbf0ae0170',
+            database_id: '660627a1-e2a8-442d-9a16-6271d5f499a7',
           },
         ],
       },
