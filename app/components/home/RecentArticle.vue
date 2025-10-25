@@ -2,7 +2,7 @@
 import type { PostsCollectionItem } from '@nuxt/content'
 
 interface Props {
-  article: Pick<PostsCollectionItem, 'id' | 'title' | 'publishAt' | 'slug' | 'summary' | 'excerpt' | 'description'>
+  article: Pick<PostsCollectionItem, 'path' | 'id' | 'title' | 'publishAt' | 'excerpt' | 'description'>
 }
 defineProps<Props>()
 </script>
@@ -13,7 +13,7 @@ defineProps<Props>()
     relative
     class="group"
   >
-    <ArticleCardTitle :title="article.title" :slug="article.slug" />
+    <ArticleCardTitle :title="article.title" :slug="article.path.replace('/posts/', '')" />
     <ArticleCardTime :date="article.publishAt" />
     <ContentRenderer
       v-if="article.excerpt"
@@ -23,7 +23,7 @@ defineProps<Props>()
       class="[&>p]:py-2"
     />
     <div v-else relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
-      <p>{{ article.summary || article.description }}</p>
+      <p>{{ article.description }}</p>
     </div>
     <div
       aria-hidden="true"
