@@ -1,4 +1,4 @@
-import { queryCollection } from '#imports'
+import { queryCollection } from '@nuxt/content/server'
 import RSS from 'rss'
 import { description, siteUrl, title } from '~/constants'
 
