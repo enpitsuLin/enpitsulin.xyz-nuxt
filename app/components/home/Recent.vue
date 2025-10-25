@@ -4,6 +4,7 @@ const { data } = await useAsyncData(
   () => queryCollection('posts')
     .order('publishAt', 'DESC')
     .select('id', 'title', 'publishAt', 'path', 'excerpt', 'description')
+    .where('draft', '=', false)
     .limit(2)
     .all(),
 )
