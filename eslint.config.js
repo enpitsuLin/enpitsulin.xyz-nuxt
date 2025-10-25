@@ -10,4 +10,8 @@ export default antfu(
       'content/**/*.md',
     ],
   },
-).append(nuxt())
+).append(nuxt({
+  rules: {
+    'vue/no-multiple-template-root': 'off',
+  },
+}))

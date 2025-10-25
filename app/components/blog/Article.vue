@@ -7,6 +7,10 @@ interface Props {
   article: PostsCollectionItem
 }
 const { article } = defineProps<Props>()
+
+const slug = computed(() => {
+  return article.path.replace('/posts/', '')
+})
 </script>
 
 <template>
@@ -20,7 +24,7 @@ const { article } = defineProps<Props>()
       flex="~ col items-start"
       class="group md:col-span-3"
     >
-      <ArticleCardTitle :title="article.title" :slug="article.slug" />
+      <ArticleCardTitle :title="article.title" :slug="slug" />
       <ArticleCardTime :date="article.publishAt" class="md:hidden" />
       <ContentRenderer
         v-if="article.excerpt"
@@ -30,7 +34,7 @@ const { article } = defineProps<Props>()
         class="[&>p]:py-2"
       />
       <div v-else relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
-        <p>{{ article.summary || article.description }}</p>
+        <p>{{ article.description }}</p>
       </div>
       <div
         aria-hidden="true"

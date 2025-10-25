@@ -25,12 +25,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         remarkPlugins: {
-          'remark-reading-time': {
-
-          },
-          'remark-directive': {},
-          'remark-directive-rehype': {},
-          'remark-mdc': false,
+          'remark-reading-time': {},
         },
         rehypePlugins: {
           'rehype-unwrap-images': {},

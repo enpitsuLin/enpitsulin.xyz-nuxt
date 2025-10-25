@@ -9,14 +9,15 @@ const page = ref(1)
 const search = useRouteQuery('q', '', v => v === '' ? null : v)
 const debounceSearch = refDebounced(search)
 
-const { data: totalCount } = await useAsyncData('posts-count', () => queryCollection('posts').count())
-const { data: searchData } = await useAsyncData('search-data', () => queryCollection('posts').all(), { lazy: true })
+const { data: totalCount } = await useAsyncData('posts-count', () => queryCollection('posts').where('draft', '=', false).count())
+const { data: searchData } = await useAsyncData('search-data', () => queryCollection('posts').where('draft', '=', false).all(), { lazy: true })
 
 const { data, status } = await useAsyncData(
   'blog-index',
   () => {
     return queryCollection('posts')
       .limit(page.value * 10)
+      .where('draft', '=', false)
       .order('publishAt', 'DESC')
       .all()
   },

@@ -7,7 +7,7 @@ const route = useRoute('blog-slug')
 const { data } = await useAsyncData(
   `post:${route.params.slug}`,
   () => queryCollection('posts')
-    .where('slug', '=', route.params.slug)
+    .path(`/posts/${route.params.slug}`)
     .first(),
 )
 
@@ -23,7 +23,7 @@ const {
     {
       after: 1,
       before: 1,
-      fields: ['title', 'slug'],
+      fields: ['title'],
     },
   )
     .order('publishAt', 'DESC')
@@ -108,8 +108,9 @@ if (!data.value)
   <footer mx="-8 sm:-12" px="8 sm:12" border="t border">
     <nav flex="~ justify-between" my-20px>
       <NuxtLink
-        v-if="surroundData?.[0]" flex="~ col items-start" space-y-5px max-w="1/2"
-        :to="{ name: 'blog-slug', params: { slug: surroundData[0].slug! as string } }"
+        v-if="surroundData?.[0]"
+        flex="~ col items-start" space-y-5px max-w="1/2"
+        :to="{ name: 'blog-slug', params: { slug: surroundData[0].path.replace('/posts/', '') } }"
       >
         <p op-50>
           Next
@@ -118,8 +119,9 @@ if (!data.value)
       </NuxtLink>
       <div v-else aria-hidden="true" />
       <NuxtLink
-        v-if="surroundData?.[1]" flex="~ col items-end" space-y-5px max-w="1/2"
-        :to="{ name: 'blog-slug', params: { slug: surroundData[1].slug! as string } }"
+        v-if="surroundData?.[1]"
+        flex="~ col items-end" space-y-5px max-w="1/2"
+        :to="{ name: 'blog-slug', params: { slug: surroundData[1].path.replace('/posts/', '') } }"
       >
         <p op-50>
           Previous

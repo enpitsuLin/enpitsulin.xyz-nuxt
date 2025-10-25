@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
       feed.item({
         title: post.title ?? 'Untitled Post',
         description: post.description,
-        url: new URL(`/blog/${post.slug}`, siteUrl).toString(),
+        url: new URL(`/blog/${post.path}`, siteUrl).toString(),
         date: new Date(post.publishAt),
       })
     })
