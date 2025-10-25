@@ -16,6 +16,7 @@
     "@ark-ui/vue": "^5.26.2",
     "@skirtle/vue-vnode-utils": "^0.2.0",
     "crossbell": "^1.13.1",
+    "motion-v": "^1.7.4",
     "remark-directive": "^4.0.0",
     "remark-directive-rehype": "^0.4.2",
     "remark-reading-time": "^2.0.2",

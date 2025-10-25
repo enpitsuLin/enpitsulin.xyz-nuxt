@@ -1,15 +1,15 @@
+import type { Theme } from '@unocss/preset-uno'
 import { handler } from '@unocss/preset-mini/utils'
 import {
   defineConfig,
   presetAttributify,
   presetIcons,
   presetTypography,
-  presetUno,
   presetWebFonts,
+  presetWind3,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import type { Theme } from '@unocss/preset-uno'
 
 function handleMatchNumber(v: string, defaultVal = '0') {
   return handler.bracket.cssvar.global.auto.fraction.number(v || defaultVal)?.toString().replace('%', '')
@@ -63,7 +63,7 @@ export default defineConfig<Theme>({
     [/^slide-out-to-right-?(.+)?$/, ([, d]) => ({ '--un-exit-translate-x': handleMatchRem(d) })],
   ],
   presets: [
-    presetUno(),
+    presetWind3(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,

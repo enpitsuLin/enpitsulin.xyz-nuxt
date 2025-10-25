@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { navigation } from '~/constants'
-
-const route = useRoute()
 </script>
 
 <template>
@@ -11,19 +9,21 @@ const route = useRoute()
     px-8 pt-5
   >
     <div pointer-events-none fixed left-0 right-0 top-0 h-25 select-none class="navbar-blur" />
+
     <div
       relative z-2 h-full w-fit
-      class="hidden transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px md:block"
+      class="transform animate-duration-1300 animate-ease-$spring-easing animate-in slide-in-from-top-70px"
     >
       <div
-        v-if="route.path !== '/'"
-        absolute top="1/2" class="left--12 translate-y--1/2 view-transition-avatar"
+        v-if="$route.path !== '/'"
+        position="sticky top-4 md:absolute md:top-1/2 md:left--12"
+        md:translate-y="-1/2"
       >
         <NuxtImg
           alt="avatar"
-          width="250" height="250"
-          decoding="async"
-          class="size-9 border-2 border-white rounded-full object-cover shadow-xl"
+          width="250"
+          height="250" decoding="async"
+          class="size-9 border-2 border-white rounded-full object-cover shadow-xl view-transition-avatar"
           src="https://avatars.githubusercontent.com/enpitsuLin"
         />
       </div>
@@ -31,7 +31,7 @@ const route = useRoute()
         bg="zinc-50/50 dark:zinc-950/50"
         px-8 py="2"
         border="~ border rounded-full"
-        class="flex shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color"
+        class="hidden shadow-black/10 shadow-md backdrop-blur-0.5rem transition-background-color md:flex"
       >
         <ul
           flex="~ items-center justify-center gap-2"
@@ -50,15 +50,6 @@ const route = useRoute()
       </nav>
     </div>
 
-    <NuxtLink v-if="route.path !== '/'" href="/" relative class="view-transition-avatar md:hidden">
-      <NuxtImg
-        alt="avatar"
-        width="250" height="250"
-        decoding="async"
-        class="size-9 border-2 border-white rounded-full object-cover shadow-xl"
-        src="https://avatars.githubusercontent.com/enpitsuLin"
-      />
-    </NuxtLink>
     <ClientOnly>
       <LayoutNavBarMenu />
     </ClientOnly>

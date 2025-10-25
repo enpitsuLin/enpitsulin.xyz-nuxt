@@ -1,4 +1,4 @@
-export const siteUrl = 'https://enpitsulin.xyz'
+export const siteUrl = 'https://enpitsulin.dev'
 
 export const title = 'Promise { <pending> }'
 export const description = 'What are you looking for?'

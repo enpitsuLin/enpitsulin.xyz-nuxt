@@ -66,10 +66,3 @@ const id = useId()
     </div>
   </Teleport>
 </template>
-
-<style>
-/** disabled other view-transition */
-.zoom-image-animating [class*='view-transition'] {
-  view-transition-name: none !important;
-}
-</style>

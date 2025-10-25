@@ -41,7 +41,7 @@ const { data, status } = await useAsyncData(
       </div>
     </template>
     <div v-if="data && data?.length > 0 " pl="md:6" border="md:l border">
-      <ul flex="~ col gap-16">
+      <ul flex="~ col gap-16" pb-16>
         <li v-for="article in data" :key="article.id">
           <BlogArticle :article="article" />
         </li>
