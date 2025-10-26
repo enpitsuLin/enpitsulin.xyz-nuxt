@@ -18,10 +18,12 @@ const refinedSrc = computed(() => {
   return props.src
 })
 
+const supportsViewTransition = useSupported(() => 'startViewTransition' in document)
+
 const [zoom, toggleZoom] = useToggle(false)
 
 function onClick() {
-  if (!document.startViewTransition) {
+  if (!supportsViewTransition.value) {
     toggleZoom()
     return
   }
@@ -57,11 +59,15 @@ const id = useId()
       <span>{{ alt }}</span>
     </figcaption>
   </figure>
-  <Teleport v-if="zoom" to="body">
+  <Teleport defer to="#zoom-positioner">
     <div
+      role="dialog"
       flex="~ items-center justify-center"
       class="fixed inset-0 z-99 cursor-zoom-out backdrop-blur-0.5rem"
       bg="zinc-50/80 dark:zinc-950/80"
+      :class="{
+        invisible: !zoom,
+      }"
       @click="onClick"
     >
       <NuxtImg
@@ -70,6 +76,7 @@ const id = useId()
         :alt="alt"
         :width="width"
         :height="height"
+
         :style="zoom && { viewTransitionName: `zoom-${id}` }"
       />
     </div>

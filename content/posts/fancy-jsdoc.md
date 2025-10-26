@@ -2,7 +2,7 @@
 title: Jsdoc的奇妙——无法使用ts的无奈之举
 publishAt: 2021-09-26 20:21:00
 tags: [JavaScript, TypeScript]
-excerpt: 在现代前端项目中使用 ts 以及成为常态, 但是在很多还是只能使用 JavaScript 的项目中也往往也很需要静态类型检查, 但因为一些原因快速引入 ts 不太现实, 使用Jsdoc来标注类型可能是一种解决方法。
+description: 在现代前端项目中使用 ts 以及成为常态, 但是在很多还是只能使用 JavaScript 的项目中也往往也很需要静态类型检查, 但因为一些原因快速引入 ts 不太现实, 使用Jsdoc来标注类型可能是一种解决方法。
 ---
 
 在现代前端项目中使用 ts 以及成为常态~~TypeScript 成为事实上的 JavaScript,JS 大呼不可战胜~~

@@ -22,6 +22,7 @@ const posts = defineCollection({
       }),
     }),
     draft: z.boolean().default(false).optional(),
+    description: z.string().optional(),
   }),
 })
 

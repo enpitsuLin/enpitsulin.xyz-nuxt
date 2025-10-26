@@ -2,7 +2,7 @@
 title: 从0开始的TypeScript学习和踩坑
 publishAt: 2021-08-29 22:03:00
 tags: [JavaScript, TypeScript, React, Vue]
-excerpt: TypeScript 作为 JavaScript 具有类型的超集, 并支持所有的所有的 JavaScript语法, 并在此之上对 JavaScript 添加了一些扩展,在生产中使用可以大大提高代码的可读性和项目的健壮性
+description: TypeScript 作为 JavaScript 具有类型的超集, 并支持所有的所有的 JavaScript语法, 并在此之上对 JavaScript 添加了一些扩展,在生产中使用可以大大提高代码的可读性和项目的健壮性
 ---
 
 `TypeScript` 作为 `JavaScript` 具有类型的超集,并支持所有的所有的 `JavaScript`语法。并在此之上对 `JavaScript` 添加了一些扩展,在生产中使用可以大大提高代码的可读性和项目的健壮性

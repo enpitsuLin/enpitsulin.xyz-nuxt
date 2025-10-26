@@ -29,11 +29,14 @@ const slug = computed(() => {
       <ContentRenderer
         v-if="article.excerpt"
         :value="article.excerpt"
-        relative z-10 mt-2 text-sm
+        relative z-10 text-sm
         text="zinc-600 dark:zinc-400"
-        class="[&>p]:py-2"
+        class="prose dark:prose-invert"
       />
-      <div v-else relative z-10 mt-2 text-sm text="zinc-600 dark:zinc-400">
+      <div
+        v-else relative z-10 text-sm text="zinc-600 dark:zinc-400"
+        class="prose dark:prose-invert"
+      >
         <p>{{ article.description }}</p>
       </div>
       <div

@@ -3,7 +3,7 @@ title: Bare git repository was best friend with Syncthing
 publishAt: 2023-02-18 15:45:00
 tags: [Git, Syncthing]
 lang: en
-excerpt: Synchronizing files and managing code can be simplified by using a bare Git repository with Syncthing instead of installing syncthing in WSL. By checking out a copy of the repository in WSL, files and code can be seamlessly synchronized across both environments without dealing with associated issues.
+description: Synchronizing files and managing code can be simplified by using a bare Git repository with Syncthing instead of installing syncthing in WSL. By checking out a copy of the repository in WSL, files and code can be seamlessly synchronized across both environments without dealing with associated issues.
 ---
 
 I encountered issues using Syncthing and WSL together. Previously, I used Syncthing to sync files (mainly code) that I needed across multiple locations. But when I switched to WSL as my primary dev environment, I faced some challenges. In this post, I will discuss these issues and how I resolved them.

@@ -2,7 +2,7 @@
 title: 使用Nextjs、Github Gists创建阅读观影纪录应用
 publishAt: 2022-04-08 20:26:00
 tags: [Github, Nextjs]
-excerpt: 仅使用Nextjs与Github Gists创建观影纪录应用，无需后端服务器与数据库，可以直接托管在Vercel上或者使用Nextjs的静态导出功能导出为静态页面部署在你喜欢的托管平台比如Github pages
+description: 仅使用Nextjs与Github Gists创建观影纪录应用，无需后端服务器与数据库，可以直接托管在Vercel上或者使用Nextjs的静态导出功能导出为静态页面部署在你喜欢的托管平台比如Github pages
 ---
 
 # 前言
