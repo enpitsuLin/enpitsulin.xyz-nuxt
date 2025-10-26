@@ -58,11 +58,6 @@ if (!data.value)
 </script>
 
 <template>
-  <div
-    id="zoom-positioner"
-    data-part="positioner"
-  />
-
   <div mt-16 text-14px flex="~ justify-between">
     <div text="1.1em" class="w-full md:w-80%" pb-20 pr="0 md:7.5" border="md:r border">
       <header

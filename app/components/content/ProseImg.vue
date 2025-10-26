@@ -59,7 +59,7 @@ const id = useId()
       <span>{{ alt }}</span>
     </figcaption>
   </figure>
-  <Teleport defer to="#zoom-positioner">
+  <Teleport defer to="#teleports">
     <div
       role="dialog"
       flex="~ items-center justify-center"
