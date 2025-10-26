@@ -1,7 +1,9 @@
 ---
 title: 使用Nextjs、Github Gists创建阅读观影纪录应用
 publishAt: 2022-04-08 20:26:00
-tags: [Github, Nextjs]
+tags:
+  - Github
+  - Nextjs
 description: 仅使用Nextjs与Github Gists创建观影纪录应用，无需后端服务器与数据库，可以直接托管在Vercel上或者使用Nextjs的静态导出功能导出为静态页面部署在你喜欢的托管平台比如Github pages
 ---
 
@@ -46,11 +48,10 @@ pnpm add -D @types/node @types/react @types/react-dom typescript windicss windic
 
 <!-- eslint-skip -->
 
-```json:package.json diff
+```json [package.json]
 {
-    ...
     "scripts":{
-+        "dev":"next",
+        "dev":"next", // [!code ++]
     }
 }
 ```
@@ -59,7 +60,7 @@ pnpm add -D @types/node @types/react @types/react-dom typescript windicss windic
 
 在项目根目录下新建`next.config.js`
 
-```js:next.config.js
+```js [next.config.js]
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
 /** @type {import('next').NextConfig} */
@@ -78,7 +79,7 @@ module.exports = config
 
 <!-- eslint-skip -->
 
-```tsx:pages/_app.tsx
+```tsx [pages/_app.tsx]
 import "windi.css";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
@@ -101,9 +102,9 @@ export default App;
 
 ## 创建页面
 
-在 pages/下新建一个`index.tsx`,这是应用的根页面,我们先创建一个空页面
+在 `pages/`下新建一个`index.tsx`,这是应用的根页面,我们先创建一个空页面
 
-```tsx:pages/index.tsx
+```tsx [pages/index.tsx]
 const Home: React.FC<Props> = ({ records }) => {
   return <div></div>
 }
@@ -115,7 +116,7 @@ export default Home
 
 我们需要一个卡片组件用于展示记录的信息,新建一个`components/card.tsx`简单的设置下卡片样式
 
-```tsx:components/card.tsx
+```tsx [components/card.tsx]
 const Card: React.FC = () => {
   return (
     <section className="before:content-open-quote relative pb-10 before:(absolute inset-y-0 border-l-2 -left-30px) first:before:top-1 last:before:bottom-10">
@@ -153,7 +154,7 @@ export interface RecordItem {
 
 <!-- eslint-skip -->
 
-```tsx:components/card.tsx
+```tsx [components/card.tsx]
 import Image from "next/image";
 import { useState } from "react";
 
@@ -253,7 +254,7 @@ export const Card: React.FC<RecordItem> = (props) => {
 
 如果使用了 next/image 组件，我们需要修改一下 next.config.js 文件，添加[图片域名配置](https://nextjs.org/docs/api-reference/next/image#domains),添加封面图片可能的域名
 
-```js:next.config.js {9-11}
+```js [next.config.js] {9-11}
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
 /** @type {import('next').NextConfig} */
@@ -271,7 +272,7 @@ module.exports = config
 
 然后可以在 pages/index.tsx 设置看看效果
 
-```tsx:pages/index.tsx {1,6-14}
+```tsx [pages/index.tsx] {1,6-14}
 import Card from 'components/Card.tsx'
 
 const Home: React.FC<Props> = ({ records }) => {
@@ -332,7 +333,7 @@ GIT_TOKEN=<token>
 
 新增`lib/get-records.ts`文件用于获取数据的逻辑
 
-```ts:lib/get-records.ts
+```ts [lib/get-records.ts]
 import { Octokit } from '@octokit/core'
 
 const octokit = new Octokit({ auth: process.env.GIT_TOKEN })
@@ -355,7 +356,7 @@ export async function getRecords() {
 
 <!-- eslint-skip -->
 
-```tsx:pages/index.tsx {2-33,35,38-40}
+```tsx [pages/index.tsx] {2-33,35,38-40}
 import { Card } from "components/Crad";
 import { GetStaticProps } from "next";
 import { getRecords } from "lib/get-records";

@@ -5,8 +5,9 @@ const tag = route.params.tag
 const { data } = await useAsyncData(
   `blog-tags:${tag}`,
   () => queryCollection('posts')
-    .all()
-    .then(posts => posts.filter(post => post.tags.includes(tag))),
+    .where('draft', '=', false)
+    .where('tags', 'LIKE', `%${tag}%`)
+    .all(),
 )
 </script>
 

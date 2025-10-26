@@ -31,11 +31,11 @@ const slug = computed(() => {
         :value="article.excerpt"
         relative z-10 text-sm
         text="zinc-600 dark:zinc-400"
-        class="prose dark:prose-invert"
+        class="max-w-80ch prose dark:prose-invert"
       />
       <div
         v-else relative z-10 text-sm text="zinc-600 dark:zinc-400"
-        class="prose dark:prose-invert"
+        class="max-w-80ch prose dark:prose-invert"
       >
         <p>{{ article.description }}</p>
       </div>
