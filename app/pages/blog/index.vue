@@ -10,7 +10,7 @@ const search = useRouteQuery('q', '', v => v === '' ? null : v)
 const debounceSearch = refDebounced(search)
 
 const { data: totalCount } = await useAsyncData('posts-count', () => queryCollection('posts').where('draft', '=', false).count())
-const { data: searchData } = await useAsyncData('search-data', () => queryCollection('posts').where('draft', '=', false).all(), { lazy: true })
+const { data: searchData } = await useAsyncData('search-data', () => queryCollection('posts').where('draft', '=', false).all())
 
 const { data, status } = await useAsyncData(
   'blog-index',
