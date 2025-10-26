@@ -66,24 +66,6 @@ export default defineNuxtConfig({
     preset: 'cloudflare-module',
     cloudflare: {
       deployConfig: true,
-      wrangler: {
-        d1_databases: [
-          {
-            binding: 'DB',
-            database_name: 'enpitsulin-dev-db',
-            database_id: '660627a1-e2a8-442d-9a16-6271d5f499a7',
-          },
-        ],
-        observability: {
-          logs: {
-            enabled: false,
-            head_sampling_rate: 1,
-            invocation_logs: true,
-            // @ts-expect-error - persist is a valid property
-            persist: true,
-          },
-        },
-      },
     },
     esbuild: {
       options: {
